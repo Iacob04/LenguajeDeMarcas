@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apuntes JavaScript — Examen DAM</title>
+<style>
+  :root{
+    --bg:#0f1117; --panel:#171a23; --panel2:#1d212c; --border:#2a2f3e;
+    --text:#e4e7ee; --dim:#8b93a7; --yellow:#f7df1e; --blue:#4fc3f7;
+    --green:#8ce99a; --red:#ff8787; --purple:#d0bfff; --orange:#ffc078;
+    --code-bg:#0b0d12;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Segoe UI',system-ui,sans-serif;
+    background:var(--bg); color:var(--text); line-height:1.6;
+  }
+  /* HEADER */
+  header{
+    position:sticky; top:0; z-index:100;
+    background:linear-gradient(180deg,#13151d,#0f1117);
+    border-bottom:1px solid var(--border);
+    padding:14px 20px; backdrop-filter:blur(8px);
+  }
+  .header-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px}
+  .logo .js{background:var(--yellow);color:#000;padding:3px 8px;border-radius:5px;font-weight:800;font-size:15px}
+  #search{
+    flex:1; min-width:220px; padding:10px 16px; font-size:15px;
+    background:var(--panel2); border:1px solid var(--border); border-radius:10px;
+    color:var(--text); outline:none; transition:border-color .15s;
+  }
+  #search:focus{border-color:var(--blue)}
+  #search::placeholder{color:var(--dim)}
+  .search-hint{font-size:12px;color:var(--dim)}
+  /* LAYOUT */
+  .container{max-width:1100px;margin:0 auto;display:flex;gap:24px;padding:24px 20px}
+  /* TOC */
+  nav{
+    width:230px; flex-shrink:0; position:sticky; top:80px; align-self:flex-start;
+    max-height:calc(100vh - 100px); overflow-y:auto; padding-right:8px;
+  }
+  nav h3{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--dim);margin:14px 0 8px}
+  nav a{
+    display:block; padding:6px 10px; color:var(--dim); text-decoration:none;
+    font-size:13.5px; border-radius:6px; transition:all .12s; border-left:2px solid transparent;
+  }
+  nav a:hover{color:var(--text);background:var(--panel)}
+  nav a.active{color:var(--yellow);border-left-color:var(--yellow);background:var(--panel)}
+  nav::-webkit-scrollbar{width:6px}
+  nav::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+  /* MAIN */
+  main{flex:1;min-width:0}
+  .section{margin-bottom:40px;scroll-margin-top:90px}
+  .section-title{
+    font-size:22px;font-weight:700;color:var(--yellow);margin-bottom:6px;
+    display:flex;align-items:center;gap:10px;
+  }
+  .section-title .badge{
+    font-size:11px;font-weight:600;background:var(--panel2);color:var(--dim);
+    padding:3px 9px;border-radius:20px;border:1px solid var(--border);
+  }
+  .section-desc{color:var(--dim);font-size:14px;margin-bottom:16px}
+  .block{
+    background:var(--panel); border:1px solid var(--border); border-radius:12px;
+    margin-bottom:16px; overflow:hidden;
+  }
+  .block-head{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:10px 16px; background:var(--panel2); border-bottom:1px solid var(--border);
+  }
+  .block-title{font-size:14px;font-weight:600;color:var(--text)}
+  .block-title .tag{font-size:11px;color:var(--blue);margin-left:8px;font-weight:500}
+  .copy-btn{
+    background:var(--border);color:var(--text);border:none;border-radius:7px;
+    padding:6px 14px;font-size:12px;font-weight:600;cursor:pointer;transition:all .15s;
+    display:flex;align-items:center;gap:6px;
+  }
+  .copy-btn:hover{background:var(--blue);color:#000}
+  .copy-btn.copied{background:var(--green);color:#000}
+  pre{
+    margin:0;padding:16px;overflow-x:auto;background:var(--code-bg);
+    font-family:'Cascadia Code','Fira Code',Consolas,monospace;font-size:13px;line-height:1.65;
+  }
+  pre::-webkit-scrollbar{height:8px}
+  pre::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
+  code{font-family:'Cascadia Code',Consolas,monospace}
+  /* SYNTAX */
+  .kw{color:var(--purple)} .fn{color:var(--blue)} .st{color:var(--green)}
+  .num{color:var(--orange)} .cm{color:#5c6370;font-style:italic} .op{color:var(--red)}
+  .prop{color:#ffd866}
+  /* NOTES */
+  .note{padding:12px 16px;border-radius:9px;margin:12px 0;font-size:13.5px}
+  .note.warn{background:rgba(255,192,120,.12);border-left:3px solid var(--orange);color:#ffe0b3}
+  .note.ok{background:rgba(140,233,154,.1);border-left:3px solid var(--green);color:#c3f5cb}
+  .note.err{background:rgba(255,135,135,.1);border-left:3px solid var(--red);color:#ffc9c9}
+  .note b{color:#fff}
+  /* TABLE */
+  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13px;background:var(--panel);border-radius:10px;overflow:hidden}
+  th{background:var(--panel2);text-align:left;padding:10px 14px;font-weight:600;border-bottom:1px solid var(--border)}
+  td{padding:9px 14px;border-bottom:1px solid var(--border);color:var(--text);vertical-align:top}
+  tr:last-child td{border-bottom:none}
+  td code,th code{background:var(--code-bg);padding:2px 6px;border-radius:4px;font-size:12px;color:var(--green)}
+  /* INTRO */
+  .intro{background:linear-gradient(135deg,#1a1d27,#13151d);border:1px solid var(--border);border-radius:14px;padding:24px;margin-bottom:32px}
+  .intro h1{font-size:26px;margin-bottom:8px}
+  .intro p{color:var(--dim);font-size:14.5px;margin-bottom:6px}
+  .intro .pills{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+  .pill{font-size:12px;background:var(--panel2);border:1px solid var(--border);padding:5px 12px;border-radius:20px;color:var(--blue)}
+  /* NO RESULTS */
+  #no-results{display:none;text-align:center;padding:60px 20px;color:var(--dim)}
+  #no-results .big{font-size:42px;margin-bottom:10px}
+  .hidden{display:none !important}
+  .toast{
+    position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(100px);
+    background:var(--green);color:#000;padding:12px 24px;border-radius:30px;font-weight:600;
+    font-size:14px;box-shadow:0 8px 30px rgba(0,0,0,.4);transition:transform .3s;z-index:200;
+  }
+  .toast.show{transform:translateX(-50%) translateY(0)}
+  @media(max-width:780px){
+    nav{display:none}
+    .container{padding:16px}
+  }
+  .scenario-num{
+    display:inline-flex;align-items:center;justify-content:center;
+    width:24px;height:24px;background:var(--yellow);color:#000;border-radius:50%;
+    font-weight:700;font-size:13px;margin-right:8px;flex-shrink:0;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="logo"><span class="js">JS</span> Apuntes Examen</div>
+    <input id="search" type="text" placeholder="🔍 Busca: validar, crear li, eliminar, aleatorio, ordenar..." autocomplete="off">
+    <span class="search-hint" id="hint">Escribe para filtrar todo</span>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- ════════ TOC ════════ -->
+  <nav id="toc">
+    <h3>Teoría</h3>
+    <a href="#selectores">1 · Selectores DOM</a>
+    <a href="#eventos">2 · Eventos</a>
+    <a href="#leer-escribir">3 · Leer y escribir</a>
+    <a href="#crear">4 · Crear / eliminar nodos</a>
+    <a href="#validacion">5 · Validación</a>
+    <a href="#dataset">6 · dataset</a>
+    <a href="#mostrar">7 · Mostrar / ocultar</a>
+    <a href="#clases">8 · Clases CSS</a>
+    <a href="#recorrer">9 · Recorrer listas</a>
+    <a href="#numeros">10 · Números</a>
+    <a href="#strings">11 · Strings</a>
+    <a href="#arrays">12 · Arrays</a>
+    <a href="#math">13 · Math / aleatorios</a>
+    <a href="#estado">14 · Estado y closures</a>
+    <h3>Análisis de código</h3>
+    <a href="#fragmentos">15 · Los 3 fragmentos</a>
+    <a href="#errores">16 · Errores típicos</a>
+    <h3>Casos prácticos</h3>
+    <a href="#caso-base">17 · Plantilla base</a>
+    <a href="#caso-carrito">18 · Carrito / total</a>
+    <a href="#caso-busqueda">19 · Búsqueda</a>
+    <a href="#caso-formulario">20 · Formulario</a>
+    <a href="#caso-votos">21 · Votos</a>
+    <a href="#caso-tareas">22 · Tareas + filtros</a>
+    <a href="#caso-quiniela">23 · Quiniela</a>
+    <a href="#caso-banco">24 · Ordenar lista</a>
+    <a href="#caso-propinas">25 · Propinas</a>
+    <a href="#caso-juego">26 · Adivina número</a>
+    <h3>Referencia</h3>
+    <a href="#chuleta">27 · Chuleta rápida</a>
+  </nav>
+
+  <!-- ════════ MAIN ════════ -->
+  <main>
+
+    <div class="intro">
+      <h1>📒 Apuntes JavaScript — Examen DAM</h1>
+      <p>Todo el código listo para <b style="color:#fff">copiar y pegar</b>. Usa el buscador de arriba para encontrar cualquier cosa al instante.</p>
+      <p>Cada bloque tiene un botón <b style="color:#fff">Copiar</b>. Los casos prácticos están completos y funcionan tal cual.</p>
+      <div class="pills">
+        <span class="pill">DOM</span><span class="pill">Eventos</span><span class="pill">Validación</span>
+        <span class="pill">Arrays</span><span class="pill">10 casos resueltos</span><span class="pill">Chuleta</span>
+      </div>
+    </div>
+
+    <!-- 1 SELECTORES -->
+    <section class="section" id="selectores" data-keywords="selector seleccionar getelementbyid queryselector queryselectorall nodelist htmlcollection dom referencia elemento">
+      <div class="section-title">1 · Selectores del DOM <span class="badge">teoría</span></div>
+      <div class="section-desc">Obtener referencias a elementos HTML desde JavaScript.</div>
+
+      <div class="block">
+        <div class="block-head"><div class="block-title">Declarar referencias al inicio <span class="tag">patrón estándar</span></div><button class="copy-btn">Copiar</button></div>
+<pre><code><span class="kw">const</span> input     = <span class="fn">document</span>.<span class="fn">getElementById</span>(<span class="st">'guest-name'</span>);
+<span class="kw">const</span> addBtn    = <span class="fn">document</span>.<span class="fn">getElementById</span>(<span class="st">'add-btn'</span>);
+<span class="kw">const</span> errorMsg  = <span class="fn">document</span>.<span class="fn">getElementById</span>(<span class="st">'error-msg'</span>);
+<span class="kw">const</span> lista     = <span class="fn">document</span>.<span class="fn">getElementById</span>(<span class="st">'guest-list'</span>);</code></pre>
+      </div>
+
+      <div class="block">
+        <div class="block-head"><div class="block-title">querySelector y querySelectorAll</div><button class="copy-btn">Copiar</button></div>
+<pre><code><span class="cm">// Primer elemento que coincide (selector CSS)</span>
+<span class="kw">const</span> primero = <span class="fn">document</span>.<span class="fn">querySelector</span>(<span class="st">'.item'</span>);
+
+<span class="cm">// TODOS los elementos que coinciden → NodeList (se recorre con forEach)</span>
+<span class="kw">const</span> items = <span class="fn">document</span>.<span class="fn">querySelectorAll</span>(<span class="st">'#lista li'</span>);
+
+<span class="cm">// Buscar DENTRO de un elemento concreto</span>
+<span class="kw">const</span> span = opt.<span class="fn">querySelector</span>(<span class="st">'.vote-count'</span>);
+
+<span class="cm">// Convertir NodeList a Array (necesario para .sort())</span>
+<span class="kw">const</span> arr = [...<span class="fn">document</span>.<span class="fn">querySelectorAll</span>(<span class="st">'li'</span>)];</code></pre>
+      </div>
+
+      <table>
+        <tr><th>Método</th><th>Devuelve</th><th>forEach</th></tr>
+        <tr><td><code>getElementById('id')</code></td><td>Un elemento / null</td><td>—</td></tr>
+        <tr><td><code>querySelector('.c')</code></td><td>Primer elemento</td><td>—</td></tr>
+        <tr><td><code>querySelectorAll('li')</code></td><td>NodeList</td><td>✓ Sí</td></tr>
+        <tr><td><code>getElementsByClassName</code></td><td>HTMLCollection</td><td>✗ No</td></tr>
+      </table>
+      <div class="note warn"><b>Trampa de examen:</b> <code>getElementsByClassName</code> y <code>getElementsByTagName</code> devuelven HTMLCollection que NO tiene <code>.forEach()</code>. Usa <code>querySelectorAll</code>.</div>
+    </section>
+
+    <!-- 2 EVENTOS -->
+    <section class="section" id="eventos" data-keywords="evento event addeventlistener click input change submit listener escuchar boton preventdefault">
+      <div class="section-title">2 · Eventos y addEventListener <span class="badge">teoría</span></div>
+      <div class="section-desc">Reaccionar a clics, escritura y envíos de formulario.</div>
+
+      <div class="block">
+        <div class="block-head"><div class="block-title">Los 4 eventos del examen</div><button class="copy-btn">Copiar</button></div>
+<pre><code><span class="cm">// CLICK — botones, eliminar</span>
+addBtn.<span class="fn">addEventListener</span>(<span class="st">'click'</span>, <span class="kw">function</span>() {
+    <span class="cm">// lógica aquí</span>
+});
+
+<span class="cm">// INPUT — cada letra que escribe el usuario (búsqueda en tiempo real)</span>
+searchInput.<span class="fn">addEventListener</span>(<span class="st">'input'</span>, <span class="kw">function</span>() {
+    <span class="kw">const</span> query = searchInput.<span class="prop">value</span>.<span class="fn">toLowerCase</span>();
+});
+
+<span class="cm">// CHANGE — checkbox marcado / desmarcado</span>
+checkbox.<span class="fn">addEventListener</span>(<span class="st">'change'</span>, <span class="kw">function</span>() {
+    <span class="kw">if</span> (checkbox.<span class="prop">checked</span>) { <span class="cm">/* ... */</span> }
+});
+
+<span class="cm">// SUBMIT — formularios (SIEMPRE con preventDefault)</span>
+form.<span class="fn">addEventListener</span>(<span class="st">'submit'</span>, <span class="kw">function</span>(e) {
+    e.<span class="fn">preventDefault</span>();  <span class="cm">// evita recargar la página</span>
+});</code></pre>
+      </div>
+      <div class="note ok"><b>input vs change:</b> <code>input</code> se dispara con cada tecla (búsquedas). <code>change</code> al perder el foco o marcar un checkbox.</div>
+    </section>
+
+    <!-- 3 LEER ESCRIBIR -->
+    <section class="section" id="leer-escribir" data-keywords="leer escribir value textcontent innerhtml limpiar focus input texto">
+      <div class="section-title">3 · Leer y escribir en el DOM <span class="badge">teoría</span></div>
+      <div class="section-desc">Obtener valores de inputs y mostrar texto en pantalla.</div>
+
+      <div class="block">
+        <div class="block-head"><div class="block-title">Leer, escribir y limpiar</div><button class="copy-btn">Copiar</button></div>
+<pre><code><span class="cm">// LEER un input</span>
+<span class="kw">const</span> nombre = input.<span class="prop">value</span>;            <span class="cm">// texto tal cual</span>
+<span class="kw">const</span> nombre = input.<span class="prop">value</span>.<span class="fn">trim</span>();     <span class="cm">// sin espacios</span>
+<span class="kw">const</span> precio = <span class="fn">parseFloat</span>(input.<span class="prop">value</span>); <span class="cm">// como número</span>
+
+<span class="cm">// ESCRIBIR texto en un elemento (p, span, li, h1...)</span>
+errorMsg.<span class="prop">textContent</span> = <span class="st">'El campo no puede estar vacío.'</span>;
+totalSpan.<span class="prop">textContent</span> = total.<span class="fn">toFixed</span>(<span class="num">2</span>);
+
+<span class="cm">// LIMPIAR un input</span>
+input.<span class="prop">value</span> = <span class="st">''</span>;
+input.<span class="fn">focus</span>();  <span class="cm">// cursor de vuelta al campo</span>
+
+<span class="cm">// VACIAR toda una lista de golpe</span>
+lista.<span class="prop">innerHTML</span> = <span class="st">''</span>;</code></pre>
+      </div>
+      <div class="note warn"><b>value vs textContent:</b> <code>.value</code> solo para inputs/textarea/select. <code>.textContent</code> para p, span, li, etc.</div>
+    </section>
+
+    <!-- 4 CREAR -->
+    <section class="section" id="crear" data-keywords="crear createelement appendchild remove eliminar nodo li boton dinamico closure">
+      <div class="section-title">4 · Crear y eliminar nodos <span class="badge">teoría</span> <span class="badge">★ clave</span></div>
+      <div class="section-desc">El patrón central de TODOS los ejercicios. Apréndelo de memoria.</div>
+
+      <div class="block">
+        <div class="block-head"><div class="block-title">Crear un &lt;li&gt; con texto y botón eliminar <span class="tag">★ el más importante</span></div><button class="copy-btn">Copiar</button></div>
+<pre><code><span class="cm">// 1. Crear el li</span>
+<span class="kw">const</span> li = <span class="fn">document</span>.<span class="fn">createElement</span>(<span class="st">'li'</span>);
+
+<span class="cm">// 2. Guardar datos en dataset (para recuperarlos sin parsear texto)</span>
+li.<span class="prop">dataset</span>.<span class="prop">price</span> = precio;
+
+<span class="cm">// 3. Texto visible dentro de un span</span>
+<span class="kw">const</span> span = <span class="fn">document</span>.<span class="fn">createElement</span>(<span class="st">'span'</span>);
+span.<span class="prop">textContent</span> = nombre + <span class="st">' — '</span> + precio.<span class="fn">toFixed</span>(<span class="num">2</span>) + <span class="st">'€'</span>;
+li.<span class="fn">appendChild</span>(span);
+
+<span class="cm">// 4. Botón eliminar (closure: recuerda SU li)</span>
+<span class="kw">const</span> deleteBtn = <span class="fn">document</span>.<span class="fn">createElement</span>(<span class="st">'button'</span>);
+deleteBtn.<span class="prop">textContent</span> = <span class="st">'Eliminar'</span>;
+deleteBtn.<span class="fn">addEventListener</span>(<span class="st">'click'</span>, <span class="kw">function</span>() {
+    li.<span class="fn">remove</span>();
+    <span class="fn">actualizarTotal</span>();
+});
+li.<span class="fn">appendChild</span>(deleteBtn);
+
+<span class="cm">// 5. Añadir el li a la lista</span>
+lista.<span class="fn">appendChild</span>(li);</code></pre>
+      </div>
+      <div class="note ok"><b>Orden obligatorio:</b> createElement → configurar → appendChild de hijos → appendChild a la lista. Monta todo ANTES de añadirlo al DOM.</div>
+      <div class="note warn"><b>appendChild mueve:</b> si el li ya está en el DOM, <code>appendChild</code> lo mueve (no lo duplica). Se aprovecha para reordenar.</div>
+    </section>
+
+    <!-- 5 VALIDACION -->
+    <section class="section" id="validacion" data-keywords="validar validacion vacio empty length isnan trim error return rango email duplicado nota">
+      <div class="section-title">5 · Validación <span class="badge">teoría</span> <span class="badge">★ clave</span></div>
+      <div class="section-desc">Patrón: comprobar → mostrar error → return → continuar si todo ok.</div>
+
+      <div class="block">
+        <div class="block-head"><div class="block-title">Validación con return temprano</div><button class="copy-btn">Copiar</button></div>
+<pre><code>addBtn.<span class="fn">addEventListener</span>(<span class="st">'click'</span>, <span class="kw">function</span>() {
+    <span class="kw">const</span> valor = input.<span class="prop">value</span>.<span class="fn">trim</span>();
+
+    <span class="cm">// Campo vacío</span>
+    <span class="kw">if</span> (valor === <span class="st">''</span>) {
+        errorMsg.<span class="prop">textContent</span> = <span class="st">'El campo no puede estar vacío.'</span>;
+        <span class="kw">return</span>;  <span class="cm">// CORTA aquí, no sigue</span>
+    }
+    <span class="cm">// Longitud mínima</span>
+    <span class="kw">if</span> (valor.<span class="prop">length</span> &lt; <span class="num">3</span>) {
+        errorMsg.<span class="prop">textContent</span> = <span class="st">'Mínimo 3 caracteres.'</span>;
+        <span class="kw">return</span>;
+    }
+    <span class="cm">// Todo correcto</span>
+    errorMsg.<span class="prop">textContent</span> = <span class="st">''</span>;
+    <span class="cm">// ... acción</span>
+});</code></pre>
+      </div>
+
+      <div class="block">
+        <div class="block-head"><div class="block-title">Todas las validaciones comunes</div><button class="copy-btn">Copiar</button></div>
+<pre><code><span class="cm">// Campo vacío</span>
+<span class="kw">if</span> (valor.<span class="fn">trim</span>() === <span class="st">''</span>) { <span class="cm">/* ... */</span> }
+
+<span class="cm">// Longitud mínima / exacta</span>
+<span class="kw">if</span> (valor.<span class="prop">length</span> &lt; <span class="num">3</span>) { <span class="cm">/* ... */</span> }
+<span class="kw">if</span> (valor.<span class="prop">length</span> !== <span class="num">9</span>) { <span class="cm">/* teléfono 9 dígitos */</span> }
+
+<span class="cm">// Número válido y positivo</span>
+<span class="kw">if</span> (<span class="fn">isNaN</span>(num) || num &lt;= <span class="num">0</span>) { <span class="cm">/* ... */</span> }
+
+<span class="cm">// Rango (nota 0-10)</span>
+<span class="kw">if</span> (num &lt; <span class="num">0</span> || num &gt; <span class="num">10</span>) { <span class="cm">/* ... */</span> }
+
+<span class="cm">// Email básico</span>
+<span class="kw">if</span> (!email.<span class="fn">includes</span>(<span class="st">'@'</span>) || !email.<span class="fn">includes</span>(<span class="st">'.'</span>)) { <span class="cm">/* ... */</span> }
+
+<span class="cm">// Duplicado en lista</span>
+<span class="kw">let</span> existe = <span class="kw">false</span>;
+<span class="fn">document</span>.<span class="fn">querySelectorAll</span>(<span class="st">'#lista li'</span>).<span class="fn">forEach</span>(<span class="kw">function</span>(li) {
+    <span class="kw">if</span> (li.<span class="prop">dataset</span>.<span class="prop">word</span> === valor.<span class="fn">toLowerCase</span>()) existe = <span class="kw">true</span>;
+});
+<span class="kw">if</span> (existe) { errorMsg.<span class="prop">textContent</span> = <span class="st">'Ya existe.'</span>; <span class="kw">return</span>; }</code></pre>
+      </div>
+
+      <div class="block">
+        <div class="block-head"><div class="block-title">Calificación por nota (rangos)</div><button class="copy-btn">Copiar</button></div>
+<pre><code><span class="kw">let</span> calificacion = <span class="st">''</span>;  <span class="cm">// let, NO const</span>
+<span class="kw">if</span> (nota &gt;= <span class="num">0</span> &amp;&amp; nota &lt;= <span class="num">4.9</span>) calificacion = <span class="st">'Suspenso'</span>;
+<span class="kw">if</span> (nota &gt;= <span class="num">5</span> &amp;&amp; nota &lt;= <span class="num">6.9</span>) calificacion = <span class="st">'Aprobado'</span>;
+<span class="kw">if</span> (nota &gt;= <span class="num">7</span> &amp;&amp; nota &lt;= <span class="num">8.9</span>) calificacion = <span class="st">'Notable'</span>;
+<span class="kw">if</span> (nota &gt;= <span class="num">9</span> &amp;&amp; nota &lt;= <span class="num">10</span>)  calificacion = <span class="st">'Sobresaliente'</span>;</code></pre>
+      </div>
+      <div class="note err"><b>&amp;&amp; vs ||:</b> en rangos usa <code>&amp;&amp;</code> (las dos a la vez). Con <code>||</code> siempre se cumple y todo entra en el último.</div>
+    </section>
+
+    <!-- 6 DATASET -->
+    <section class="section" id="dataset" data-keywords="dataset data atributo guardar precio nota word grade recuperar">
+      <div class="section-title">6 · dataset — guardar datos en el HTML <span class="badge">teoría</span></div>
+      <div class="section-desc">Guardar datos en un elemento para recuperarlos sin parsear el texto visible.</div>
+      <div class="block">
+        <div class="block-head"><div class="block-title">Guardar y leer del dataset</div><button class="copy-btn">Copiar</button></div>
+<pre><code><span class="cm">// GUARDAR (genera data-price en el HTML)</span>
+li.<span class="prop">dataset</span>.<span class="prop">price</span> = precio;
+li.<span class="prop">dataset</span>.<span class="prop">grade</span> = nota;
+li.<span class="prop">dataset</span>.<span class="prop">word</span> = valor.<span class="fn">toLowerCase</span>();
+
+<span class="cm">// LEER (siempre devuelve string → convertir si es número)</span>
+<span class="kw">const</span> precio = <span class="fn">parseFloat</span>(li.<span class="prop">dataset</span>.<span class="prop">price</span>);
+<span class="kw">const</span> palabra = li.<span class="prop">dataset</span>.<span class="prop">word</span>;</code></pre>
+      </div>
+      <div class="note ok"><b>Por qué se usa:</b> para sumar el total o filtrar, lees <code>li.dataset.price</code> directamente en vez de extraer números del texto visible.</div>
+    </section>
+
+    <!-- 7 MOSTRAR -->
+    <section class="section" id="mostrar" data-keywords="mostrar ocultar display none block flex filtrar visibilidad disabled deshabilitar">
+      <div class="section-title">7 · Mostrar, ocultar y filtrar <span class="badge">teoría</span></div>
+      <div class="block">
+        <div class="block-head"><div class="block-title">display y filtrado</div><button class="copy-btn">Copiar</button></div>
+<pre><code><span class="cm">// Ocultar / mostrar</span>
+el.<span class="prop">style</span>.<span class="prop">display</span> = <span class="st">'none'</span>;       <span class="cm">// ocultar</span>
+el.<span class="prop">style</span>.<span class="prop">display</span> = <span class="st">'list-item'</span>;  <span class="cm">// mostrar &lt;li&gt;</span>
+el.<span class="prop">style</span>.<span class="prop">display</span> = <span class="st">'block'</span>;      <span class="cm">// mostrar div/p</span>
+el.<span class="prop">style</span>.<span class="prop">display</span> = <span class="st">'flex'</span>;       <span class="cm">// mostrar flexbox</span>
+
+<span class="cm">// Filtrado en tiempo real (con ternario)</span>
+items.<span class="fn">forEach</span>(<span class="kw">function</span>(li) {
+    <span class="kw">const</span> texto = li.<span class="prop">dataset</span>.<span class="prop">nombre</span>.<span class="fn">toLowerCase</span>();
+    li.<span class="prop">style</span>.<span class="prop">display</span> = texto.<span class="fn">includes</span>(query) ? <span class="st">'list-item'</span> : <span class="st">'none'</span>;
+});
+
+<span class="cm">// Mostrar/ocultar bloques (formulario → resumen)</span>
+form.<span class="prop">style</span>.<span class="prop">display</span> = <span class="st">'none'</span>;
+summary.<span class="prop">style</span>.<span class="prop">display</span> = <span class="st">'block'</span>;
+
+<span class="cm">// Deshabilitar botón</span>
+btn.<span class="prop">disabled</span> = <span class="kw">true</span>;</code></pre>
+      </div>
+    </section>
+
+    <!-- 8 CLASES -->
+    <section class="section" id="clases" data-keywords="clase classlist add remove contains toggle css activo completada estilo">
+      <div class="section-title">8 · Clases CSS desde JS <span class="badge">teoría</span></div>
+      <div class="block">
+        <div class="block-head"><div class="block-title">classList</div><button class="copy-btn">Copiar</button></div>
+<pre><code>li.<span class="prop">classList</span>.<span class="fn">add</span>(<span class="st">'completada'</span>);       <span class="cm">// añadir</span>
+li.<span class="prop">classList</span>.<span class="fn">remove</span>(<span class="st">'completada'</span>);    <span class="cm">// quitar</span>
+li.<span class="prop">classList</span>.<span class="fn">contains</span>(<span class="st">'completada'</span>);  <span class="cm">// true / false</span>
+li.<span class="prop">classList</span>.<span class="fn">toggle</span>(<span class="st">'activo'</span>);        <span class="cm">// alterna</span>
+
+<span class="cm">// Patrón: marcar solo un botón activo</span>
+<span class="kw">function</span> <span class="fn">marcarActivo</span>(btn) {
+    filterAll.<span class="prop">classList</span>.<span class="fn">remove</span>(<span class="st">'activo'</span>);
+    filterPend.<span class="prop">classList</span>.<span class="fn">remove</span>(<span class="st">'activo'</span>);
+    filterDone.<span class="prop">classList</span>.<span class="fn">remove</span>(<span class="st">'activo'</span>);
+    btn.<span class="prop">classList</span>.<span class="fn">add</span>(<span class="st">'activo'</span>);
+}</code></pre>
+      </div>
+    </section>
+
+    <!-- 9 RECORRER -->
+    <section class="section" id="recorrer" data-keywords="recorrer foreach for bucle indice contar iterar lista">
+      <div class="section-title">9 · Recorrer listas <span class="badge">teoría</span></div>
+      <div class="block">
+        <div class="block-head"><div class="block-title">forEach y for</div><button class="copy-btn">Copiar</button></div>
+<pre><code><span class="cm">// forEach sobre NodeList</span>
+items.<span class="fn">forEach</span>(<span class="kw">function</span>(li) {
+    total += <span class="fn">parseFloat</span>(li.<span class="prop">dataset</span>.<span class="prop">price</span>);
+});
+
+<span class="cm">// forEach con índice (i = 0, 1, 2...)</span>
+items.<span class="fn">forEach</span>(<span class="kw">function</span>(li, i) {
+    <span class="cm">// usar i para comparar posiciones</span>
+});
+
+<span class="cm">// for clásico (quiniela: 14 partidos)</span>
+<span class="kw">for</span> (<span class="kw">let</span> i = <span class="num">1</span>; i &lt;= <span class="num">14</span>; i++) {
+    <span class="cm">// generar partido i</span>
+}
+
+<span class="cm">// Contar visibles</span>
+<span class="kw">let</span> visibles = <span class="num">0</span>;
+items.<span class="fn">forEach</span>(<span class="kw">function</span>(li) {
+    <span class="kw">if</span> (li.<span class="prop">style</span>.<span class="prop">display</span> !== <span class="st">'none'</span>) visibles++;
+});</code></pre>
+      </div>
+    </section>
+
+    <!-- 10 NUMEROS -->
+    <section class="section" id="numeros" data-keywords="numero parsefloat parseint isnan tofixed decimal entero convertir redondear">
+      <div class="section-title">10 · Números <span class="badge">teoría</span></div>
+      <div class="block">
+        <div class="block-head"><div class="block-title">Conversión y formato</div><button class="copy-btn">Copiar</button></div>
+<pre><code><span class="fn">parseFloat</span>(<span class="st">'12.5'</span>)        <span class="cm">// → 12.5 (decimal)</span>
+<span class="fn">parseInt</span>(<span class="st">'12'</span>)            <span class="cm">// → 12 (entero)</span>
+<span class="fn">isNaN</span>(<span class="st">'hola'</span>)           <span class="cm">// → true (no es número)</span>
+<span class="fn">isNaN</span>(<span class="num">12.5</span>)            <span class="cm">// → false (sí es número)</span>
+(<span class="num">12.333</span>).<span class="fn">toFixed</span>(<span class="num">2</span>)    <span class="cm">// → '12.33' (string, 2 decimales)</span></code></pre>
+      </div>
+      <table>
+        <tr><th>Entrada</th><th>parseFloat</th><th>isNaN</th></tr>
+        <tr><td><code>'12.5'</code></td><td><code>12.5</code></td><td><code>false</code></td></tr>
+        <tr><td><code>''</code></td><td><code>NaN</code></td><td><code>false</code> ⚠️</td></tr>
+        <tr><td><code>'hola'</code></td><td><code>NaN</code></td><td><code>true</code></td></tr>
+      </table>
+      <div class="note warn"><b>Cuidado:</b> valida el campo vacío ANTES de <code>isNaN</code>, porque <code>isNaN('')</code> es <code>false</code> (lo trata como 0).</div>
+    </section>
+
+    <!-- 11 STRINGS -->
+    <section class="section" id="strings" data-keywords="string texto trim tolowercase includes length substring cadena">
+      <div class="section-title">11 · Strings <span class="badge">teoría</span></div>
+      <div class="block">
+        <div class="block-head"><div class="block-title">Métodos esenciales</div><button class="copy-btn">Copiar</button></div>
+<pre><code><span class="st">'  hola  '</span>.<span class="fn">trim</span>()           <span class="cm">// → 'hola'</span>
+<span class="st">'HOLA'</span>.<span class="fn">toLowerCase</span>()        <span class="cm">// → 'hola'</span>
+<span class="st">'manzana'</span>.<span class="fn">includes</span>(<span class="st">'man'</span>)  <span class="cm">// → true</span>
+<span class="st">'manzana'</span>.<span class="prop">length</span>           <span class="cm">// → 7</span>
+<span class="st">'manzana'</span>.<span class="fn">substring</span>(<span class="num">0</span>, <span class="num">4</span>)  <span class="cm">// → 'manz'</span></code></pre>
+      </div>
+    </section>
+
+    <!-- 12 ARRAYS -->
+    <section class="section" id="arrays" data-keywords="array sort foreach spread ordenar lista indice push">
+      <div class="section-title">12 · Arrays <span class="badge">teoría</span></div>
+      <div class="block">
+        <div class="block-head"><div class="block-title">sort, spread y acceso aleatorio</div><button class="copy-btn">Copiar</button></div>
+<pre><code><span class="cm">// Array de opciones + acceso aleatorio (quiniela)</span>
+<span class="kw">const</span> opciones = [<span class="st">'1'</span>, <span class="st">'X'</span>, <span class="st">'2'</span>];
+<span class="kw">const</span> res = opciones[<span class="fn">Math</span>.<span class="fn">floor</span>(<span class="fn">Math</span>.<span class="fn">random</span>() * <span class="num">3</span>)];
+
+<span class="cm">// NodeList → Array (para poder usar .sort())</span>
+<span class="kw">const</span> arr = [...<span class="fn">document</span>.<span class="fn">querySelectorAll</span>(<span class="st">'li'</span>)];
+
+<span class="cm">// Ordenar alfabéticamente por dataset</span>
+arr.<span class="fn">sort</span>(<span class="kw">function</span>(a, b) {
+    <span class="kw">if</span> (a.<span class="prop">dataset</span>.<span class="prop">word</span> &lt; b.<span class="prop">dataset</span>.<span class="prop">word</span>) <span class="kw">return</span> -<span class="num">1</span>;
+    <span class="kw">if</span> (a.<span class="prop">dataset</span>.<span class="prop">word</span> &gt; b.<span class="prop">dataset</span>.<span class="prop">word</span>) <span class="kw">return</span> <span class="num">1</span>;
+    <span class="kw">return</span> <span class="num">0</span>;
+});</code></pre>
+      </div>
+    </section>
+
+    <!-- 13 MATH -->
+    <section class="section" id="math" data-keywords="math random floor round aleatorio numero dados quiniela adivina">
+      <div class="section-title">13 · Math / aleatorios <span class="badge">teoría</span></div>
+      <div class="block">
+        <div class="block-head"><div class="block-title">Números aleatorios</div><button class="copy-btn">Copiar</button></div>
+<pre><code><span class="fn">Math</span>.<span class="fn">random</span>()                       <span class="cm">// 0 a 0.999...</span>
+<span class="fn">Math</span>.<span class="fn">floor</span>(<span class="num">2.9</span>)                     <span class="cm">// → 2 (abajo)</span>
+<span class="fn">Math</span>.<span class="fn">round</span>(<span class="num">2.5</span>)                     <span class="cm">// → 3 (normal)</span>
+
+<span class="cm">// Entero aleatorio entre 0 y N-1</span>
+<span class="fn">Math</span>.<span class="fn">floor</span>(<span class="fn">Math</span>.<span class="fn">random</span>() * N)
+
+<span class="cm">// Ejemplos reales:</span>
+<span class="fn">Math</span>.<span class="fn">floor</span>(<span class="fn">Math</span>.<span class="fn">random</span>() * <span class="num">100</span>) + <span class="num">1</span>  <span class="cm">// 1 a 100 (adivina)</span>
+<span class="fn">Math</span>.<span class="fn">floor</span>(<span class="fn">Math</span>.<span class="fn">random</span>() * <span class="num">3</span>)        <span class="cm">// 0,1,2 (quiniela)</span>
+<span class="fn">Math</span>.<span class="fn">floor</span>(<span class="fn">Math</span>.<span class="fn">random</span>() * <span class="num">6</span>) + <span class="num">1</span>    <span class="cm">// 1 a 6 (dado)</span></code></pre>
+      </div>
+    </section>
+
+    <!-- 14 ESTADO -->
+    <section class="section" id="estado" data-keywords="estado variable global closure contador persistir let scope shadowing">
+      <div class="section-title">14 · Estado y closures <span class="badge">teoría</span></div>
+      <div class="block">
+        <div class="block-head"><div class="block-title">Variables de estado fuera del listener</div><button class="copy-btn">Copiar</button></div>
+<pre><code><span class="cm">// ✓ FUERA del listener — persiste entre clics</span>
+<span class="kw">let</span> totalGeneradas = <span class="num">0</span>;
+<span class="kw">let</span> filtroActivo = <span class="st">'todas'</span>;
+
+btnGenerar.<span class="fn">addEventListener</span>(<span class="st">'click'</span>, <span class="kw">function</span>() {
+    totalGeneradas++;  <span class="cm">// se acumula</span>
+});
+
+<span class="cm">// ✗ DENTRO — se reinicia en cada clic (ERROR clásico)</span>
+btn.<span class="fn">addEventListener</span>(<span class="st">'click'</span>, <span class="kw">function</span>() {
+    <span class="kw">let</span> count = <span class="num">0</span>;  <span class="cm">// siempre 0 → siempre muestra 1</span>
+    count++;
+});</code></pre>
+      </div>
+      <div class="note ok"><b>Closure:</b> el botón eliminar de cada li "recuerda" su propio li porque la función se creó en ese scope. Por eso elimina el correcto.</div>
+    </section>
+
+    <!-- 15 FRAGMENTOS -->
+    <section class="section" id="fragmentos" data-keywords="fragmento analisis error htmlcollection arrow this preventdefault corregir examen seccion1">
+      <div class="section-title">15 · Los 3 fragmentos del examen <span class="badge">análisis</span></div>
+      <div class="section-desc">Identifica el error, explica el concepto y corrige. 1 punto cada uno.</div>
+
+      <div class="block">
+        <div class="block-head"><div class="block-title">Fragmento 1 — HTMLCollection sin .style</div><button class="copy-btn">Copiar</button></div>
+<pre><code><span class="cm">// ERROR: getElementsByClassName devuelve una colección, no un elemento</span>
+<span class="kw">const</span> items = <span class="fn">document</span>.<span class="fn">getElementsByClassName</span>(<span class="st">'item'</span>);
+items.<span class="prop">style</span>.<span class="prop">backgroundColor</span> = <span class="st">'blue'</span>;  <span class="cm">// no hace nada</span>
+
+<span class="cm">// CORRECCIÓN</span>
+<span class="fn">document</span>.<span class="fn">querySelectorAll</span>(<span class="st">'.item'</span>).<span class="fn">forEach</span>(<span class="kw">function</span>(item) {
+    item.<span class="prop">style</span>.<span class="prop">backgroundColor</span> = <span class="st">'blue'</span>;
+});
+<span class="cm">// CONCEPTO: HTMLCollection no tiene .style ni .forEach. NodeList sí.</span></code></pre>
+      </div>
+
+      <div class="block">
+        <div class="block-head"><div class="block-title">Fragmento 2 — Valor leído fuera del evento</div><button class="copy-btn">Copiar</button></div>
+<pre><code><span class="cm">// ERROR: el value se lee al cargar la página (siempre '')</span>
+<span class="kw">const</span> username = <span class="fn">document</span>.<span class="fn">querySelector</span>(<span class="st">'#username'</span>).<span class="prop">value</span>;
+form.<span class="fn">addEventListener</span>(<span class="st">'submit'</span>, (e) =&gt; {
+    <span class="kw">if</span> (username === <span class="st">''</span>) { e.<span class="fn">preventDefault</span>(); }
+});
+
+<span class="cm">// CORRECCIÓN: leer value DENTRO del callback</span>
+form.<span class="fn">addEventListener</span>(<span class="st">'submit'</span>, <span class="kw">function</span>(e) {
+    <span class="kw">const</span> username = <span class="fn">document</span>.<span class="fn">querySelector</span>(<span class="st">'#username'</span>).<span class="prop">value</span>;
+    <span class="kw">if</span> (username === <span class="st">''</span>) { e.<span class="fn">preventDefault</span>(); }
+});
+<span class="cm">// CONCEPTO: scope temporal. El valor se evalúa al ejecutarse, no al cargar.</span></code></pre>
+      </div>
+
+      <div class="block">
+        <div class="block-head"><div class="block-title">Fragmento 3 — Arrow function y this</div><button class="copy-btn">Copiar</button></div>
+<pre><code><span class="cm">// ERROR: arrow function no tiene su propio this</span>
+btn.<span class="fn">addEventListener</span>(<span class="st">'click'</span>, () =&gt; {
+    <span class="kw">this</span>.<span class="fn">remove</span>();  <span class="cm">// this no es el botón</span>
+});
+
+<span class="cm">// CORRECCIÓN: función regular (this = elemento del evento)</span>
+btn.<span class="fn">addEventListener</span>(<span class="st">'click'</span>, <span class="kw">function</span>() {
+    <span class="kw">this</span>.<span class="fn">remove</span>();
+});
+<span class="cm">// CONCEPTO: arrow hereda this del scope léxico. function tiene el suyo.</span></code></pre>
+      </div>
+    </section>
+
+    <!-- 16 ERRORES -->
+    <section class="section" id="errores" data-keywords="error tipico trampa var trim return shadowing nodelist sort preventdefault examen">
+      <div class="section-title">16 · Errores típicos <span class="badge">análisis</span></div>
+      <table>
+        <tr><th>Error</th><th>Mal ❌</th><th>Bien ✓</th></tr>
+        <tr><td>Sin trim</td><td><code>valor === ''</code></td><td><code>valor.trim() === ''</code></td></tr>
+        <tr><td>Sin return</td><td>error sin return</td><td><code>return;</code> tras el error</td></tr>
+        <tr><td>var</td><td><code>var x</code></td><td><code>const</code> / <code>let</code></td></tr>
+        <tr><td>Rango con ||</td><td><code>n&gt;=5 || n&lt;=6.9</code></td><td><code>n&gt;=5 &amp;&amp; n&lt;=6.9</code></td></tr>
+        <tr><td>value fuera</td><td>leer al cargar</td><td>leer en el callback</td></tr>
+        <tr><td>NodeList.sort</td><td><code>querySelectorAll().sort()</code></td><td><code>[...querySelectorAll()].sort()</code></td></tr>
+        <tr><td>Sin preventDefault</td><td>submit recarga</td><td><code>e.preventDefault()</code></td></tr>
+      </table>
+    </section>
+
+    <!-- 17 PLANTILLA BASE -->
+    <section class="section" id="caso-base" data-keywords="plantilla base html boilerplate inicio estructura index app.js script">
+      <div class="section-title">17 · Plantilla base HTML + JS <span class="badge">caso práctico</span></div>
+      <div class="section-desc">El esqueleto con el que empezar cualquier ejercicio.</div>
+      <div class="block">
+        <div class="block-head"><div class="block-title">index.html</div><button class="copy-btn">Copiar</button></div>
+<pre><code><span class="op">&lt;!DOCTYPE html&gt;</span>
+<span class="op">&lt;html</span> <span class="prop">lang</span>=<span class="st">"es"</span><span class="op">&gt;</span>
+<span class="op">&lt;head&gt;</span>
+    <span class="op">&lt;meta</span> <span class="prop">charset</span>=<span class="st">"UTF-8"</span><span class="op">&gt;</span>
+    <span class="op">&lt;title&gt;</span>Ejercicio<span class="op">&lt;/title&gt;</span>
+<span class="op">&lt;/head&gt;</span>
+<span class="op">&lt;body&gt;</span>
+    <span class="op">&lt;div</span> <span class="prop">id</span>=<span class="st">"app"</span><span class="op">&gt;</span>
+        <span class="op">&lt;input</span> <span class="prop">type</span>=<span class="st">"text"</span> <span class="prop">id</span>=<span class="st">"input"</span> <span class="prop">placeholder</span>=<span class="st">"..."</span><span class="op">&gt;</span>
+        <span class="op">&lt;button</span> <span class="prop">id</span>=<span class="st">"add-btn"</span><span class="op">&gt;</span>Añadir<span class="op">&lt;/button&gt;</span>
+        <span class="op">&lt;p</span> <span class="prop">id</span>=<span class="st">"error-msg"</span> <span class="prop">style</span>=<span class="st">"color:red"</span><span class="op">&gt;&lt;/p&gt;</span>
+        <span class="op">&lt;ul</span> <span class="prop">id</span>=<span class="st">"lista"</span><span class="op">&gt;&lt;/ul&gt;</span>
+    <span class="op">&lt;/div&gt;</span>
+    <span class="op">&lt;script</span> <span class="prop">src</span>=<span class="st">"app.js"</span><span class="op">&gt;&lt;/script&gt;</span>
+<span class="op">&lt;/body&gt;</span>
+<span class="op">&lt;/html&gt;</span></code></pre>
+      </div>
+      <div class="note warn"><b>Siempre:</b> <code>&lt;script src="app.js"&gt;</code> al final del body (no en el head). Sin <code>onclick</code> en el HTML.</div>
+    </section>
+
+    <!-- 18 CARRITO -->
+    <section class="section" id="caso-carrito" data-keywords="carrito total suma precio producto dataset actualizar lista eliminar caso">
+      <div class="section-title">18 · Carrito / lista con total <span class="badge">caso práctico</span></div>
+      <div class="section-desc">Añadir items, calcular total, eliminar y recalcular.</div>
+      <div class="block">
+        <div class="block-head"><div class="block-title">app.js completo</div><button class="copy-btn">Copiar</button></div>
+<pre><code><span class="kw">const</span> nameInput  = <span class="fn">document</span>.<span class="fn">getElementById</span>(<span class="st">'product-name'</span>);
+<span class="kw">const</span> priceInput = <span class="fn">document</span>.<span class="fn">getElementById</span>(<span class="st">'product-price'</span>);
+<span class="kw">const</span> addBtn     = <span class="fn">document</span>.<span class="fn">getElementById</span>(<span class="st">'add-btn'</span>);
+<span class="kw">const</span> errorMsg   = <span class="fn">document</span>.<span class="fn">getElementById</span>(<span class="st">'error-msg'</span>);
+<span class="kw">const</span> lista      = <span class="fn">document</span>.<span class="fn">getElementById</span>(<span class="st">'product-list'</span>);
+<span class="kw">const</span> totalSpan  = <span class="fn">document</span>.<span class="fn">getElementById</span>(<span class="st">'total'</span>);
+
+addBtn.<span class="fn">addEventListener</span>(<span class="st">'click'</span>, <span class="kw">function</span>() {
+    <span class="kw">const</span> nombre = nameInput.<span class="prop">value</span>.<span class="fn">trim</span>();
+    <span class="kw">const</span> precio = <span class="fn">parseFloat</span>(priceInput.<span class="prop">value</span>);
+
+    <span class="kw">if</span> (nombre === <span class="st">''</span>) { errorMsg.<span class="prop">textContent</span> = <span class="st">'Nombre vacío.'</span>; <span class="kw">return</span>; }
+    <span class="kw">if</span> (nombre.<span class="prop">length</span> &lt; <span class="num">3</span>) { errorMsg.<span class="prop">textContent</span> = <span class="st">'Mínimo 3 caracteres.'</span>; <span class="kw">return</span>; }
+    <span class="kw">if</span> (<span class="fn">isNaN</span>(precio) || precio &lt;= <span class="num">0</span>) { errorMsg.<span class="prop">textContent</span> = <span class="st">'Precio &gt; 0.'</span>; <span class="kw">return</span>; }
+    errorMsg.<span class="prop">textContent</span> = <span class="st">''</span>;
+
+    <span class="kw">const</span> li = <span class="fn">document</span>.<span class="fn">createElement</span>(<span class="st">'li'</span>);
+    li.<span class="prop">dataset</span>.<span class="prop">price</span> = precio;
+
+    <span class="kw">const</span> span = <span class="fn">document</span>.<span class="fn">createElement</span>(<span class="st">'span'</span>);
+    span.<span class="prop">textContent</span> = nombre + <span class="st">' — '</span> + precio.<span class="fn">toFixed</span>(<span class="num">2</span>) + <span class="st">'€'</span>;
+    li.<span class="fn">appendChild</span>(span);
+
+    <span class="kw">const</span> delBtn = <span class="fn">document</span>.<span class="fn">createElement</span>(<span class="st">'button'</span>);
+    delBtn.<span class="prop">textContent</span> = <span class="st">'Eliminar'</span>;
+    delBtn.<span class="fn">addEventListener</span>(<span class="st">'click'</span>, <span class="kw">function</span>() {
+        li.<span class="fn">remove</span>();
+        <span class="fn">actualizarTotal</span>();
+    });
+    li.<span class="fn">appendChild</span>(delBtn);
+    lista.<span class="fn">appendChild</span>(li);
+
+    nameInput.<span class="prop">value</span> = <span class="st">''</span>;
+    priceInput.<span class="prop">value</span> = <span class="st">''</span>;
+    nameInput.<span class="fn">focus</span>();
+    <span class="fn">actualizarTotal</span>();
+});
+
+<span class="kw">function</span> <span class="fn">actualizarTotal</span>() {
+    <span class="kw">const</span> items = <span class="fn">document</span>.<span class="fn">querySelectorAll</span>(<span class="st">'#product-list li'</span>);
+    <span class="kw">let</span> total = <span class="num">0</span>;
+    items.<span class="fn">forEach</span>(<span class="kw">function</span>(li) {
+        total += <span class="fn">parseFloat</span>(li.<span class="prop">dataset</span>.<span class="prop">price</span>);
+    });
+    totalSpan.<span class="prop">textContent</span> = total.<span class="fn">toFixed</span>(<span class="num">2</span>) + <span class="st">'€'</span>;
+}</code></pre>
+      </div>
+    </section>
+
+    <!-- 19 BUSQUEDA -->
+    <section class="section" id="caso-busqueda" data-keywords="busqueda buscar filtrar input tiempo real includes tolowercase contador caso">
+      <div class="section-title">19 · Búsqueda en tiempo real <span class="badge">caso práctico</span></div>
+      <div class="block">
+        <div class="block-head"><div class="block-title">app.js completo</div><button class="copy-btn">Copiar</button></div>
+<pre><code><span class="kw">const</span> searchInput = <span class="fn">document</span>.<span class="fn">getElementById</span>(<span class="st">'search-input'</span>);
+<span class="kw">const</span> lista       = <span class="fn">document</span>.<span class="fn">getElementById</span>(<span class="st">'item-list'</span>);
+<span class="kw">const</span> countSpan  = <span class="fn">document</span>.<span class="fn">getElementById</span>(<span class="st">'count'</span>);
+
+<span class="cm">// Cargar lista inicial</span>
+<span class="kw">const</span> elementos = [<span class="st">'Manzana'</span>, <span class="st">'Banana'</span>, <span class="st">'Cereza'</span>, <span class="st">'Kiwi'</span>, <span class="st">'Mango'</span>, <span class="st">'Pera'</span>];
+elementos.<span class="fn">forEach</span>(<span class="kw">function</span>(nombre) {
+    <span class="kw">const</span> li = <span class="fn">document</span>.<span class="fn">createElement</span>(<span class="st">'li'</span>);
+    li.<span class="prop">textContent</span> = nombre;
+    lista.<span class="fn">appendChild</span>(li);
+});
+<span class="fn">actualizarContador</span>();
+
+searchInput.<span class="fn">addEventListener</span>(<span class="st">'input'</span>, <span class="kw">function</span>() {
+    <span class="kw">const</span> query = searchInput.<span class="prop">value</span>.<span class="fn">toLowerCase</span>();
+    <span class="kw">const</span> items = <span class="fn">document</span>.<span class="fn">querySelectorAll</span>(<span class="st">'#item-list li'</span>);
+    items.<span class="fn">forEach</span>(<span class="kw">function</span>(li) {
+        <span class="kw">const</span> coincide = li.<span class="prop">textContent</span>.<span class="fn">toLowerCase</span>().<span class="fn">includes</span>(query);
+        li.<span class="prop">style</span>.<span class="prop">display</span> = coincide ? <span class="st">'list-item'</span> : <span class="st">'none'</span>;
+    });
+    <span class="fn">actualizarContador</span>();
+});
+
+<span class="kw">function</span> <span class="fn">actualizarContador</span>() {
+    <span class="kw">const</span> items = <span class="fn">document</span>.<span class="fn">querySelectorAll</span>(<span class="st">'#item-list li'</span>);
+    <span class="kw">let</span> visibles = <span class="num">0</span>;
+    items.<span class="fn">forEach</span>(<span class="kw">function</span>(li) {
+        <span class="kw">if</span> (li.<span class="prop">style</span>.<span class="prop">display</span> !== <span class="st">'none'</span>) visibles++;
+    });
+    countSpan.<span class="prop">textContent</span> = visibles;
+}</code></pre>
+      </div>
+    </section>
+
+    <!-- 20 FORMULARIO -->
+    <section class="section" id="caso-formulario" data-keywords="formulario form submit preventdefault validar email password registro resumen caso hayerror">
+      <div class="section-title">20 · Formulario con validación <span class="badge">caso práctico</span></div>
+      <div class="block">
+        <div class="block-head"><div class="block-title">app.js completo</div><button class="copy-btn">Copiar</button></div>
+<pre><code><span class="kw">const</span> form     = <span class="fn">document</span>.<span class="fn">getElementById</span>(<span class="st">'register-form'</span>);
+<span class="kw">const</span> name     = <span class="fn">document</span>.<span class="fn">getElementById</span>(<span class="st">'name'</span>);
+<span class="kw">const</span> email    = <span class="fn">document</span>.<span class="fn">getElementById</span>(<span class="st">'email'</span>);
+<span class="kw">const</span> pass     = <span class="fn">document</span>.<span class="fn">getElementById</span>(<span class="st">'password'</span>);
+<span class="kw">const</span> nameErr  = <span class="fn">document</span>.<span class="fn">getElementById</span>(<span class="st">'name-error'</span>);
+<span class="kw">const</span> emailErr = <span class="fn">document</span>.<span class="fn">getElementById</span>(<span class="st">'email-error'</span>);
+<span class="kw">const</span> passErr  = <span class="fn">document</span>.<span class="fn">getElementById</span>(<span class="st">'pass-error'</span>);
+
+form.<span class="fn">addEventListener</span>(<span class="st">'submit'</span>, <span class="kw">function</span>(e) {
+    e.<span class="fn">preventDefault</span>();
+    <span class="kw">let</span> hayError = <span class="kw">false</span>;
+    nameErr.<span class="prop">textContent</span> = <span class="st">''</span>;
+    emailErr.<span class="prop">textContent</span> = <span class="st">''</span>;
+    passErr.<span class="prop">textContent</span> = <span class="st">''</span>;
+
+    <span class="kw">if</span> (name.<span class="prop">value</span>.<span class="fn">trim</span>().<span class="prop">length</span> &lt; <span class="num">3</span>) {
+        nameErr.<span class="prop">textContent</span> = <span class="st">'Mínimo 3 caracteres.'</span>; hayError = <span class="kw">true</span>;
+    }
+    <span class="kw">if</span> (!email.<span class="prop">value</span>.<span class="fn">includes</span>(<span class="st">'@'</span>) || !email.<span class="prop">value</span>.<span class="fn">includes</span>(<span class="st">'.'</span>)) {
+        emailErr.<span class="prop">textContent</span> = <span class="st">'Email inválido.'</span>; hayError = <span class="kw">true</span>;
+    }
+    <span class="kw">if</span> (pass.<span class="prop">value</span>.<span class="prop">length</span> &lt; <span class="num">6</span>) {
+        passErr.<span class="prop">textContent</span> = <span class="st">'Mínimo 6 caracteres.'</span>; hayError = <span class="kw">true</span>;
+    }
+    <span class="kw">if</span> (hayError) <span class="kw">return</span>;
+
+    <span class="cm">// Todo válido — mostrar resumen</span>
+    <span class="fn">alert</span>(<span class="st">'Registro correcto: '</span> + name.<span class="prop">value</span>);
+    form.<span class="fn">reset</span>();
+});</code></pre>
+      </div>
+      <div class="note ok"><b>Patrón hayError:</b> cuando quieres mostrar TODOS los errores a la vez (no parar en el primero), usa una variable <code>hayError</code> y haz <code>return</code> solo al final.</div>
+    </section>
+
+    <!-- 21 VOTOS -->
+    <section class="section" id="caso-votos" data-keywords="votos votar contador porcentaje disabled deshabilitar opcion ganador caso">
+      <div class="section-title">21 · Contador de votos <span class="badge">caso práctico</span></div>
+      <div class="block">
+        <div class="block-head"><div class="block-title">app.js completo</div><button class="copy-btn">Copiar</button></div>
+<pre><code><span class="kw">const</span> opciones = <span class="fn">document</span>.<span class="fn">querySelectorAll</span>(<span class="st">'.option'</span>);
+<span class="kw">const</span> botones  = <span class="fn">document</span>.<span class="fn">querySelectorAll</span>(<span class="st">'.vote-btn'</span>);
+<span class="kw">const</span> winner   = <span class="fn">document</span>.<span class="fn">getElementById</span>(<span class="st">'winner'</span>);
+
+botones.<span class="fn">forEach</span>(<span class="kw">function</span>(btn) {
+    btn.<span class="fn">addEventListener</span>(<span class="st">'click'</span>, <span class="kw">function</span>() {
+        <span class="kw">const</span> option = btn.<span class="prop">parentElement</span>;
+        <span class="kw">const</span> count = option.<span class="fn">querySelector</span>(<span class="st">'.vote-count'</span>);
+        count.<span class="prop">textContent</span> = <span class="fn">parseInt</span>(count.<span class="prop">textContent</span>) + <span class="num">1</span>;
+
+        botones.<span class="fn">forEach</span>(<span class="kw">function</span>(b) { b.<span class="prop">disabled</span> = <span class="kw">true</span>; });
+        <span class="fn">actualizarPorcentajes</span>();
+    });
+});
+
+<span class="kw">function</span> <span class="fn">actualizarPorcentajes</span>() {
+    <span class="kw">let</span> total = <span class="num">0</span>;
+    opciones.<span class="fn">forEach</span>(<span class="kw">function</span>(opt) {
+        total += <span class="fn">parseInt</span>(opt.<span class="fn">querySelector</span>(<span class="st">'.vote-count'</span>).<span class="prop">textContent</span>);
+    });
+    opciones.<span class="fn">forEach</span>(<span class="kw">function</span>(opt) {
+        <span class="kw">const</span> votos = <span class="fn">parseInt</span>(opt.<span class="fn">querySelector</span>(<span class="st">'.vote-count'</span>).<span class="prop">textContent</span>);
+        <span class="kw">const</span> pct = total &gt; <span class="num">0</span> ? <span class="fn">Math</span>.<span class="fn">round</span>((votos / total) * <span class="num">100</span>) : <span class="num">0</span>;
+        opt.<span class="fn">querySelector</span>(<span class="st">'.percentage'</span>).<span class="prop">textContent</span> = pct + <span class="st">'%'</span>;
+    });
+}</code></pre>
+      </div>
+    </section>
+
+    <!-- 22 TAREAS -->
+    <section class="section" id="caso-tareas" data-keywords="tareas todo checkbox completada filtro pendientes classlist estado filtrar caso">
+      <div class="section-title">22 · Lista de tareas + filtros <span class="badge">caso práctico</span></div>
+      <div class="block">
+        <div class="block-head"><div class="block-title">app.js completo</div><button class="copy-btn">Copiar</button></div>
+<pre><code><span class="kw">const</span> input    = <span class="fn">document</span>.<span class="fn">getElementById</span>(<span class="st">'task-input'</span>);
+<span class="kw">const</span> addBtn   = <span class="fn">document</span>.<span class="fn">getElementById</span>(<span class="st">'add-btn'</span>);
+<span class="kw">const</span> errorMsg = <span class="fn">document</span>.<span class="fn">getElementById</span>(<span class="st">'error-msg'</span>);
+<span class="kw">const</span> lista    = <span class="fn">document</span>.<span class="fn">getElementById</span>(<span class="st">'task-list'</span>);
+<span class="kw">const</span> pending  = <span class="fn">document</span>.<span class="fn">getElementById</span>(<span class="st">'pending-count'</span>);
+<span class="kw">let</span> filtro = <span class="st">'todas'</span>;
+
+addBtn.<span class="fn">addEventListener</span>(<span class="st">'click'</span>, <span class="kw">function</span>() {
+    <span class="kw">const</span> valor = input.<span class="prop">value</span>.<span class="fn">trim</span>();
+    <span class="kw">if</span> (valor.<span class="prop">length</span> &lt; <span class="num">3</span>) { errorMsg.<span class="prop">textContent</span> = <span class="st">'Mínimo 3.'</span>; <span class="kw">return</span>; }
+    errorMsg.<span class="prop">textContent</span> = <span class="st">''</span>;
+
+    <span class="kw">const</span> li = <span class="fn">document</span>.<span class="fn">createElement</span>(<span class="st">'li'</span>);
+    <span class="kw">const</span> check = <span class="fn">document</span>.<span class="fn">createElement</span>(<span class="st">'input'</span>);
+    check.<span class="prop">type</span> = <span class="st">'checkbox'</span>;
+    check.<span class="fn">addEventListener</span>(<span class="st">'change'</span>, <span class="kw">function</span>() {
+        li.<span class="prop">classList</span>.<span class="fn">toggle</span>(<span class="st">'completada'</span>, check.<span class="prop">checked</span>);
+        <span class="fn">aplicarFiltro</span>(); <span class="fn">actualizarContador</span>();
+    });
+    <span class="kw">const</span> span = <span class="fn">document</span>.<span class="fn">createElement</span>(<span class="st">'span'</span>);
+    span.<span class="prop">textContent</span> = valor;
+    <span class="kw">const</span> del = <span class="fn">document</span>.<span class="fn">createElement</span>(<span class="st">'button'</span>);
+    del.<span class="prop">textContent</span> = <span class="st">'Eliminar'</span>;
+    del.<span class="fn">addEventListener</span>(<span class="st">'click'</span>, <span class="kw">function</span>() { li.<span class="fn">remove</span>(); <span class="fn">actualizarContador</span>(); });
+
+    li.<span class="fn">appendChild</span>(check); li.<span class="fn">appendChild</span>(span); li.<span class="fn">appendChild</span>(del);
+    lista.<span class="fn">appendChild</span>(li);
+    input.<span class="prop">value</span> = <span class="st">''</span>;
+    <span class="fn">actualizarContador</span>();
+});
+
+<span class="kw">function</span> <span class="fn">aplicarFiltro</span>() {
+    <span class="fn">document</span>.<span class="fn">querySelectorAll</span>(<span class="st">'#task-list li'</span>).<span class="fn">forEach</span>(<span class="kw">function</span>(li) {
+        <span class="kw">const</span> done = li.<span class="prop">classList</span>.<span class="fn">contains</span>(<span class="st">'completada'</span>);
+        <span class="kw">if</span> (filtro === <span class="st">'todas'</span>) li.<span class="prop">style</span>.<span class="prop">display</span> = <span class="st">'flex'</span>;
+        <span class="kw">else if</span> (filtro === <span class="st">'pendientes'</span>) li.<span class="prop">style</span>.<span class="prop">display</span> = done ? <span class="st">'none'</span> : <span class="st">'flex'</span>;
+        <span class="kw">else</span> li.<span class="prop">style</span>.<span class="prop">display</span> = done ? <span class="st">'flex'</span> : <span class="st">'none'</span>;
+    });
+}
+<span class="kw">function</span> <span class="fn">actualizarContador</span>() {
+    <span class="kw">let</span> p = <span class="num">0</span>;
+    <span class="fn">document</span>.<span class="fn">querySelectorAll</span>(<span class="st">'#task-list li'</span>).<span class="fn">forEach</span>(<span class="kw">function</span>(li) {
+        <span class="kw">if</span> (!li.<span class="prop">classList</span>.<span class="fn">contains</span>(<span class="st">'completada'</span>)) p++;
+    });
+    pending.<span class="prop">textContent</span> = p;
+}</code></pre>
+      </div>
+    </section>
+
+    <!-- 23 QUINIELA -->
+    <section class="section" id="caso-quiniela" data-keywords="quiniela aleatorio random for bucle generar partido 1x2 contador caso">
+      <div class="section-title">23 · Generador de quiniela <span class="badge">caso práctico</span></div>
+      <div class="block">
+        <div class="block-head"><div class="block-title">app.js completo</div><button class="copy-btn">Copiar</button></div>
+<pre><code><span class="kw">const</span> btnGenerar = <span class="fn">document</span>.<span class="fn">getElementById</span>(<span class="st">'btn-generar'</span>);
+<span class="kw">const</span> lista      = <span class="fn">document</span>.<span class="fn">getElementById</span>(<span class="st">'quiniela-list'</span>);
+<span class="kw">const</span> histSpan   = <span class="fn">document</span>.<span class="fn">getElementById</span>(<span class="st">'historial'</span>);
+<span class="kw">let</span> totalGeneradas = <span class="num">0</span>;
+
+btnGenerar.<span class="fn">addEventListener</span>(<span class="st">'click'</span>, <span class="kw">function</span>() {
+    lista.<span class="prop">innerHTML</span> = <span class="st">''</span>;  <span class="cm">// limpiar anterior</span>
+    <span class="kw">const</span> opciones = [<span class="st">'1'</span>, <span class="st">'X'</span>, <span class="st">'2'</span>];
+
+    <span class="kw">for</span> (<span class="kw">let</span> i = <span class="num">1</span>; i &lt;= <span class="num">14</span>; i++) {
+        <span class="kw">const</span> res = opciones[<span class="fn">Math</span>.<span class="fn">floor</span>(<span class="fn">Math</span>.<span class="fn">random</span>() * <span class="num">3</span>)];
+        <span class="kw">const</span> li = <span class="fn">document</span>.<span class="fn">createElement</span>(<span class="st">'li'</span>);
+        li.<span class="prop">textContent</span> = <span class="st">'Partido '</span> + i + <span class="st">': '</span> + res;
+        lista.<span class="fn">appendChild</span>(li);
+    }
+    totalGeneradas++;
+    histSpan.<span class="prop">textContent</span> = totalGeneradas;
+});</code></pre>
+      </div>
+    </section>
+
+    <!-- 24 BANCO ORDENAR -->
+    <section class="section" id="caso-banco" data-keywords="ordenar sort banco palabras alfabetico spread array mover dom caso">
+      <div class="section-title">24 · Ordenar lista existente <span class="badge">caso práctico</span></div>
+      <div class="block">
+        <div class="block-head"><div class="block-title">Ordenar los li del DOM A-Z</div><button class="copy-btn">Copiar</button></div>
+<pre><code>sortBtn.<span class="fn">addEventListener</span>(<span class="st">'click'</span>, <span class="kw">function</span>() {
+    <span class="cm">// 1. NodeList → Array</span>
+    <span class="kw">const</span> items = [...<span class="fn">document</span>.<span class="fn">querySelectorAll</span>(<span class="st">'#word-list li'</span>)];
+
+    <span class="cm">// 2. Ordenar por dataset.word</span>
+    items.<span class="fn">sort</span>(<span class="kw">function</span>(a, b) {
+        <span class="kw">if</span> (a.<span class="prop">dataset</span>.<span class="prop">word</span> &lt; b.<span class="prop">dataset</span>.<span class="prop">word</span>) <span class="kw">return</span> -<span class="num">1</span>;
+        <span class="kw">if</span> (a.<span class="prop">dataset</span>.<span class="prop">word</span> &gt; b.<span class="prop">dataset</span>.<span class="prop">word</span>) <span class="kw">return</span> <span class="num">1</span>;
+        <span class="kw">return</span> <span class="num">0</span>;
+    });
+
+    <span class="cm">// 3. Re-insertar (appendChild MUEVE, no duplica)</span>
+    items.<span class="fn">forEach</span>(<span class="kw">function</span>(li) {
+        wordList.<span class="fn">appendChild</span>(li);
+    });
+});</code></pre>
+      </div>
+    </section>
+
+    <!-- 25 PROPINAS -->
+    <section class="section" id="caso-propinas" data-keywords="propina calculadora porcentaje funcion parametro reutilizable boton caso">
+      <div class="section-title">25 · Calculadora con función reutilizable <span class="badge">caso práctico</span></div>
+      <div class="block">
+        <div class="block-head"><div class="block-title">Función con parámetro para varios botones</div><button class="copy-btn">Copiar</button></div>
+<pre><code><span class="kw">const</span> importe = <span class="fn">document</span>.<span class="fn">getElementById</span>(<span class="st">'importe'</span>);
+<span class="kw">const</span> errorMsg = <span class="fn">document</span>.<span class="fn">getElementById</span>(<span class="st">'error-msg'</span>);
+<span class="kw">const</span> propina = <span class="fn">document</span>.<span class="fn">getElementById</span>(<span class="st">'propina'</span>);
+<span class="kw">const</span> total = <span class="fn">document</span>.<span class="fn">getElementById</span>(<span class="st">'total'</span>);
+
+<span class="kw">function</span> <span class="fn">calcular</span>(porcentaje) {
+    <span class="kw">const</span> cuenta = <span class="fn">parseFloat</span>(importe.<span class="prop">value</span>);
+    <span class="kw">if</span> (importe.<span class="prop">value</span> === <span class="st">''</span> || <span class="fn">isNaN</span>(cuenta) || cuenta &lt;= <span class="num">0</span>) {
+        errorMsg.<span class="prop">textContent</span> = <span class="st">'Importe inválido.'</span>; <span class="kw">return</span>;
+    }
+    errorMsg.<span class="prop">textContent</span> = <span class="st">''</span>;
+    propina.<span class="prop">textContent</span> = (cuenta * porcentaje / <span class="num">100</span>).<span class="fn">toFixed</span>(<span class="num">2</span>) + <span class="st">'€'</span>;
+    total.<span class="prop">textContent</span>   = (cuenta * (<span class="num">1</span> + porcentaje/<span class="num">100</span>)).<span class="fn">toFixed</span>(<span class="num">2</span>) + <span class="st">'€'</span>;
+}
+
+<span class="fn">document</span>.<span class="fn">getElementById</span>(<span class="st">'btn-10'</span>).<span class="fn">addEventListener</span>(<span class="st">'click'</span>, <span class="kw">function</span>() { <span class="fn">calcular</span>(<span class="num">10</span>); });
+<span class="fn">document</span>.<span class="fn">getElementById</span>(<span class="st">'btn-15'</span>).<span class="fn">addEventListener</span>(<span class="st">'click'</span>, <span class="kw">function</span>() { <span class="fn">calcular</span>(<span class="num">15</span>); });
+<span class="fn">document</span>.<span class="fn">getElementById</span>(<span class="st">'btn-20'</span>).<span class="fn">addEventListener</span>(<span class="st">'click'</span>, <span class="kw">function</span>() { <span class="fn">calcular</span>(<span class="num">20</span>); });</code></pre>
+      </div>
+    </section>
+
+    <!-- 26 JUEGO -->
+    <section class="section" id="caso-juego" data-keywords="adivina numero juego aleatorio intentos mayor menor ganar perder estado caso">
+      <div class="section-title">26 · Adivina el número <span class="badge">caso práctico</span></div>
+      <div class="block">
+        <div class="block-head"><div class="block-title">app.js completo</div><button class="copy-btn">Copiar</button></div>
+<pre><code><span class="kw">let</span> secreto = <span class="fn">Math</span>.<span class="fn">floor</span>(<span class="fn">Math</span>.<span class="fn">random</span>() * <span class="num">100</span>) + <span class="num">1</span>;
+<span class="kw">let</span> intentos = <span class="num">0</span>;
+<span class="kw">const</span> MAX = <span class="num">10</span>;
+<span class="kw">let</span> activo = <span class="kw">true</span>;
+
+<span class="kw">const</span> input = <span class="fn">document</span>.<span class="fn">getElementById</span>(<span class="st">'userGuess'</span>);
+<span class="kw">const</span> btn = <span class="fn">document</span>.<span class="fn">getElementById</span>(<span class="st">'btnJugar'</span>);
+<span class="kw">const</span> msg = <span class="fn">document</span>.<span class="fn">getElementById</span>(<span class="st">'mensaje'</span>);
+<span class="kw">const</span> hist = <span class="fn">document</span>.<span class="fn">getElementById</span>(<span class="st">'historial'</span>);
+
+btn.<span class="fn">addEventListener</span>(<span class="st">'click'</span>, <span class="kw">function</span>() {
+    <span class="kw">if</span> (!activo) <span class="kw">return</span>;
+    <span class="kw">const</span> guess = <span class="fn">parseInt</span>(input.<span class="prop">value</span>);
+    <span class="kw">if</span> (<span class="fn">isNaN</span>(guess) || guess &lt; <span class="num">1</span> || guess &gt; <span class="num">100</span>) {
+        msg.<span class="prop">textContent</span> = <span class="st">'Número entre 1 y 100.'</span>; <span class="kw">return</span>;
+    }
+    intentos++;
+    <span class="kw">const</span> li = <span class="fn">document</span>.<span class="fn">createElement</span>(<span class="st">'li'</span>);
+    li.<span class="prop">textContent</span> = <span class="st">'Tirada '</span> + intentos + <span class="st">': '</span> + guess;
+
+    <span class="kw">if</span> (guess === secreto) {
+        msg.<span class="prop">textContent</span> = <span class="st">'¡CORRECTO en '</span> + intentos + <span class="st">' intentos!'</span>;
+        activo = <span class="kw">false</span>; btn.<span class="prop">disabled</span> = <span class="kw">true</span>;
+    } <span class="kw">else if</span> (guess &gt; secreto) {
+        msg.<span class="prop">textContent</span> = <span class="st">'ES MENOR.'</span>;
+    } <span class="kw">else</span> {
+        msg.<span class="prop">textContent</span> = <span class="st">'ES MAYOR.'</span>;
+    }
+    hist.<span class="fn">appendChild</span>(li);
+
+    <span class="kw">if</span> (intentos &gt;= MAX &amp;&amp; activo) {
+        msg.<span class="prop">textContent</span> = <span class="st">'PERDISTE. Era el '</span> + secreto;
+        activo = <span class="kw">false</span>; btn.<span class="prop">disabled</span> = <span class="kw">true</span>;
+    }
+    input.<span class="prop">value</span> = <span class="st">''</span>;
+});</code></pre>
+      </div>
+    </section>
+
+    <!-- 27 CHULETA -->
+    <section class="section" id="chuleta" data-keywords="chuleta referencia rapida resumen todo metodos">
+      <div class="section-title">27 · Chuleta rápida <span class="badge">referencia</span></div>
+      <table>
+        <tr><th>Operación</th><th>Código</th></tr>
+        <tr><td>Seleccionar ID</td><td><code>document.getElementById('id')</code></td></tr>
+        <tr><td>Seleccionar todos</td><td><code>document.querySelectorAll('li')</code></td></tr>
+        <tr><td>Crear elemento</td><td><code>document.createElement('li')</code></td></tr>
+        <tr><td>Texto</td><td><code>el.textContent = 'x'</code></td></tr>
+        <tr><td>Añadir hijo</td><td><code>parent.appendChild(child)</code></td></tr>
+        <tr><td>Eliminar</td><td><code>el.remove()</code></td></tr>
+        <tr><td>Leer input</td><td><code>input.value.trim()</code></td></tr>
+        <tr><td>Limpiar input</td><td><code>input.value = ''</code></td></tr>
+        <tr><td>Ocultar</td><td><code>el.style.display = 'none'</code></td></tr>
+        <tr><td>Mostrar li</td><td><code>el.style.display = 'list-item'</code></td></tr>
+        <tr><td>Añadir clase</td><td><code>el.classList.add('x')</code></td></tr>
+        <tr><td>¿Tiene clase?</td><td><code>el.classList.contains('x')</code></td></tr>
+        <tr><td>Guardar dato</td><td><code>li.dataset.price = v</code></td></tr>
+        <tr><td>Leer dato</td><td><code>parseFloat(li.dataset.price)</code></td></tr>
+        <tr><td>Deshabilitar</td><td><code>btn.disabled = true</code></td></tr>
+        <tr><td>Vaciar lista</td><td><code>ul.innerHTML = ''</code></td></tr>
+        <tr><td>Aleatorio 1-100</td><td><code>Math.floor(Math.random()*100)+1</code></td></tr>
+        <tr><td>2 decimales</td><td><code>(v).toFixed(2)</code></td></tr>
+        <tr><td>String→número</td><td><code>parseFloat(s) / parseInt(s)</code></td></tr>
+        <tr><td>¿Es número?</td><td><code>!isNaN(v)</code></td></tr>
+        <tr><td>Minúsculas</td><td><code>s.toLowerCase()</code></td></tr>
+        <tr><td>¿Contiene?</td><td><code>s.includes('x')</code></td></tr>
+        <tr><td>NodeList→Array</td><td><code>[...querySelectorAll('li')]</code></td></tr>
+        <tr><td>Evitar recarga</td><td><code>e.preventDefault()</code></td></tr>
+      </table>
+    </section>
+
+    <div id="no-results">
+      <div class="big">🔍</div>
+      <p>No se encontró nada para tu búsqueda.</p>
+      <p style="font-size:13px;margin-top:6px">Prueba con: validar, crear, eliminar, total, aleatorio, ordenar...</p>
+    </div>
+
+  </main>
+</div>
+
+<div class="toast" id="toast">✓ Copiado al portapapeles</div>
+
+<script>
+// ── COPY BUTTONS ──────────────────────────────────────────────
+document.querySelectorAll('.copy-btn').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    const block = btn.closest('.block');
+    const code = block.querySelector('pre code');
+    const text = code.innerText;
+    navigator.clipboard.writeText(text).then(function(){
+      btn.textContent = '✓ Copiado';
+      btn.classList.add('copied');
+      showToast();
+      setTimeout(function(){
+        btn.textContent = 'Copiar';
+        btn.classList.remove('copied');
+      }, 1500);
+    });
+  });
+});
+
+function showToast(){
+  const t = document.getElementById('toast');
+  t.classList.add('show');
+  setTimeout(function(){ t.classList.remove('show'); }, 1500);
+}
+
+// ── SEARCH FILTER ─────────────────────────────────────────────
+const search = document.getElementById('search');
+const sections = document.querySelectorAll('.section');
+const noResults = document.getElementById('no-results');
+const hint = document.getElementById('hint');
+
+search.addEventListener('input', function(){
+  const q = search.value.toLowerCase().trim();
+  let visibleCount = 0;
+
+  sections.forEach(function(sec){
+    const keywords = (sec.dataset.keywords || '') + ' ' + sec.textContent.toLowerCase();
+    if (q === '' || keywords.includes(q)) {
+      sec.classList.remove('hidden');
+      visibleCount++;
+    } else {
+      sec.classList.add('hidden');
+    }
+  });
+
+  noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+  hint.textContent = q === '' ? 'Escribe para filtrar todo' : visibleCount + ' secciones';
+});
+
+// ── ACTIVE TOC ON SCROLL ──────────────────────────────────────
+const tocLinks = document.querySelectorAll('#toc a');
+const observer = new IntersectionObserver(function(entries){
+  entries.forEach(function(entry){
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      tocLinks.forEach(function(a){
+        a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+      });
+    }
+  });
+}, { rootMargin: '-80px 0px -70% 0px' });
+
+sections.forEach(function(sec){ observer.observe(sec); });
+
+// ── KEYBOARD: / to focus search ───────────────────────────────
+document.addEventListener('keydown', function(e){
+  if (e.key === '/' && document.activeElement !== search) {
+    e.preventDefault();
+    search.focus();
+  }
+});
+</script>
+
+</body>
+</html>
