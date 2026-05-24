@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>O'CLOCK — Relojería de autor</title>
+
+  <!-- Bootstrap 5.0.2 CSS — archivo LOCAL del ZIP descargado -->
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
+
+  <!-- Bootstrap Icons — solo iconos, no es un framework CSS adicional -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+  />
+
+  <!-- CSS de marca (mínimo) -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+
+<!-- ====================================================
+     NAVBAR
+     Logo izquierda · Links centro · Carrito derecha
+     Colapsa en hamburguesa en pantallas pequeñas
+     ==================================================== -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top py-2">
+  <div class="container">
+
+    <!-- LOGO — izquierda -->
+    <a class="navbar-brand fw-bold fs-4" href="#">
+      <span style="color: #c9a84c;">O'</span>CLOCK
+    </a>
+
+    <!-- Botón hamburguesa (móvil) -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navMenu"
+      aria-controls="navMenu"
+      aria-expanded="false"
+      aria-label="Abrir menú"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Menú colapsable -->
+    <div class="collapse navbar-collapse" id="navMenu">
+
+      <!-- LINKS — centro -->
+      <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#inicio">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#coleccion">Colección</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Categorías
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#coleccion">Deportivos</a></li>
+            <li><a class="dropdown-item" href="#coleccion">Clásicos</a></li>
+            <li><a class="dropdown-item" href="#coleccion">Elegantes</a></li>
+            <li><a class="dropdown-item" href="#coleccion">Buceo</a></li>
+            <li><a class="dropdown-item" href="#coleccion">Automáticos</a></li>
+            <li><hr class="dropdown-divider" /></li>
+            <li><a class="dropdown-item" href="#coleccion">Ver todos</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#newsletter">Ofertas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#footer">Contacto</a>
+        </li>
+      </ul>
+
+      <!-- CARRITO — derecha -->
+      <a href="#" class="btn btn-outline-oc position-relative">
+        <i class="bi bi-bag fs-5"></i>
+        <span
+          class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+          style="font-size: 0.65rem;"
+        >
+          0
+        </span>
+      </a>
+
+    </div>
+  </div>
+</nav>
+
+
+<!-- ====================================================
+     SECCIÓN HERO — CAROUSEL
+     4 slides con imágenes reales + texto superpuesto
+     Título llamativo + subtítulo + botón "Ver Ofertas"
+     ==================================================== -->
+<section id="inicio" style="padding-top: 56px;">
+  <div
+    id="carruselHero"
+    class="carousel slide"
+    data-bs-ride="carousel"
+    data-bs-interval="5000"
+  >
+
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carruselHero" data-bs-slide-to="0"
+        class="active" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carruselHero" data-bs-slide-to="1"
+        aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carruselHero" data-bs-slide-to="2"
+        aria-label="Slide 3"></button>
+      <button type="button" data-bs-target="#carruselHero" data-bs-slide-to="3"
+        aria-label="Slide 4"></button>
+    </div>
+
+    <div class="carousel-inner">
+
+      <!-- Slide 1 — Sport Pro Max -->
+      <div class="carousel-item active">
+        <div class="oc-slide">
+          <img
+            
+            src="img/slide-heritage.png"
+            class="oc-slide-img"
+            alt="Sport Collection"
+            onerror="this.src='https://placehold.co/1400x500/0d0d0d/c9a84c?text=Sport+Collection'"
+          />
+          <div class="oc-slide-overlay"></div>
+          <div class="container oc-slide-texto text-white py-5">
+            <div class="col-md-6">
+              <span class="badge mb-3 px-3 py-2" style="background:#c9a84c; color:#0d0d0d; letter-spacing:0.1em;">SPORT COLLECTION</span>
+              <h1 class="display-5 fw-bold">Domina el movimiento</h1>
+              <p class="lead mb-4">Sport Pro Max · GPS integrado · Frecuencia cardíaca · 7 días de autonomía</p>
+              <a href="#coleccion" class="btn btn-oc btn-lg px-4 me-2">Ver Ofertas</a>
+              <a href="#coleccion" class="btn btn-outline-light btn-lg px-4">Ver colección</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 2 — Heritage Bronce -->
+      <div class="carousel-item">
+        <div class="oc-slide">
+          <img
+            
+            src="img/slide-diver.png"
+            class="oc-slide-img"
+            alt="Heritage Collection"
+            onerror="this.src='https://placehold.co/1400x500/1a0a00/c9a84c?text=Heritage+Collection'"
+          />
+          <div class="oc-slide-overlay"></div>
+          <div class="container oc-slide-texto text-white py-5">
+            <div class="col-md-6">
+              <span class="badge mb-3 px-3 py-2" style="background:#c9a84c; color:#0d0d0d; letter-spacing:0.1em;">HERITAGE COLLECTION</span>
+              <h1 class="display-5 fw-bold">Historia en tu muñeca</h1>
+              <p class="lead mb-4">Heritage Bronce · Cronógrafo vintage · Bronce envejecido · Correa de cuero genuino</p>
+              <a href="#coleccion" class="btn btn-oc btn-lg px-4 me-2">Ver Ofertas</a>
+              <a href="#coleccion" class="btn btn-outline-light btn-lg px-4">Ver colección</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 3 — Elegance Blue -->
+      <div class="carousel-item">
+        <div class="oc-slide">
+          <img
+            src="img/slide-elegance.png"
+            class="oc-slide-img"
+            alt="Elegance Collection"
+            onerror="this.src='https://placehold.co/1400x500/000a1a/c9a84c?text=Elegance+Collection'"
+          />
+          <div class="oc-slide-overlay"></div>
+          <div class="container oc-slide-texto text-white py-5">
+            <div class="col-md-6">
+              <span class="badge mb-3 px-3 py-2" style="background:#c9a84c; color:#0d0d0d; letter-spacing:0.1em;">ELEGANCE COLLECTION</span>
+              <h1 class="display-5 fw-bold">Sofisticación diaria</h1>
+              <p class="lead mb-4">Elegance Blue · Cuarzo suizo · Cristal de zafiro antireflejos · Esfera azul profundo</p>
+              <a href="#coleccion" class="btn btn-oc btn-lg px-4 me-2">Ver Ofertas</a>
+              <a href="#coleccion" class="btn btn-outline-light btn-lg px-4">Ver colección</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 4 — Diver Pro 300 -->
+      <div class="carousel-item">
+        <div class="oc-slide">
+          <img
+            src="img/slide-sport.png"
+            class="oc-slide-img"
+            alt="Diver Collection"
+            onerror="this.src='https://placehold.co/1400x500/000d0d/c9a84c?text=Diver+Collection'"
+          />
+          <div class="oc-slide-overlay"></div>
+          <div class="container oc-slide-texto text-white py-5">
+            <div class="col-md-6">
+              <span class="badge mb-3 px-3 py-2" style="background:#c9a84c; color:#0d0d0d; letter-spacing:0.1em;">DIVER COLLECTION</span>
+              <h1 class="display-5 fw-bold">Aventura sin límites</h1>
+              <p class="lead mb-4">Diver Pro 300 · Certificado ISO 6425 · Resistente hasta 300 metros de profundidad</p>
+              <a href="#coleccion" class="btn btn-oc btn-lg px-4 me-2">Ver Ofertas</a>
+              <a href="#coleccion" class="btn btn-outline-light btn-lg px-4">Ver colección</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <button class="carousel-control-prev" type="button"
+      data-bs-target="#carruselHero" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+      <span class="visually-hidden">Anterior</span>
+    </button>
+    <button class="carousel-control-next" type="button"
+      data-bs-target="#carruselHero" data-bs-slide="next">
+      <span class="carousel-control-next-icon"></span>
+      <span class="visually-hidden">Siguiente</span>
+    </button>
+
+  </div>
+</section>
+
+
+<!-- ====================================================
+     CATÁLOGO DE PRODUCTOS — Grid System + Cards
+     Grid responsivo: 1 col / 2 col / 3 col / 4 col
+     Cards con imagen, título, precio y botón
+     ==================================================== -->
+<section id="coleccion" class="py-5 bg-light">
+  <div class="container">
+
+    <div class="text-center mb-5">
+      <h2 class="fw-bold">Colección <span style="color:#c9a84c;">O'</span>CLOCK</h2>
+      <p class="text-muted">Temporada 2025 — Relojes de autor para cada estilo</p>
+      <hr class="mx-auto mt-3" style="width:60px; border:3px solid #c9a84c; opacity:1; border-radius:4px;" />
+    </div>
+
+    <div class="row g-4">
+
+      <!-- ── Producto 1: Sport Pro Max ── -->
+      <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+        <article class="card h-100 shadow-sm">
+          <img
+            src="img/prod-sport.png"
+            class="card-img-top oc-card-img"
+            alt="Sport Pro Max"
+            onerror="this.src='https://placehold.co/400x300/0d0d0d/c9a84c?text=Sport+Pro+Max'"
+          />
+          <div class="card-body d-flex flex-column">
+            <small class="text-muted mb-1">REF. OC-SP-001</small>
+            <span class="badge bg-danger mb-2" style="width:fit-content;">-21%</span>
+            <h5 class="card-title mb-1">Sport Pro Max</h5>
+            <p class="card-text text-muted small">Smartwatch · GPS · Frecuencia cardíaca</p>
+            <p class="mt-auto mb-2 fw-bold fs-5" style="color:#a88a35;">
+              299 €
+              <small class="text-muted text-decoration-line-through fw-normal fs-6">380 €</small>
+            </p>
+            <div class="d-flex gap-2">
+              <button
+                class="btn btn-dark flex-grow-1"
+                onclick="mostrarToast('Sport Pro Max')"
+                data-bs-toggle="toast"
+                data-bs-target="#miToast"
+              >
+                <i class="bi bi-bag-plus me-1"></i>Añadir
+              </button>
+              <button
+                class="btn btn-outline-secondary"
+                data-bs-toggle="modal"
+                data-bs-target="#modalProducto"
+                onclick="abrirModal(
+                  'Sport Pro Max', 299, 380,
+                  'Smartwatch multideporte con GPS integrado, monitor de frecuencia cardíaca y SpO2. Hasta 7 días de autonomía. Resistente al agua 5 ATM. Compatible con iOS y Android.',
+                  'OC-SP-001', 'img/prod-sport.png'
+                )"
+                aria-label="Ver detalle"
+              >
+                <i class="bi bi-eye"></i>
+              </button>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- ── Producto 2: Heritage Bronce ── -->
+      <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+        <article class="card h-100 shadow-sm">
+          <img
+            src="img/prod-heritage.png"
+            class="card-img-top oc-card-img"
+            alt="Heritage Bronce"
+            onerror="this.src='https://placehold.co/400x300/0d0d0d/c9a84c?text=Heritage+Bronce'"
+          />
+          <div class="card-body d-flex flex-column">
+            <small class="text-muted mb-1">REF. OC-HE-002</small>
+            <span class="badge bg-secondary mb-2" style="width:fit-content;">Clásico</span>
+            <h5 class="card-title mb-1">Heritage Bronce</h5>
+            <p class="card-text text-muted small">Cronógrafo · Bronce envejecido · Cuero</p>
+            <p class="mt-auto mb-2 fw-bold fs-5" style="color:#a88a35;">450 €</p>
+            <div class="d-flex gap-2">
+              <button
+                class="btn btn-dark flex-grow-1"
+                onclick="mostrarToast('Heritage Bronce')"
+                data-bs-toggle="toast"
+                data-bs-target="#miToast"
+              >
+                <i class="bi bi-bag-plus me-1"></i>Añadir
+              </button>
+              <button
+                class="btn btn-outline-secondary"
+                data-bs-toggle="modal"
+                data-bs-target="#modalProducto"
+                onclick="abrirModal(
+                  'Heritage Bronce', 450, 0,
+                  'Cronógrafo de inspiración clásica con caja de bronce envejecido. Correa de cuero genuino curtido a mano. Esfera crema con sub-diales dorados. Movimiento mecánico de cuerda manual.',
+                  'OC-HE-002', 'img/prod-heritage.png'
+                )"
+                aria-label="Ver detalle"
+              >
+                <i class="bi bi-eye"></i>
+              </button>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- ── Producto 3: Elegance Blue ── -->
+      <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+        <article class="card h-100 shadow-sm">
+          <img
+            src="img/prod-elegance.png"
+            class="card-img-top oc-card-img"
+            alt="Elegance Blue"
+            onerror="this.src='https://placehold.co/400x300/0d0d0d/c9a84c?text=Elegance+Blue'"
+          />
+          <div class="card-body d-flex flex-column">
+            <small class="text-muted mb-1">REF. OC-EL-003</small>
+            <span class="badge bg-primary mb-2" style="width:fit-content;">Elegante</span>
+            <h5 class="card-title mb-1">Elegance Blue</h5>
+            <p class="card-text text-muted small">Cuarzo suizo · Esfera azul · Cristal zafiro</p>
+            <p class="mt-auto mb-2 fw-bold fs-5" style="color:#a88a35;">380 €</p>
+            <div class="d-flex gap-2">
+              <button
+                class="btn btn-dark flex-grow-1"
+                onclick="mostrarToast('Elegance Blue')"
+                data-bs-toggle="toast"
+                data-bs-target="#miToast"
+              >
+                <i class="bi bi-bag-plus me-1"></i>Añadir
+              </button>
+              <button
+                class="btn btn-outline-secondary"
+                data-bs-toggle="modal"
+                data-bs-target="#modalProducto"
+                onclick="abrirModal(
+                  'Elegance Blue', 380, 0,
+                  'Reloj de cuarzo suizo con esfera azul profundo y cristal de zafiro antireflejos. Caja de acero inoxidable 316L pulido. Correa de cuero negro cosida a mano. Ultrafino 7 mm.',
+                  'OC-EL-003', 'img/prod-elegance.png'
+                )"
+                aria-label="Ver detalle"
+              >
+                <i class="bi bi-eye"></i>
+              </button>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- ── Producto 4: Diver Pro 300 ── -->
+      <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+        <article class="card h-100 shadow-sm">
+          <img
+            src="img/prod-diver.png"
+            class="card-img-top oc-card-img"
+            alt="Diver Pro 300"
+            onerror="this.src='https://placehold.co/400x300/0d0d0d/c9a84c?text=Diver+Pro+300'"
+          />
+          <div class="card-body d-flex flex-column">
+            <small class="text-muted mb-1">REF. OC-DV-004</small>
+            <span class="badge bg-success mb-2" style="width:fit-content;">Buceo</span>
+            <h5 class="card-title mb-1">Diver Pro 300</h5>
+            <p class="card-text text-muted small">ISO 6425 · 300 m · Luminiscente</p>
+            <p class="mt-auto mb-2 fw-bold fs-5" style="color:#a88a35;">520 €</p>
+            <div class="d-flex gap-2">
+              <button
+                class="btn btn-dark flex-grow-1"
+                onclick="mostrarToast('Diver Pro 300')"
+                data-bs-toggle="toast"
+                data-bs-target="#miToast"
+              >
+                <i class="bi bi-bag-plus me-1"></i>Añadir
+              </button>
+              <button
+                class="btn btn-outline-secondary"
+                data-bs-toggle="modal"
+                data-bs-target="#modalProducto"
+                onclick="abrirModal(
+                  'Diver Pro 300', 520, 0,
+                  'Reloj de buceo profesional certificado ISO 6425. Bisel unidireccional de cerámica. Marcadores y manecillas con Super-LumiNova. Correa de caucho intercambiable. Resistente a 300 metros.',
+                  'OC-DV-004', 'img/prod-diver.png'
+                )"
+                aria-label="Ver detalle"
+              >
+                <i class="bi bi-eye"></i>
+              </button>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- ── Producto 5: Chrono Silver ── -->
+      <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+        <article class="card h-100 shadow-sm">
+          <img
+            src="img/prod-chrono.png"
+            class="card-img-top oc-card-img"
+            alt="Chrono Silver"
+            onerror="this.src='https://placehold.co/400x300/0d0d0d/c9a84c?text=Chrono+Silver'"
+          />
+          <div class="card-body d-flex flex-column">
+            <small class="text-muted mb-1">REF. OC-CH-005</small>
+            <span class="badge bg-danger mb-2" style="width:fit-content;">-20%</span>
+            <h5 class="card-title mb-1">Chrono Silver</h5>
+            <p class="card-text text-muted small">Cronógrafo · Acero 316L · Taquímetro</p>
+            <p class="mt-auto mb-2 fw-bold fs-5" style="color:#a88a35;">
+              680 €
+              <small class="text-muted text-decoration-line-through fw-normal fs-6">850 €</small>
+            </p>
+            <div class="d-flex gap-2">
+              <button
+                class="btn btn-dark flex-grow-1"
+                onclick="mostrarToast('Chrono Silver')"
+                data-bs-toggle="toast"
+                data-bs-target="#miToast"
+              >
+                <i class="bi bi-bag-plus me-1"></i>Añadir
+              </button>
+              <button
+                class="btn btn-outline-secondary"
+                data-bs-toggle="modal"
+                data-bs-target="#modalProducto"
+                onclick="abrirModal(
+                  'Chrono Silver', 680, 850,
+                  'Cronógrafo de acero inoxidable 316L con bisel taquímetro. Esfera blanca con sub-diales negros. Movimiento suizo ETA 7750 de alta precisión. Brazalete tipo Oyster.',
+                  'OC-CH-005', 'img/prod-chrono.png'
+                )"
+                aria-label="Ver detalle"
+              >
+                <i class="bi bi-eye"></i>
+              </button>
+            </div> 
+          </div>
+        </article>
+      </div>
+
+      <!-- ── Producto 6: Minimal White ── -->
+      <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+        <article class="card h-100 shadow-sm">
+          <img
+            src="img/prod-minimal.png"
+            class="card-img-top oc-card-img"
+            alt="Minimal White"
+            onerror="this.src='https://placehold.co/400x300/f5f5f5/555555?text=Minimal+White'"
+          />
+          <div class="card-body d-flex flex-column">
+            <small class="text-muted mb-1">REF. OC-MN-006</small>
+            <span class="badge bg-secondary mb-2" style="width:fit-content;">Minimalista</span>
+            <h5 class="card-title mb-1">Minimal White</h5>
+            <p class="card-text text-muted small">Cuarzo japonés · Ultrafino · 6 mm</p>
+            <p class="mt-auto mb-2 fw-bold fs-5" style="color:#a88a35;">220 €</p>
+            <div class="d-flex gap-2">
+              <button
+                class="btn btn-dark flex-grow-1"
+                onclick="mostrarToast('Minimal White')"
+                data-bs-toggle="toast"
+                data-bs-target="#miToast"
+              >
+                <i class="bi bi-bag-plus me-1"></i>Añadir
+              </button>
+              <button
+                class="btn btn-outline-secondary"
+                data-bs-toggle="modal"
+                data-bs-target="#modalProducto"
+                onclick="abrirModal(
+                  'Minimal White', 220, 0,
+                  'Diseño ultrafino de solo 6 mm de grosor. Esfera blanca minimalista sin numerales. Movimiento cuarzo japonés Miyota. Correa de cuero blanco. Solo 6 mm de espesor.',
+                  'OC-MN-006', 'img/prod-minimal.png'
+                )"
+                aria-label="Ver detalle"
+              >
+                <i class="bi bi-eye"></i>
+              </button>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- ── Producto 7: Lady Rose Gold ── -->
+      <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+        <article class="card h-100 shadow-sm">
+          <img
+            src="img/prod-rosegold.png"
+            class="card-img-top oc-card-img"
+            alt="Lady Rose Gold"
+            onerror="this.src='https://placehold.co/400x300/0d0d0d/c9a84c?text=Lady+Rose+Gold'"
+          />
+          <div class="card-body d-flex flex-column">
+            <small class="text-muted mb-1">REF. OC-LR-007</small>
+            <span class="badge mb-2" style="background:#c9a84c; color:#0d0d0d; width:fit-content;">Mujer</span>
+            <h5 class="card-title mb-1">Lady Rose Gold</h5>
+            <p class="card-text text-muted small">Oro rosa PVD · Nácar · Diamantes</p>
+            <p class="mt-auto mb-2 fw-bold fs-5" style="color:#a88a35;">490 €</p>
+            <div class="d-flex gap-2">
+              <button
+                class="btn btn-dark flex-grow-1"
+                onclick="mostrarToast('Lady Rose Gold')"
+                data-bs-toggle="toast"
+                data-bs-target="#miToast"
+              >
+                <i class="bi bi-bag-plus me-1"></i>Añadir
+              </button>
+              <button
+                class="btn btn-outline-secondary"
+                data-bs-toggle="modal"
+                data-bs-target="#modalProducto"
+                onclick="abrirModal(
+                  'Lady Rose Gold', 490, 0,
+                  'Colección femenina. Caja en oro rosa PVD con esfera de nácar. Índices de diamantes naturales. Brazalete milanesa en malla de acero roségold. Cristal de zafiro.',
+                  'OC-LR-007', 'img/prod-rosegold.png'
+                )"
+                aria-label="Ver detalle"
+              >
+                <i class="bi bi-eye"></i>
+              </button>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- ── Producto 8: Titanium Dark ── -->
+      <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+        <article class="card h-100 shadow-sm">
+          <img
+            src="img/prod-titanium.png"
+            class="card-img-top oc-card-img"
+            alt="Titanium Dark"
+            onerror="this.src='https://placehold.co/400x300/0d0d0d/c9a84c?text=Titanium+Dark'"
+          />
+          <div class="card-body d-flex flex-column">
+            <small class="text-muted mb-1">REF. OC-TI-008</small>
+            <span class="badge bg-dark mb-2" style="width:fit-content;">Premium</span>
+            <h5 class="card-title mb-1">Titanium Dark</h5>
+            <p class="card-text text-muted small">Titanio grado 5 · DLC · Antimagnético</p>
+            <p class="mt-auto mb-2 fw-bold fs-5" style="color:#a88a35;">920 €</p>
+            <div class="d-flex gap-2">
+              <button
+                class="btn btn-dark flex-grow-1"
+                onclick="mostrarToast('Titanium Dark')"
+                data-bs-toggle="toast"
+                data-bs-target="#miToast"
+              >
+                <i class="bi bi-bag-plus me-1"></i>Añadir
+              </button>
+              <button
+                class="btn btn-outline-secondary"
+                data-bs-toggle="modal"
+                data-bs-target="#modalProducto"
+                onclick="abrirModal(
+                  'Titanium Dark', 920, 0,
+                  'Caja de titanio grado 5 con recubrimiento DLC negro. Resistente a campos magnéticos de hasta 1.000 gauss. Esfera negra sin reflejos. Correa de caucho y brazalete intercambiables.',
+                  'OC-TI-008', 'img/prod-titanium.png'
+                )"
+                aria-label="Ver detalle"
+              >
+                <i class="bi bi-eye"></i>
+              </button>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- ── Producto 9: GMT Bicolor ── -->
+      <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+        <article class="card h-100 shadow-sm">
+          <img
+            src="img/prod-gmt.png"
+            class="card-img-top oc-card-img"
+            alt="GMT Bicolor"
+            onerror="this.src='https://placehold.co/400x300/0d0d0d/c9a84c?text=GMT+Bicolor'"
+          />
+          <div class="card-body d-flex flex-column">
+            <small class="text-muted mb-1">REF. OC-GM-009</small>
+            <span class="badge bg-danger mb-2" style="width:fit-content;">-18%</span>
+            <h5 class="card-title mb-1">GMT Bicolor</h5>
+            <p class="card-text text-muted small">Dos zonas horarias · Acero · Oro</p>
+            <p class="mt-auto mb-2 fw-bold fs-5" style="color:#a88a35;">
+              750 €
+              <small class="text-muted text-decoration-line-through fw-normal fs-6">920 €</small>
+            </p>
+            <div class="d-flex gap-2">
+              <button
+                class="btn btn-dark flex-grow-1"
+                onclick="mostrarToast('GMT Bicolor')"
+                data-bs-toggle="toast"
+                data-bs-target="#miToast"
+              >
+                <i class="bi bi-bag-plus me-1"></i>Añadir
+              </button>
+              <button
+                class="btn btn-outline-secondary"
+                data-bs-toggle="modal"
+                data-bs-target="#modalProducto"
+                onclick="abrirModal(
+                  'GMT Bicolor', 750, 920,
+                  'Reloj GMT para dos zonas horarias simultáneas. Bisel de cerámica bicolor negro y dorado. Esfera azul profundo. Brazalete acero-oro Jubilee. Movimiento automático certificado COSC.',
+                  'OC-GM-009', 'img/prod-gmt.png'
+                )"
+                aria-label="Ver detalle"
+              >
+                <i class="bi bi-eye"></i>
+              </button>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- ── Producto 10: Skeleton Auto ── -->
+      <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+        <article class="card h-100 shadow-sm">
+          <img
+            src="img/prod-skeleton.png"
+            class="card-img-top oc-card-img"
+            alt="Skeleton Auto"
+            onerror="this.src='https://placehold.co/400x300/0d0d0d/c9a84c?text=Skeleton+Auto'"
+          />
+          <div class="card-body d-flex flex-column">
+            <small class="text-muted mb-1">REF. OC-SK-010</small>
+            <span class="badge mb-2" style="background:#c9a84c; color:#0d0d0d; width:fit-content;">Ed. Limitada</span>
+            <h5 class="card-title mb-1">Skeleton Auto</h5>
+            <p class="card-text text-muted small">Automático · Esqueleto · 50 unidades</p>
+            <p class="mt-auto mb-2 fw-bold fs-5" style="color:#a88a35;">1.290 €</p>
+            <div class="d-flex gap-2">
+              <button
+                class="btn btn-dark flex-grow-1"
+                onclick="mostrarToast('Skeleton Auto')"
+                data-bs-toggle="toast"
+                data-bs-target="#miToast"
+              >
+                <i class="bi bi-bag-plus me-1"></i>Añadir
+              </button>
+              <button
+                class="btn btn-outline-secondary"
+                data-bs-toggle="modal"
+                data-bs-target="#modalProducto"
+                onclick="abrirModal(
+                  'Skeleton Auto', 1290, 0,
+                  'Movimiento automático completamente esqueletizado visible a través del cristal frontal y trasero. Caja rectangular en oro amarillo PVD 18k. Edición limitada numerada y certificada de 50 unidades.',
+                  'OC-SK-010', 'img/prod-skeleton.png'
+                )"
+                aria-label="Ver detalle"
+              >
+                <i class="bi bi-eye"></i>
+              </button>
+            </div>
+          </div>
+        </article>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ====================================================
+     SECCIÓN NEWSLETTER
+     Formulario Bootstrap con validación visual verde/rojo
+     ==================================================== -->
+<section id="newsletter" class="py-5">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+
+        <div class="text-center mb-4">
+          <h2 class="fw-bold">Club <span style="color:#c9a84c;">O'</span>CLOCK</h2>
+          <p class="text-muted">
+            Suscríbete y obtén un
+            <strong style="color:#c9a84c;">10 % de descuento</strong>
+            en tu primera compra, acceso a preventa de ediciones limitadas y ofertas exclusivas.
+          </p>
+        </div>
+
+        <div class="card shadow-sm border-0 p-4">
+          <form id="formNewsletter" novalidate>
+            <div class="row g-3">
+
+              <div class="col-sm-6">
+                <label for="fNombre" class="form-label">Nombre</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="fNombre"
+                  placeholder="Tu nombre"
+                  required
+                  minlength="2"
+                />
+                <div class="valid-feedback">¡Correcto!</div>
+                <div class="invalid-feedback">Introduce tu nombre (mín. 2 letras).</div>
+              </div>
+
+              <div class="col-sm-6">
+                <label for="fApellidos" class="form-label">Apellidos</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="fApellidos"
+                  placeholder="Tus apellidos"
+                  required
+                  minlength="2"
+                />
+                <div class="valid-feedback">¡Correcto!</div>
+                <div class="invalid-feedback">Introduce tus apellidos.</div>
+              </div>
+
+              <div class="col-12">
+                <label for="fEmail" class="form-label">Correo electrónico</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="fEmail"
+                  placeholder="tu@correo.com"
+                  required
+                />
+                <div class="valid-feedback">¡Email válido!</div>
+                <div class="invalid-feedback">Introduce un correo electrónico válido.</div>
+              </div>
+
+              <div class="col-12">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="fPrivacidad" required />
+                  <label class="form-check-label" for="fPrivacidad">
+                    Acepto la
+                    <a href="#" style="color:#c9a84c;">política de privacidad</a>
+                    y los términos de uso
+                  </label>
+                  <div class="invalid-feedback">Debes aceptar la política de privacidad.</div>
+                </div>
+              </div>
+
+              <div class="col-12">
+                <button type="submit" class="btn btn-oc w-100 py-2">
+                  <i class="bi bi-envelope-check me-2"></i>Suscribirme al Club
+                </button>
+              </div>
+
+              <!-- Alert éxito -->
+              <div class="col-12" id="alertOk" style="display: none;">
+                <div class="alert alert-success mb-0" role="alert">
+                  <i class="bi bi-check-circle-fill me-2"></i>
+                  <strong>¡Bienvenido al Club O'CLOCK!</strong>
+                  Revisa tu email para obtener tu cupón del 10 %.
+                </div>
+              </div>
+
+              <!-- Alert error -->
+              <div class="col-12" id="alertErr" style="display: none;">
+                <div class="alert alert-danger mb-0" role="alert">
+                  <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                  Revisa los campos marcados en rojo antes de continuar.
+                </div>
+              </div>
+
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ====================================================
+     FOOTER
+     Múltiples columnas con Grid · Redes sociales · Copyright
+     ==================================================== -->
+<footer id="footer" class="bg-dark text-secondary pt-5 pb-3">
+  <div class="container">
+    <div class="row g-4 pb-4">
+
+      <!-- Col 1: Marca -->
+      <div class="col-12 col-md-4">
+        <h5 class="fw-bold text-white mb-3">
+          <span style="color:#c9a84c;">O'</span>CLOCK
+        </h5>
+        <p style="font-size:0.9rem;">
+          Relojería de autor. Piezas seleccionadas para quienes entienden el tiempo
+          como una expresión de estilo y carácter.
+        </p>
+        <!-- Redes sociales -->
+        <div class="d-flex gap-3 mt-3 fs-5">
+          <a href="#" class="text-secondary text-decoration-none" aria-label="Instagram">
+            <i class="bi bi-instagram"></i>
+          </a>
+          <a href="#" class="text-secondary text-decoration-none" aria-label="Pinterest">
+            <i class="bi bi-pinterest"></i>
+          </a>
+          <a href="#" class="text-secondary text-decoration-none" aria-label="YouTube">
+            <i class="bi bi-youtube"></i>
+          </a>
+          <a href="#" class="text-secondary text-decoration-none" aria-label="LinkedIn">
+            <i class="bi bi-linkedin"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Col 2: Colección -->
+      <div class="col-6 col-md-2">
+        <h6 class="text-white text-uppercase fw-bold mb-3" style="font-size:0.78rem; letter-spacing:0.1em;">Colección</h6>
+        <ul class="list-unstyled mb-0" style="font-size:0.88rem;">
+          <li class="mb-2"><a href="#" class="text-secondary text-decoration-none">Deportivos</a></li>
+          <li class="mb-2"><a href="#" class="text-secondary text-decoration-none">Clásicos</a></li>
+          <li class="mb-2"><a href="#" class="text-secondary text-decoration-none">Elegantes</a></li>
+          <li class="mb-2"><a href="#" class="text-secondary text-decoration-none">Buceo</a></li>
+          <li><a href="#" class="text-secondary text-decoration-none">Ed. Limitada</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Ayuda -->
+      <div class="col-6 col-md-2">
+        <h6 class="text-white text-uppercase fw-bold mb-3" style="font-size:0.78rem; letter-spacing:0.1em;">Ayuda</h6>
+        <ul class="list-unstyled mb-0" style="font-size:0.88rem;">
+          <li class="mb-2"><a href="#" class="text-secondary text-decoration-none">Mi pedido</a></li>
+          <li class="mb-2"><a href="#" class="text-secondary text-decoration-none">Devoluciones</a></li>
+          <li class="mb-2"><a href="#" class="text-secondary text-decoration-none">Garantía</a></li>
+          <li class="mb-2"><a href="#" class="text-secondary text-decoration-none">Servicio técnico</a></li>
+          <li><a href="#" class="text-secondary text-decoration-none">Contacto</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 4: Legal -->
+      <div class="col-6 col-md-2">
+        <h6 class="text-white text-uppercase fw-bold mb-3" style="font-size:0.78rem; letter-spacing:0.1em;">Legal</h6>
+        <ul class="list-unstyled mb-0" style="font-size:0.88rem;">
+          <li class="mb-2"><a href="#" class="text-secondary text-decoration-none">Aviso legal</a></li>
+          <li class="mb-2"><a href="#" class="text-secondary text-decoration-none">Privacidad</a></li>
+          <li class="mb-2"><a href="#" class="text-secondary text-decoration-none">Cookies</a></li>
+          <li><a href="#" class="text-secondary text-decoration-none">Términos</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 5: Envío -->
+      <div class="col-6 col-md-2">
+        <h6 class="text-white text-uppercase fw-bold mb-3" style="font-size:0.78rem; letter-spacing:0.1em;">Envío</h6>
+        <p class="mb-2" style="font-size:0.88rem;">
+          <i class="bi bi-truck me-1" style="color:#c9a84c;"></i>24–48 h Península
+        </p>
+        <p class="mb-2" style="font-size:0.88rem;">
+          <i class="bi bi-box-seam me-1" style="color:#c9a84c;"></i>Caja premium
+        </p>
+        <p style="font-size:0.88rem;">
+          <i class="bi bi-shield-check me-1" style="color:#c9a84c;"></i>Gratis +200 €
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Copyright -->
+    <div class="border-top border-secondary pt-3 text-center">
+      <small class="text-secondary">
+        &copy; 2025 O'CLOCK Relojería S.L. &mdash;
+        Todos los derechos reservados &mdash;
+        Desarrollado con Bootstrap 5.0.2
+      </small>
+    </div>
+
+  </div>
+</footer>
+
+
+<!-- ====================================================
+     MODAL — Detalle del producto
+     Se abre al pulsar el botón "Ver detalle" (ojo)
+     ==================================================== -->
+<div
+  class="modal fade"
+  id="modalProducto"
+  tabindex="-1"
+  aria-labelledby="modalTitulo"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+
+      <div class="modal-header bg-dark text-white">
+        <h5 class="modal-title" id="modalTitulo">Detalle del producto</h5>
+        <button
+          type="button"
+          class="btn-close btn-close-white"
+          data-bs-dismiss="modal"
+          aria-label="Cerrar"
+        ></button>
+      </div>
+
+      <div class="modal-body p-0">
+        <div class="row g-0">
+
+          <!-- Imagen del producto -->
+          <div class="col-md-5">
+            <img
+              id="modalImg"
+              src=""
+              alt=""
+              class="w-100"
+              style="height: 320px; object-fit: cover;"
+            />
+          </div>
+
+          <!-- Información del producto -->
+          <div class="col-md-7 p-4">
+            <h4 class="fw-bold" id="modalNombre"></h4>
+            <div class="mb-3">
+              <span class="fw-bold fs-3" style="color:#a88a35;" id="modalPrecio"></span>
+              <span class="text-muted text-decoration-line-through ms-2 fs-6" id="modalPrecioAntes"></span>
+            </div>
+            <p class="text-muted" id="modalDesc" style="font-size:0.9rem; line-height:1.7;"></p>
+            <ul class="list-group list-group-flush mt-3">
+              <li class="list-group-item d-flex justify-content-between px-0">
+                <span class="text-muted small">Referencia</span>
+                <span class="small fw-semibold" id="modalRef"></span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between px-0">
+                <span class="text-muted small">Garantía</span>
+                <span class="small fw-semibold">2 años oficial</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between px-0">
+                <span class="text-muted small">Envío</span>
+                <span class="small fw-semibold">Gratis · Caja premium</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between px-0 border-bottom-0">
+                <span class="text-muted small">Devolución</span>
+                <span class="small fw-semibold">30 días sin coste</span>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-outline-secondary"
+          data-bs-dismiss="modal"
+        >
+          Cerrar
+        </button>
+        <button
+          type="button"
+          class="btn btn-oc"
+          id="modalBtnAnadir"
+          data-bs-dismiss="modal"
+        >
+          <i class="bi bi-bag-plus me-1"></i>Añadir al carrito
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- ====================================================
+     TOAST — "Producto añadido al carrito con éxito"
+     Componente Toast de Bootstrap 5 — solo visual
+     ==================================================== -->
+<div class="oc-toast-wrap">
+  <div
+    id="miToast"
+    class="toast align-items-center text-bg-success border-0"
+    role="alert"
+    aria-live="assertive"
+    aria-atomic="true"
+  >
+    <div class="d-flex">
+      <div class="toast-body">
+        <i class="bi bi-check-circle-fill me-2"></i>
+        <strong id="toastProducto">Producto</strong> añadido al carrito con éxito.
+      </div>
+      <button
+        type="button"
+        class="btn-close btn-close-white me-2 m-auto"
+        data-bs-dismiss="toast"
+        aria-label="Cerrar"
+      ></button>
+    </div>
+  </div>
+</div>
+
+
+<!-- Bootstrap 5.0.2 JS — archivo LOCAL del ZIP descargado -->
+<script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- JS personalizado mínimo (solo Toast + Modal + Newsletter) -->
+<script src="script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Contador de votos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 420px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        h1 { font-size: 22px; margin-bottom: 20px; }
+        .option {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 14px;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        .option-name { font-weight: bold; min-width: 80px; }
+        .vote-count  { min-width: 30px; text-align: center; }
+        .percentage  { min-width: 40px; text-align: right; color: #555; }
+        button {
+            padding: 6px 14px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 13px;
+            background: white;
+        }
+        button:hover:not(:disabled) { background: #f0f0f0; }
+        button:disabled { color: #aaa; cursor: not-allowed; }
+        #winner {
+            margin-top: 16px;
+            font-size: 15px;
+            font-weight: bold;
+            color: #1a6e2e;
+            min-height: 22px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Contador de votos</h1>
+
+<div class="option" id="opt-a">
+    <span class="option-name">Opción A</span>
+    <span class="vote-count">0</span>
+    <span class="percentage">0%</span>
+    <button class="vote-btn">Votar</button>
+</div>
+
+<div class="option" id="opt-b">
+    <span class="option-name">Opción B</span>
+    <span class="vote-count">0</span>
+    <span class="percentage">0%</span>
+    <button class="vote-btn">Votar</button>
+</div>
+
+<div class="option" id="opt-c">
+    <span class="option-name">Opción C</span>
+    <span class="vote-count">0</span>
+    <span class="percentage">0%</span>
+    <button class="vote-btn">Votar</button>
+</div>
+
+<p id="winner"></p>
+
+<script src="app.js"></script>
+</body>
+</html>

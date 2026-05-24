@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TechGear — Gadgets y Tecnología</title>
+
+  <!-- Bootstrap 5 CSS — archivo LOCAL del ZIP descargado -->
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
+
+  <!-- Bootstrap Icons (solo iconos, no es framework CSS) -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+  />
+
+  <!-- CSS personalizado mínimo de la marca -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+
+<!-- ====================================================
+     NAVBAR
+     Logo izquierda · Links centro · Carrito derecha
+     Colapsa en hamburguesa en pantallas pequeñas
+     ==================================================== -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container">
+
+    <!-- Logo — izquierda -->
+    <a class="navbar-brand fw-bold fs-4" href="#">
+      <i class="bi bi-lightning-charge-fill text-primary me-1"></i>TechGear
+    </a>
+
+    <!-- Botón hamburguesa — solo en móvil -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#menuNavbar"
+      aria-controls="menuNavbar"
+      aria-expanded="false"
+      aria-label="Abrir menú"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Menú colapsable -->
+    <div class="collapse navbar-collapse" id="menuNavbar">
+
+      <!-- Links de navegación — centro -->
+      <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#inicio">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#catalogo">Catálogo</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Categorías
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#catalogo">Audio</a></li>
+            <li><a class="dropdown-item" href="#catalogo">Wearables</a></li>
+            <li><a class="dropdown-item" href="#catalogo">Gaming</a></li>
+            <li><a class="dropdown-item" href="#catalogo">Almacenamiento</a></li>
+            <li><a class="dropdown-item" href="#catalogo">Periféricos</a></li>
+            <li><hr class="dropdown-divider" /></li>
+            <li><a class="dropdown-item" href="#catalogo">Ver todo</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#newsletter">Ofertas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#footer">Contacto</a>
+        </li>
+      </ul>
+
+      <!-- Icono carrito — derecha -->
+      <a href="#" class="btn btn-outline-primary position-relative">
+        <i class="bi bi-cart3 fs-5"></i>
+        <span
+          class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+          style="font-size: 0.65rem;"
+        >
+          0
+        </span>
+      </a>
+
+    </div>
+  </div>
+</nav>
+
+
+<!-- ====================================================
+     SECCIÓN HERO — CAROUSEL
+     Componente Carousel de Bootstrap 5
+     Título llamativo + subtítulo + botón "Ver Ofertas"
+     ==================================================== -->
+<section id="inicio" style="padding-top: 56px;">
+  <div
+    id="heroCarousel"
+    class="carousel slide"
+    data-bs-ride="carousel"
+    data-bs-interval="4500"
+  >
+
+    <!-- Indicadores de posición -->
+    <div class="carousel-indicators">
+      <button
+        type="button"
+        data-bs-target="#heroCarousel"
+        data-bs-slide-to="0"
+        class="active"
+        aria-label="Slide 1"
+      ></button>
+      <button
+        type="button"
+        data-bs-target="#heroCarousel"
+        data-bs-slide-to="1"
+        aria-label="Slide 2"
+      ></button>
+      <button
+        type="button"
+        data-bs-target="#heroCarousel"
+        data-bs-slide-to="2"
+        aria-label="Slide 3"
+      ></button>
+    </div>
+
+    <div class="carousel-inner">
+
+      <!-- Slide 1 — Audio -->
+      <div class="carousel-item active">
+        <div class="tg-slide slide-audio">
+          <div class="container text-center text-white py-5">
+            <p class="display-1 mb-2">🎧</p>
+            <span class="badge bg-primary px-3 py-2 mb-3 fs-6">AUDIO PREMIUM</span>
+            <h1 class="display-5 fw-bold">Sonido que te transporta</h1>
+            <p class="lead mb-4">
+              Auriculares Pro X con cancelación activa de ruido<br>
+              y hasta 40 horas de batería
+            </p>
+            <a href="#catalogo" class="btn btn-primary btn-lg px-4 me-2">Ver Ofertas</a>
+            <a href="#catalogo" class="btn btn-outline-light btn-lg px-4">Ver catálogo</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 2 — Gaming -->
+      <div class="carousel-item">
+        <div class="tg-slide slide-gaming">
+          <div class="container text-center text-white py-5">
+            <p class="display-1 mb-2">🎮</p>
+            <span class="badge bg-warning text-dark px-3 py-2 mb-3 fs-6">GAMING</span>
+            <h1 class="display-5 fw-bold">Gaming al siguiente nivel</h1>
+            <p class="lead mb-4">
+              Periféricos de alta precisión para dominar<br>
+              cualquier partida competitiva
+            </p>
+            <a href="#catalogo" class="btn btn-warning btn-lg px-4 me-2">Ver Ofertas</a>
+            <a href="#catalogo" class="btn btn-outline-light btn-lg px-4">Ver gaming</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 3 — Wearables -->
+      <div class="carousel-item">
+        <div class="tg-slide slide-wear">
+          <div class="container text-center text-white py-5">
+            <p class="display-1 mb-2">⌚</p>
+            <span class="badge bg-success px-3 py-2 mb-3 fs-6">WEARABLES</span>
+            <h1 class="display-5 fw-bold">Tecnología en tu muñeca</h1>
+            <p class="lead mb-4">
+              Smartwatches con GPS, monitor cardíaco<br>
+              y 7 días de autonomía
+            </p>
+            <a href="#catalogo" class="btn btn-success btn-lg px-4 me-2">Ver Ofertas</a>
+            <a href="#catalogo" class="btn btn-outline-light btn-lg px-4">Ver wearables</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Controles anterior / siguiente -->
+    <button
+      class="carousel-control-prev"
+      type="button"
+      data-bs-target="#heroCarousel"
+      data-bs-slide="prev"
+    >
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Anterior</span>
+    </button>
+    <button
+      class="carousel-control-next"
+      type="button"
+      data-bs-target="#heroCarousel"
+      data-bs-slide="next"
+    >
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Siguiente</span>
+    </button>
+
+  </div>
+</section>
+
+
+<!-- ====================================================
+     CATÁLOGO DE PRODUCTOS — Grid System + Cards
+     Grid: 1 col móvil / 2 col tablet / 3-4 col escritorio
+     Cards con imagen, título, precio y botón
+     ==================================================== -->
+<section id="catalogo" class="py-5 bg-light">
+  <div class="container">
+
+    <!-- Título de sección -->
+    <div class="text-center mb-5">
+      <h2 class="fw-bold">Nuestros Productos</h2>
+      <p class="text-muted">Los mejores gadgets tecnológicos al mejor precio</p>
+      <hr
+        class="mx-auto mt-3"
+        style="width: 60px; border: 3px solid #0066ff; opacity: 1; border-radius: 4px;"
+      />
+    </div>
+
+    <!-- Grid de productos -->
+    <div class="row g-4">
+
+      <!-- ── Producto 1: Auriculares Pro X ── -->
+      <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+        <article class="card h-100 shadow-sm">
+          <img
+            src="https://placehold.co/400x250/0d1117/4d88ff?text=Auriculares+Pro+X"
+            class="card-img-top tg-img-producto"
+            alt="Auriculares Pro X"
+          />
+          <div class="card-body d-flex flex-column">
+            <span class="badge bg-danger mb-2" style="width: fit-content;">-20%</span>
+            <h5 class="card-title">Auriculares Pro X</h5>
+            <p class="card-text text-muted small">
+              ANC · 40 h batería · Bluetooth 5.3
+            </p>
+            <div class="mt-auto">
+              <p class="fw-bold text-primary fs-5 mb-2">
+                89 € <small class="text-muted text-decoration-line-through fs-6 fw-normal">109 €</small>
+              </p>
+              <div class="d-flex gap-2">
+                <button
+                  class="btn btn-primary flex-grow-1"
+                  onclick="mostrarToast('Auriculares Pro X')"
+                  data-bs-toggle="toast"
+                  data-bs-target="#miToast"
+                >
+                  <i class="bi bi-cart-plus me-1"></i>Añadir
+                </button>
+                <button
+                  class="btn btn-outline-secondary"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalProducto"
+                  onclick="abrirModal(
+                    'Auriculares Pro X',
+                    '89 €',
+                    'Auriculares premium con cancelación activa de ruido de última generación. Hasta 40 horas de batería, almohadillas de memoria adaptable y conectividad Bluetooth 5.3 con multiconexión.',
+                    'https://placehold.co/600x400/0d1117/4d88ff?text=Auriculares+Pro+X'
+                  )"
+                  aria-label="Ver detalle"
+                >
+                  <i class="bi bi-eye"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- ── Producto 2: Smartwatch Elite ── -->
+      <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+        <article class="card h-100 shadow-sm">
+          <img
+            src="https://placehold.co/400x250/0d1117/4d88ff?text=Smartwatch+Elite"
+            class="card-img-top tg-img-producto"
+            alt="Smartwatch Elite"
+          />
+          <div class="card-body d-flex flex-column">
+            <span class="badge bg-success mb-2" style="width: fit-content;">Nuevo</span>
+            <h5 class="card-title">Smartwatch Elite</h5>
+            <p class="card-text text-muted small">
+              GPS · SpO2 · ECG · 7 días
+            </p>
+            <div class="mt-auto">
+              <p class="fw-bold text-primary fs-5 mb-2">149 €</p>
+              <div class="d-flex gap-2">
+                <button
+                  class="btn btn-primary flex-grow-1"
+                  onclick="mostrarToast('Smartwatch Elite')"
+                  data-bs-toggle="toast"
+                  data-bs-target="#miToast"
+                >
+                  <i class="bi bi-cart-plus me-1"></i>Añadir
+                </button>
+                <button
+                  class="btn btn-outline-secondary"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalProducto"
+                  onclick="abrirModal(
+                    'Smartwatch Elite',
+                    '149 €',
+                    'Smartwatch con GPS integrado, monitor de oxígeno en sangre (SpO2), ECG y hasta 7 días de autonomía. Compatible con iOS y Android. Resistencia al agua 5 ATM.',
+                    'https://placehold.co/600x400/0d1117/4d88ff?text=Smartwatch+Elite'
+                  )"
+                  aria-label="Ver detalle"
+                >
+                  <i class="bi bi-eye"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- ── Producto 3: Altavoz Bluetooth ── -->
+      <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+        <article class="card h-100 shadow-sm">
+          <img
+            src="https://placehold.co/400x250/0d1117/4d88ff?text=Altavoz+Bluetooth"
+            class="card-img-top tg-img-producto"
+            alt="Altavoz Bluetooth"
+          />
+          <div class="card-body d-flex flex-column">
+            <span class="badge bg-warning text-dark mb-2" style="width: fit-content;">Oferta</span>
+            <h5 class="card-title">Altavoz Bluetooth</h5>
+            <p class="card-text text-muted small">
+              360° · IP67 · 20 h batería
+            </p>
+            <div class="mt-auto">
+              <p class="fw-bold text-primary fs-5 mb-2">
+                59 € <small class="text-muted text-decoration-line-through fs-6 fw-normal">79 €</small>
+              </p>
+              <div class="d-flex gap-2">
+                <button
+                  class="btn btn-primary flex-grow-1"
+                  onclick="mostrarToast('Altavoz Bluetooth')"
+                  data-bs-toggle="toast"
+                  data-bs-target="#miToast"
+                >
+                  <i class="bi bi-cart-plus me-1"></i>Añadir
+                </button>
+                <button
+                  class="btn btn-outline-secondary"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalProducto"
+                  onclick="abrirModal(
+                    'Altavoz Bluetooth',
+                    '59 €',
+                    'Altavoz portátil con sonido 360°, resistencia al agua y polvo IP67 y 20 horas de batería. Ideal para exterior. Conecta hasta 2 dispositivos simultáneamente.',
+                    'https://placehold.co/600x400/0d1117/4d88ff?text=Altavoz+Bluetooth'
+                  )"
+                  aria-label="Ver detalle"
+                >
+                  <i class="bi bi-eye"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- ── Producto 4: Ratón Gaming RGB ── -->
+      <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+        <article class="card h-100 shadow-sm">
+          <img
+            src="https://placehold.co/400x250/0d1117/4d88ff?text=Ratón+Gaming+RGB"
+            class="card-img-top tg-img-producto"
+            alt="Ratón Gaming RGB"
+          />
+          <div class="card-body d-flex flex-column">
+            <span class="badge bg-secondary mb-2" style="width: fit-content;">Gaming</span>
+            <h5 class="card-title">Ratón Gaming RGB</h5>
+            <p class="card-text text-muted small">
+              25.600 DPI · 8 botones · RGB
+            </p>
+            <div class="mt-auto">
+              <p class="fw-bold text-primary fs-5 mb-2">45 €</p>
+              <div class="d-flex gap-2">
+                <button
+                  class="btn btn-primary flex-grow-1"
+                  onclick="mostrarToast('Ratón Gaming RGB')"
+                  data-bs-toggle="toast"
+                  data-bs-target="#miToast"
+                >
+                  <i class="bi bi-cart-plus me-1"></i>Añadir
+                </button>
+                <button
+                  class="btn btn-outline-secondary"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalProducto"
+                  onclick="abrirModal(
+                    'Ratón Gaming RGB',
+                    '45 €',
+                    'Ratón gaming con sensor óptico de 25.600 DPI, 8 botones programables e iluminación RGB personalizable. Cable trenzado de 1.8 m. Perfil ajustable en altura.',
+                    'https://placehold.co/600x400/0d1117/4d88ff?text=Ratón+Gaming+RGB'
+                  )"
+                  aria-label="Ver detalle"
+                >
+                  <i class="bi bi-eye"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- ── Producto 5: Teclado Mecánico ── -->
+      <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+        <article class="card h-100 shadow-sm">
+          <img
+            src="https://placehold.co/400x250/0d1117/4d88ff?text=Teclado+Mecánico"
+            class="card-img-top tg-img-producto"
+            alt="Teclado Mecánico"
+          />
+          <div class="card-body d-flex flex-column">
+            <span class="badge bg-secondary mb-2" style="width: fit-content;">Gaming</span>
+            <h5 class="card-title">Teclado Mecánico</h5>
+            <p class="card-text text-muted small">
+              Switches Red · RGB · TKL
+            </p>
+            <div class="mt-auto">
+              <p class="fw-bold text-primary fs-5 mb-2">75 €</p>
+              <div class="d-flex gap-2">
+                <button
+                  class="btn btn-primary flex-grow-1"
+                  onclick="mostrarToast('Teclado Mecánico')"
+                  data-bs-toggle="toast"
+                  data-bs-target="#miToast"
+                >
+                  <i class="bi bi-cart-plus me-1"></i>Añadir
+                </button>
+                <button
+                  class="btn btn-outline-secondary"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalProducto"
+                  onclick="abrirModal(
+                    'Teclado Mecánico',
+                    '75 €',
+                    'Teclado mecánico TKL (sin teclado numérico) con switches Red lineales. Retroiluminación RGB por tecla, construcción en aluminio y cable USB-C desmontable.',
+                    'https://placehold.co/600x400/0d1117/4d88ff?text=Teclado+Mecánico'
+                  )"
+                  aria-label="Ver detalle"
+                >
+                  <i class="bi bi-eye"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- ── Producto 6: Webcam HD 4K ── -->
+      <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+        <article class="card h-100 shadow-sm">
+          <img
+            src="https://placehold.co/400x250/0d1117/4d88ff?text=Webcam+HD+4K"
+            class="card-img-top tg-img-producto"
+            alt="Webcam HD 4K"
+          />
+          <div class="card-body d-flex flex-column">
+            <span class="badge bg-success mb-2" style="width: fit-content;">Nuevo</span>
+            <h5 class="card-title">Webcam HD 4K</h5>
+            <p class="card-text text-muted small">
+              4K 30fps · Autofocus · Micrófono
+            </p>
+            <div class="mt-auto">
+              <p class="fw-bold text-primary fs-5 mb-2">69 €</p>
+              <div class="d-flex gap-2">
+                <button
+                  class="btn btn-primary flex-grow-1"
+                  onclick="mostrarToast('Webcam HD 4K')"
+                  data-bs-toggle="toast"
+                  data-bs-target="#miToast"
+                >
+                  <i class="bi bi-cart-plus me-1"></i>Añadir
+                </button>
+                <button
+                  class="btn btn-outline-secondary"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalProducto"
+                  onclick="abrirModal(
+                    'Webcam HD 4K',
+                    '69 €',
+                    'Webcam 4K a 30 fps con autofocus por IA, micrófono estéreo con cancelación de ruido y corrección automática de iluminación. Plug &amp; Play. Compatible con Windows, macOS y Linux.',
+                    'https://placehold.co/600x400/0d1117/4d88ff?text=Webcam+HD+4K'
+                  )"
+                  aria-label="Ver detalle"
+                >
+                  <i class="bi bi-eye"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- ── Producto 7: SSD Portátil 1TB ── -->
+      <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+        <article class="card h-100 shadow-sm">
+          <img
+            src="https://placehold.co/400x250/0d1117/4d88ff?text=SSD+Portátil+1TB"
+            class="card-img-top tg-img-producto"
+            alt="SSD Portátil 1TB"
+          />
+          <div class="card-body d-flex flex-column">
+            <span class="badge bg-danger mb-2" style="width: fit-content;">-15%</span>
+            <h5 class="card-title">SSD Portátil 1TB</h5>
+            <p class="card-text text-muted small">
+              1.050 MB/s · USB-C · IP55
+            </p>
+            <div class="mt-auto">
+              <p class="fw-bold text-primary fs-5 mb-2">
+                99 € <small class="text-muted text-decoration-line-through fs-6 fw-normal">115 €</small>
+              </p>
+              <div class="d-flex gap-2">
+                <button
+                  class="btn btn-primary flex-grow-1"
+                  onclick="mostrarToast('SSD Portátil 1TB')"
+                  data-bs-toggle="toast"
+                  data-bs-target="#miToast"
+                >
+                  <i class="bi bi-cart-plus me-1"></i>Añadir
+                </button>
+                <button
+                  class="btn btn-outline-secondary"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalProducto"
+                  onclick="abrirModal(
+                    'SSD Portátil 1TB',
+                    '99 €',
+                    'Disco SSD portátil de 1 TB con velocidades de hasta 1.050 MB/s en lectura. Conexión USB-C 3.2 Gen 2, resistente al polvo y salpicaduras IP55. Incluye cable USB-C y adaptador USB-A.',
+                    'https://placehold.co/600x400/0d1117/4d88ff?text=SSD+Portátil+1TB'
+                  )"
+                  aria-label="Ver detalle"
+                >
+                  <i class="bi bi-eye"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- ── Producto 8: Tablet Gráfica ── -->
+      <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+        <article class="card h-100 shadow-sm">
+          <img
+            src="https://placehold.co/400x250/0d1117/4d88ff?text=Tablet+Gráfica"
+            class="card-img-top tg-img-producto"
+            alt="Tablet Gráfica"
+          />
+          <div class="card-body d-flex flex-column">
+            <span class="badge bg-info text-dark mb-2" style="width: fit-content;">Creación</span>
+            <h5 class="card-title">Tablet Gráfica</h5>
+            <p class="card-text text-muted small">
+              8192 niveles · Sin batería · A4
+            </p>
+            <div class="mt-auto">
+              <p class="fw-bold text-primary fs-5 mb-2">119 €</p>
+              <div class="d-flex gap-2">
+                <button
+                  class="btn btn-primary flex-grow-1"
+                  onclick="mostrarToast('Tablet Gráfica')"
+                  data-bs-toggle="toast"
+                  data-bs-target="#miToast"
+                >
+                  <i class="bi bi-cart-plus me-1"></i>Añadir
+                </button>
+                <button
+                  class="btn btn-outline-secondary"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalProducto"
+                  onclick="abrirModal(
+                    'Tablet Gráfica',
+                    '119 €',
+                    'Tablet de dibujo digital con 8.192 niveles de presión, stylus sin batería y área activa A4 (22 × 14 cm). Compatible con Photoshop, Illustrator, Clip Studio y más. Plug &amp; Play.',
+                    'https://placehold.co/600x400/0d1117/4d88ff?text=Tablet+Gráfica'
+                  )"
+                  aria-label="Ver detalle"
+                >
+                  <i class="bi bi-eye"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+
+    </div><!-- /row -->
+  </div>
+</section>
+
+
+<!-- ====================================================
+     SECCIÓN NEWSLETTER
+     Formulario con validación visual de Bootstrap 5
+     ==================================================== -->
+<section id="newsletter" class="py-5">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+
+        <div class="text-center mb-4">
+          <h2 class="fw-bold">Suscríbete a TechGear</h2>
+          <p class="text-muted">
+            Recibe las mejores ofertas en gadgets y un
+            <strong class="text-primary">10 % de descuento</strong>
+            en tu primer pedido.
+          </p>
+        </div>
+
+        <div class="card shadow-sm p-4">
+          <form id="formNewsletter" novalidate>
+            <div class="row g-3">
+
+              <div class="col-sm-6">
+                <label for="fNombre" class="form-label">Nombre</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="fNombre"
+                  placeholder="Tu nombre"
+                  required
+                  minlength="2"
+                />
+                <div class="valid-feedback">¡Correcto!</div>
+                <div class="invalid-feedback">
+                  Escribe tu nombre (mín. 2 caracteres).
+                </div>
+              </div>
+
+              <div class="col-sm-6">
+                <label for="fApellidos" class="form-label">Apellidos</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="fApellidos"
+                  placeholder="Tus apellidos"
+                  required
+                  minlength="2"
+                />
+                <div class="valid-feedback">¡Correcto!</div>
+                <div class="invalid-feedback">Escribe tus apellidos.</div>
+              </div>
+
+              <div class="col-12">
+                <label for="fEmail" class="form-label">Correo electrónico</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="fEmail"
+                  placeholder="ejemplo@correo.com"
+                  required
+                />
+                <div class="valid-feedback">¡Email válido!</div>
+                <div class="invalid-feedback">
+                  Introduce un correo electrónico válido.
+                </div>
+              </div>
+
+              <div class="col-12">
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    id="fPrivacidad"
+                    required
+                  />
+                  <label class="form-check-label" for="fPrivacidad">
+                    Acepto la
+                    <a href="#" class="text-primary">política de privacidad</a>
+                  </label>
+                  <div class="invalid-feedback">
+                    Debes aceptar la política de privacidad.
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-12">
+                <button type="submit" class="btn btn-primary w-100 py-2">
+                  <i class="bi bi-envelope-check me-2"></i>Suscribirme
+                </button>
+              </div>
+
+              <!-- Alert de éxito -->
+              <div class="col-12" id="alertExito" style="display: none;">
+                <div class="alert alert-success mb-0" role="alert">
+                  <i class="bi bi-check-circle-fill me-2"></i>
+                  <strong>¡Suscripción completada!</strong>
+                  Revisa tu email para obtener el cupón del 10 %.
+                </div>
+              </div>
+
+              <!-- Alert de error -->
+              <div class="col-12" id="alertError" style="display: none;">
+                <div class="alert alert-danger mb-0" role="alert">
+                  <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                  Revisa los campos marcados en rojo.
+                </div>
+              </div>
+
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ====================================================
+     FOOTER
+     Múltiples columnas con Grid · Redes sociales · Copyright
+     ==================================================== -->
+<footer id="footer" class="bg-dark text-light pt-5 pb-3">
+  <div class="container">
+    <div class="row g-4 pb-4">
+
+      <!-- Columna 1: Marca -->
+      <div class="col-12 col-md-4">
+        <h5 class="fw-bold mb-3">
+          <i class="bi bi-lightning-charge-fill text-primary me-1"></i>TechGear
+        </h5>
+        <p class="text-secondary" style="font-size: 0.9rem;">
+          Tu tienda de gadgets y tecnología de confianza.
+          Enviamos en 24 h con garantía oficial en todos los productos.
+        </p>
+        <!-- Redes sociales -->
+        <div class="d-flex gap-3 mt-3 fs-5">
+          <a href="#" class="text-secondary text-decoration-none" aria-label="Instagram">
+            <i class="bi bi-instagram"></i>
+          </a>
+          <a href="#" class="text-secondary text-decoration-none" aria-label="Twitter">
+            <i class="bi bi-twitter-x"></i>
+          </a>
+          <a href="#" class="text-secondary text-decoration-none" aria-label="YouTube">
+            <i class="bi bi-youtube"></i>
+          </a>
+          <a href="#" class="text-secondary text-decoration-none" aria-label="TikTok">
+            <i class="bi bi-tiktok"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Columna 2: Tienda -->
+      <div class="col-6 col-md-2">
+        <h6 class="text-uppercase fw-bold mb-3" style="font-size: 0.8rem; letter-spacing: 0.08em;">Tienda</h6>
+        <ul class="list-unstyled mb-0" style="font-size: 0.9rem;">
+          <li class="mb-2"><a href="#" class="text-secondary text-decoration-none">Audio</a></li>
+          <li class="mb-2"><a href="#" class="text-secondary text-decoration-none">Wearables</a></li>
+          <li class="mb-2"><a href="#" class="text-secondary text-decoration-none">Gaming</a></li>
+          <li class="mb-2"><a href="#" class="text-secondary text-decoration-none">Almacenamiento</a></li>
+          <li><a href="#" class="text-secondary text-decoration-none">Periféricos</a></li>
+        </ul>
+      </div>
+
+      <!-- Columna 3: Ayuda -->
+      <div class="col-6 col-md-2">
+        <h6 class="text-uppercase fw-bold mb-3" style="font-size: 0.8rem; letter-spacing: 0.08em;">Ayuda</h6>
+        <ul class="list-unstyled mb-0" style="font-size: 0.9rem;">
+          <li class="mb-2"><a href="#" class="text-secondary text-decoration-none">Mi pedido</a></li>
+          <li class="mb-2"><a href="#" class="text-secondary text-decoration-none">Devoluciones</a></li>
+          <li class="mb-2"><a href="#" class="text-secondary text-decoration-none">Garantía</a></li>
+          <li class="mb-2"><a href="#" class="text-secondary text-decoration-none">FAQ</a></li>
+          <li><a href="#" class="text-secondary text-decoration-none">Contacto</a></li>
+        </ul>
+      </div>
+
+      <!-- Columna 4: Legal -->
+      <div class="col-6 col-md-2">
+        <h6 class="text-uppercase fw-bold mb-3" style="font-size: 0.8rem; letter-spacing: 0.08em;">Legal</h6>
+        <ul class="list-unstyled mb-0" style="font-size: 0.9rem;">
+          <li class="mb-2"><a href="#" class="text-secondary text-decoration-none">Aviso legal</a></li>
+          <li class="mb-2"><a href="#" class="text-secondary text-decoration-none">Privacidad</a></li>
+          <li class="mb-2"><a href="#" class="text-secondary text-decoration-none">Cookies</a></li>
+          <li><a href="#" class="text-secondary text-decoration-none">Términos</a></li>
+        </ul>
+      </div>
+
+      <!-- Columna 5: Envío y pago -->
+      <div class="col-6 col-md-2">
+        <h6 class="text-uppercase fw-bold mb-3" style="font-size: 0.8rem; letter-spacing: 0.08em;">Envío</h6>
+        <p class="text-secondary mb-1" style="font-size: 0.9rem;">
+          <i class="bi bi-truck me-1 text-primary"></i>Entrega en 24 h
+        </p>
+        <p class="text-secondary mb-1" style="font-size: 0.9rem;">
+          <i class="bi bi-box me-1 text-primary"></i>Gratis +50 €
+        </p>
+        <p class="text-secondary mb-3" style="font-size: 0.9rem;">
+          <i class="bi bi-credit-card me-1 text-primary"></i>Visa · PayPal
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Copyright -->
+    <div class="border-top border-secondary pt-3 text-center">
+      <small class="text-secondary">
+        &copy; 2025 TechGear S.L. &mdash; Todos los derechos reservados
+        &mdash; Desarrollado con Bootstrap 5.0.2
+      </small>
+    </div>
+
+  </div>
+</footer>
+
+
+<!-- ====================================================
+     MODAL — Detalle del producto
+     Se abre al hacer clic en el botón del ojo
+     ==================================================== -->
+<div
+  class="modal fade"
+  id="modalProducto"
+  tabindex="-1"
+  aria-labelledby="modalTitulo"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+
+      <div class="modal-header bg-dark text-white">
+        <h5 class="modal-title" id="modalTitulo">Detalle del producto</h5>
+        <button
+          type="button"
+          class="btn-close btn-close-white"
+          data-bs-dismiss="modal"
+          aria-label="Cerrar"
+        ></button>
+      </div>
+
+      <div class="modal-body p-0">
+        <div class="row g-0">
+
+          <!-- Imagen -->
+          <div class="col-md-5">
+            <img
+              id="modalImg"
+              src=""
+              alt=""
+              class="w-100 h-100"
+              style="object-fit: cover; min-height: 250px;"
+            />
+          </div>
+
+          <!-- Datos del producto -->
+          <div class="col-md-7 p-4">
+            <h4 id="modalNombre" class="fw-bold mb-1"></h4>
+            <p class="text-primary fw-bold fs-3 mb-3" id="modalPrecio"></p>
+            <p class="text-muted" id="modalDesc" style="font-size: 0.9rem; line-height: 1.7;"></p>
+            <ul class="list-group list-group-flush mt-3">
+              <li class="list-group-item d-flex justify-content-between px-0">
+                <span class="text-muted small">Garantía</span>
+                <span class="small fw-semibold">2 años oficial</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between px-0">
+                <span class="text-muted small">Envío</span>
+                <span class="small fw-semibold">24 h · Gratis +50 €</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between px-0">
+                <span class="text-muted small">Devolución</span>
+                <span class="small fw-semibold">30 días sin coste</span>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+        >
+          Cerrar
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          id="modalBtnAnadir"
+          data-bs-dismiss="modal"
+        >
+          <i class="bi bi-cart-plus me-1"></i>Añadir al carrito
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- ====================================================
+     TOAST — "Producto añadido al carrito con éxito"
+     Componente Toast de Bootstrap 5
+     ==================================================== -->
+<div class="tg-contenedor-toast">
+  <div
+    id="miToast"
+    class="toast align-items-center text-bg-success border-0"
+    role="alert"
+    aria-live="assertive"
+    aria-atomic="true"
+  >
+    <div class="d-flex">
+      <div class="toast-body">
+        <i class="bi bi-check-circle-fill me-2"></i>
+        <strong id="toastProducto">Producto</strong> añadido al carrito con éxito.
+      </div>
+      <button
+        type="button"
+        class="btn-close btn-close-white me-2 m-auto"
+        data-bs-dismiss="toast"
+        aria-label="Cerrar"
+      ></button>
+    </div>
+  </div>
+</div>
+
+
+<!-- Bootstrap 5 JS Bundle — archivo LOCAL del ZIP descargado -->
+<script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- JavaScript personalizado mínimo -->
+<script src="script.js"></script>
+
+</body>
+</html>

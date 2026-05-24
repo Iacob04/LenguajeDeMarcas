@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="EJER1.CSS">
+</head>
+
+<body>
+    <!-- Introducción a JavaScript -->
+    <!-- Selección de elementos -->
+    <h1> EMPEZANDO CON JAVASCRIPT </h1>
+    <div id="idDivTexto">
+        <span id="idSpanTexto">TEXTO DEL DIV</span>
+    </div>
+
+    <br />
+
+    <hr />
+    <label for="idTexto">Introduce un texto aqui</label>
+    <input type="text" id="idTexto" maxlength="20" />
+    <hr />
+    <label for="idColorFondo">Selecciona color de fondo</label>
+    <input type="color" id="idColorFondo" onchange="CambiarColorFondo()"/> <!--oncahnge para ejecutar la funcion en el html-->
+
+    <label for="idColorBorde">Selecciona color del borde</label>
+    <input type="color" id="idColorBorde" />
+
+    <label for="idColorTexto">Selecciona color del texto</label>
+    <input type="color" id="idColorTexto" />
+    <hr />
+
+    <br />
+    <input type="button" value="Cambiar Texto" onclick="CambiarTexto();" />
+    <input type="button" value="Cambiar color fondo" onclick="CambiarColorFondo();" />
+    <input type="button" value="Cambiar color borde" onclick="CambiarColorBorde();" />
+    <input type="button" id="botonColorTexto" value="Cambiar color texto" onclick="CambiarColorTexto();" />
+    <script src="EJER1.JS"></script>
+
+</body>
+
+</html>

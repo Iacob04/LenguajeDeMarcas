@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Boletín 3 – DOM (SOLUCIONES)</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #1e1e2e; color: #cdd6f4; padding: 20px; }
+    h1   { color: #cba6f7; border-bottom: 2px solid #cba6f7; }
+    h2   { color: #89b4fa; margin-top: 40px; border-left: 4px solid #89b4fa; padding-left: 8px; }
+    .ejercicio { background: #313244; border-radius: 8px; padding: 20px; margin: 20px 0; }
+    button { background: #89b4fa; color: #1e1e2e; border: none; padding: 8px 14px;
+             border-radius: 5px; cursor: pointer; margin: 4px; font-weight: bold; }
+    button:hover { background: #cba6f7; }
+    input[type="text"], input[type="number"] {
+      padding: 6px; border-radius: 4px; border: 1px solid #89b4fa;
+      background: #45475a; color: #cdd6f4; margin: 4px; }
+    input[type="color"] { width: 50px; height: 30px; cursor: pointer; }
+    .output { background: #181825; padding: 12px; border-radius: 6px; margin-top: 10px;
+              min-height: 30px; white-space: pre-wrap; font-family: monospace; color: #a6e3a1; }
+    /* ──────── EJ1: la div que se modifica ──────── */
+    #divEj1 {
+      border: 3px solid black;
+      background: white;
+      color: black;
+      padding: 20px;
+      text-align: center;
+      font-style: italic;
+      font-weight: bold;
+      margin: 10px 0;
+      min-height: 50px;
+    }
+    /* ──────── EJ2: cajas de texto ──────── */
+    .cajaTexto { background: orange; color: black; border: 1px solid #333;
+                 padding: 5px; width: 200px; }
+    /* ──────── EJ5: menú seleccionable ──────── */
+    .menuItem {
+      padding: 10px; text-align: center; font-weight: bold;
+      cursor: pointer; border: 1px solid #cdd6f4; margin: 4px 0; font-size: 1.1em;
+    }
+    .menuItem.seleccionado { background: red; color: white; }
+    /* ──────── EJ6: adivina número ──────── */
+    #fila-numeros { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+    .celda-intento {
+      width: 40px; height: 40px; background: #6c3483; color: white;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: bold; border-radius: 4px; font-size: 0.85em;
+    }
+    #msgFeedback { padding: 8px 16px; border-radius: 5px; font-weight: bold;
+                   font-size: 1.1em; display: inline-block; margin-left: 10px; }
+    .msg-mayor  { background: red;    color: white; }
+    .msg-menor  { background: red;    color: white; }
+    .msg-ganado { background: green;  color: white; }
+    .msg-perdido { background: #f0e040; color: black; }
+  </style>
+</head>
+<body>
+
+<h1>📙 Boletín 3 – DOM — SOLUCIONES COMENTADAS</h1>
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     EJERCICIO 1 – Cambiar texto, fondo, borde y color de texto en un DIV
+     ══════════════════════════════════════════════════════════════ -->
+<div class="ejercicio">
+  <h2>Ejercicio 1 – Modificar DIV con JS</h2>
+
+  <!-- El DIV que vamos a manipular -->
+  <div id="divEj1">TEXTO DEL DIV</div>
+
+  <!-- Controles de entrada -->
+  <div style="margin-top:10px">
+    <label>Introduce un texto aquí:
+      <input type="text" id="txtEj1" placeholder="Escribe algo...">
+    </label>
+  </div>
+  <div style="margin-top:6px">
+    <label>Selecciona color de fondo:
+      <input type="color" id="colorFondoEj1" value="#ffffff">
+    </label>
+    <label>Selecciona color del borde:
+      <input type="color" id="colorBordeEj1" value="#000000">
+    </label>
+    <label>Selecciona color del texto:
+      <input type="color" id="colorTextoEj1" value="#000000">
+    </label>
+  </div>
+  <div style="margin-top:8px">
+    <button onclick="cambiarTexto()">Cambiar Texto</button>
+    <button onclick="cambiarFondo()">Cambiar color fondo</button>
+    <button onclick="cambiarBorde()">Cambiar color borde</button>
+    <button onclick="cambiarColorTexto()">Cambiar color texto</button>
+  </div>
+</div>
+
+<script>
+  // ── Ejercicio 1 ──────────────────────────────────────────────────────────
+  // document.getElementById("id") → obtiene la referencia al elemento HTML
+  // .innerHTML   → contenido HTML dentro del elemento
+  // .style.xxx   → accede al CSS en línea del elemento
+
+  function cambiarTexto() {
+    var div = document.getElementById("divEj1");
+    var texto = document.getElementById("txtEj1").value;
+    div.innerHTML = texto; // reemplaza el contenido del div
+  }
+
+  function cambiarFondo() {
+    var div = document.getElementById("divEj1");
+    var color = document.getElementById("colorFondoEj1").value;
+    div.style.background = color; // modifica el fondo
+  }
+
+  function cambiarBorde() {
+    var div = document.getElementById("divEj1");
+    var color = document.getElementById("colorBordeEj1").value;
+    div.style.border = "3px solid " + color; // borde de 3px sólido
+  }
+
+  function cambiarColorTexto() {
+    var div = document.getElementById("divEj1");
+    var color = document.getElementById("colorTextoEj1").value;
+    div.style.color = color; // color del texto
+  }
+</script>
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     EJERCICIO 2 – Dos cajas de texto con limpiar y copiar
+     ══════════════════════════════════════════════════════════════ -->
+<div class="ejercicio">
+  <h2>Ejercicio 2 – Ejercicio de Controles</h2>
+  <table style="border-collapse:collapse; border:2px solid #89b4fa; width:100%; max-width:600px">
+    <tr style="background:#45475a">
+      <td colspan="3" style="padding:8px; font-weight:bold">EJERCICIO DE CONTROLES</td>
+    </tr>
+    <tr>
+      <td style="padding:8px"><strong>Texto 1:</strong></td>
+      <td><input type="text" id="texto1" class="cajaTexto"></td>
+      <td>
+        <button onclick="limpiar1()">Limpiar Texto 1</button>
+        <button onclick="copiar1a2()">Copiar a Texto 2</button>
+      </td>
+    </tr>
+    <tr>
+      <td style="padding:8px"><strong>Texto 2:</strong></td>
+      <td><input type="text" id="texto2" class="cajaTexto"></td>
+      <td>
+        <button onclick="limpiar2()">Limpiar Texto 2</button>
+        <button onclick="copiar2a1()">Copiar a Texto 1</button>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<script>
+  // ── Ejercicio 2 ──────────────────────────────────────────────────────────
+  // .value → propiedad que lee o escribe el valor de un input
+
+  function limpiar1() {
+    document.getElementById("texto1").value = ""; // vaciamos el campo
+  }
+
+  function copiar1a2() {
+    var val = document.getElementById("texto1").value;
+    document.getElementById("texto2").value = val; // copiamos el valor
+  }
+
+  function limpiar2() {
+    document.getElementById("texto2").value = "";
+  }
+
+  function copiar2a1() {
+    var val = document.getElementById("texto2").value;
+    document.getElementById("texto1").value = val;
+  }
+</script>
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     EJERCICIO 3 – Captura de valores de múltiples controles
+     ══════════════════════════════════════════════════════════════ -->
+<div class="ejercicio">
+  <h2>Ejercicio 3 – Valor en Controles</h2>
+  <table style="border:2px solid #89b4fa; border-collapse:collapse; max-width:400px">
+    <tr style="background:#45475a">
+      <td colspan="2" style="padding:8px; font-weight:bold">VALOR EN CONTROLES</td>
+    </tr>
+    <tr>
+      <td style="padding:6px"><strong>Caja texto:</strong></td>
+      <td><input type="text"     id="ctrl_texto"    value="Gerardo"></td>
+    </tr>
+    <tr>
+      <td style="padding:6px"><strong>Caja número:</strong></td>
+      <td><input type="number"   id="ctrl_numero"   value="45"></td>
+    </tr>
+    <tr>
+      <td style="padding:6px"><strong>Caja password:</strong></td>
+      <td><input type="password" id="ctrl_pass"     value="Contraseña"></td>
+    </tr>
+    <tr>
+      <td style="padding:6px"><strong>Caja fecha:</strong></td>
+      <td><input type="date"     id="ctrl_fecha"    value="2023-01-31"></td>
+    </tr>
+    <tr>
+      <td style="padding:6px"><strong>Caja hora:</strong></td>
+      <td><input type="time"     id="ctrl_hora"     value="19:58"></td>
+    </tr>
+    <tr>
+      <td style="padding:6px"><strong>Caja radio:</strong></td>
+      <td><input type="radio"    id="ctrl_radio"    checked></td>
+    </tr>
+    <tr>
+      <td style="padding:6px"><strong>Caja check:</strong></td>
+      <td><input type="checkbox" id="ctrl_check"></td>
+    </tr>
+    <tr>
+      <td style="padding:6px"><strong>Caja select:</strong></td>
+      <td>
+        <select id="ctrl_select">
+          <option>Opción 1</option>
+          <option>Opción 2</option>
+          <option selected>Opción 3</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" style="padding:8px; text-align:center">
+        <button onclick="capturarValores()">Capturar valores</button>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<script>
+  // ── Ejercicio 3 ──────────────────────────────────────────────────────────
+  // Cada tipo de control tiene una propiedad diferente para leer su valor:
+  //   input text/number/password/date/time → .value
+  //   input radio/checkbox                 → .checked  (devuelve true/false)
+  //   select                               → .value    (opción seleccionada)
+
+  function capturarValores() {
+    var texto  = document.getElementById("ctrl_texto").value;
+    var numero = document.getElementById("ctrl_numero").value;
+    var pass   = document.getElementById("ctrl_pass").value;
+    var fecha  = document.getElementById("ctrl_fecha").value;
+    var hora   = document.getElementById("ctrl_hora").value;
+    var radio  = document.getElementById("ctrl_radio").checked;   // true o false
+    var check  = document.getElementById("ctrl_check").checked;   // true o false
+    var select = document.getElementById("ctrl_select").value;
+
+    var mensaje =
+      "TEXTO: "     + texto  + "\n" +
+      "NUMERO: "    + numero + "\n" +
+      "PASSSWORD: " + pass   + "\n" +
+      "FECHA: "     + fecha  + "\n" +
+      "HORA: "      + hora   + "\n" +
+      "RADIO: "     + radio  + "\n" +
+      "CHECKBOX: "  + check  + "\n" +
+      "SELECT: "    + select;
+
+    alert(mensaje);
+  }
+</script>
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     EJERCICIO 4 – Calculadora con operadores
+     ══════════════════════════════════════════════════════════════ -->
+<div class="ejercicio">
+  <h2>Ejercicio 4 – Operadores</h2>
+  <table style="border:2px solid #89b4fa; border-collapse:collapse; width:100%; max-width:600px">
+    <tr style="background:#45475a; text-align:center">
+      <td colspan="8" style="padding:8px; font-weight:bold">OPERADORES</td>
+    </tr>
+    <tr style="padding:8px">
+      <td style="padding:6px">Número 1:</td>
+      <td><input type="number" id="num1Op" value="5" style="width:70px; background:lightgreen; color:#000"></td>
+      <td>Número 2:</td>
+      <td><input type="number" id="num2Op" value="6" style="width:70px; background:lightgreen; color:#000"></td>
+      <td><button onclick="operar('+')">Sumar</button></td>
+      <td><button onclick="operar('-')">Restar</button></td>
+      <td><button onclick="operar('*')">Producto</button></td>
+      <td><button onclick="operar('/')">División</button></td>
+      <td><button onclick="limpiarOp()">Limpiar</button></td>
+    </tr>
+    <tr style="background:lightgreen; color:#000">
+      <td colspan="2" style="padding:8px; font-weight:bold">Resultado:</td>
+      <td colspan="6">
+        <input type="text" id="resultado" readonly style="width:200px; background:lightgreen; color:#000; border:none; font-weight:bold; font-size:1.1em">
+      </td>
+    </tr>
+  </table>
+</div>
+
+<script>
+  // ── Ejercicio 4 ──────────────────────────────────────────────────────────
+  // parseFloat() convierte texto a número decimal
+  // Usamos una sola función que recibe el operador como argumento
+
+  function operar(operador) {
+    var n1 = parseFloat(document.getElementById("num1Op").value);
+    var n2 = parseFloat(document.getElementById("num2Op").value);
+    var res;
+
+    if (isNaN(n1) || isNaN(n2)) {
+      document.getElementById("resultado").value = "ERROR: introduce números válidos";
+      return;
+    }
+
+    switch (operador) {
+      case '+': res = n1 + n2; break;
+      case '-': res = n1 - n2; break;
+      case '*': res = n1 * n2; break;
+      case '/':
+        if (n2 === 0) {
+          document.getElementById("resultado").value = "ERROR: división por cero";
+          return;
+        }
+        res = n1 / n2;
+        break;
+    }
+
+    // toFixed(4) limita los decimales a 4 y parseFloat elimina ceros innecesarios
+    document.getElementById("resultado").value = parseFloat(res.toFixed(4));
+  }
+
+  function limpiarOp() {
+    document.getElementById("num1Op").value = "";
+    document.getElementById("num2Op").value = "";
+    document.getElementById("resultado").value = "";
+  }
+</script>
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     EJERCICIO 5 – Menú seleccionable con flecha arriba/abajo
+     ══════════════════════════════════════════════════════════════ -->
+<div class="ejercicio">
+  <h2>Ejercicio 5 – Menú Seleccionable</h2>
+  <div style="border:2px solid #cdd6f4; padding:15px; max-width:400px">
+    <div style="text-align:center; font-weight:bold; font-size:1.1em; padding:8px; border:2px solid #cdd6f4; margin-bottom:10px">
+      MENU SELECCIONABLE
+    </div>
+
+    <!-- Las opciones del menú con id para poder seleccionarlas -->
+    <div class="menuItem seleccionado" id="opcion0">¿EL NÚMERO ES PAR?</div>
+    <div class="menuItem" id="opcion1">¿EL NÚMERO ES IMPAR?</div>
+    <div class="menuItem" id="opcion2">¿EL NÚMERO ES PRIMO?</div>
+    <div class="menuItem" id="opcion3">OBTENER DIVISORES</div>
+
+    <hr style="border-color:#f38ba8">
+
+    <div style="display:flex; align-items:center; gap:10px; margin-top:10px">
+      <!-- Las flechas: ↑ sube, ↓ baja -->
+      <button style="background:#e74c3c; color:white; font-size:1.5em; padding:8px 14px"
+              onclick="moverArriba()">↑</button>
+      <button style="background:#e74c3c; color:white; font-size:1.5em; padding:8px 14px"
+              onclick="moverAbajo()">↓</button>
+      <input type="number" id="numMenu" min="1" max="100" placeholder="1-100" style="width:80px">
+      <button onclick="calcularMenu()">CALCULAR</button>
+    </div>
+
+    <hr style="border-color:#f38ba8">
+    <input type="text" id="resultadoMenu" readonly
+           style="width:100%; box-sizing:border-box; padding:8px; background:#181825; color:#a6e3a1; border:1px solid #89b4fa; font-size:1em">
+  </div>
+</div>
+
+<script>
+  // ── Ejercicio 5 ──────────────────────────────────────────────────────────
+  var opcionActual = 0;       // índice de la opción seleccionada (0-3)
+  var totalOpciones = 4;      // número total de opciones del menú
+
+  // Actualiza el resaltado visual del menú
+  function actualizarMenu() {
+    for (var i = 0; i < totalOpciones; i++) {
+      document.getElementById("opcion" + i).classList.remove("seleccionado");
+    }
+    document.getElementById("opcion" + opcionActual).classList.add("seleccionado");
+  }
+
+  // Flecha arriba: decrementamos el índice; si llegamos a -1 nos quedamos en 0
+  function moverArriba() {
+    if (opcionActual > 0) opcionActual--;
+    actualizarMenu();
+  }
+
+  // Flecha abajo: incrementamos el índice; si llegamos al final nos quedamos
+  function moverAbajo() {
+    if (opcionActual < totalOpciones - 1) opcionActual++;
+    actualizarMenu();
+  }
+
+  function calcularMenu() {
+    var val = parseInt(document.getElementById("numMenu").value);
+
+    // Validación: el número debe ser > 0
+    if (isNaN(val) || val <= 0) {
+      alert("El número debe ser >0");
+      return;
+    }
+
+    var resultado = "";
+
+    switch (opcionActual) {
+      case 0: // Par
+        resultado = val % 2 === 0 ? val + " ES PAR" : val + " NO ES PAR";
+        break;
+
+      case 1: // Impar
+        resultado = val % 2 !== 0 ? val + " ES IMPAR" : val + " NO ES IMPAR";
+        break;
+
+      case 2: // Primo
+        var esPrimo = true;
+        if (val < 2) { esPrimo = false; }
+        else {
+          for (var i = 2; i <= Math.sqrt(val); i++) {
+            if (val % i === 0) { esPrimo = false; break; }
+          }
+        }
+        resultado = esPrimo ? val + " ES PRIMO" : val + " NO ES PRIMO";
+        break;
+
+      case 3: // Divisores
+        var divisores = [];
+        for (var i = 1; i <= val; i++) {
+          if (val % i === 0) divisores.push(i);
+        }
+        resultado = "Divisores de " + val + ": " + divisores.join(", ");
+        break;
+    }
+
+    document.getElementById("resultadoMenu").value = resultado;
+  }
+</script>
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     EJERCICIO 6 – Adivina el número (1-100, 10 intentos)
+     ══════════════════════════════════════════════════════════════ -->
+<div class="ejercicio">
+  <h2>Ejercicio 6 – Adivina el Número</h2>
+  <div style="border:2px solid #89b4fa; padding:15px; max-width:500px">
+
+    <!-- Cabecera morada -->
+    <div style="background:#9b59b6; color:white; text-align:center; padding:10px; font-weight:bold; font-size:1.1em">
+      ADIVINA EL NÚMERO
+    </div>
+
+    <!-- Fila de juego -->
+    <div style="display:flex; align-items:center; gap:10px; padding:10px; border:1px solid #89b4fa">
+      <label>Numero:</label>
+      <input type="number" id="inputNumero" min="1" max="100" style="width:100px">
+      <button onclick="jugar()">Jugar</button>
+      <span id="msgFeedback"></span>
+    </div>
+
+    <!-- Intentos realizados -->
+    <div id="labelIntentos" style="text-align:center; padding:6px; border:1px solid #89b4fa; font-weight:bold">
+      INTENTOS REALIZADOS
+    </div>
+
+    <!-- Fila de 10 celdas numeradas (1-10) + la X debajo -->
+    <div id="fila-numeros" style="display:flex; gap:8px; margin-top:10px; flex-wrap:wrap">
+      <!-- Se genera con JS -->
+    </div>
+
+    <!-- Botón reiniciar -->
+    <button onclick="reiniciarJuego()" style="margin-top:10px; background:#a6e3a1; color:#000">🔄 Nueva partida</button>
+  </div>
+</div>
+
+<script>
+  // ── Ejercicio 6 ──────────────────────────────────────────────────────────
+  var numeroSecreto;     // el número que el usuario tiene que adivinar
+  var intentosRealizados; // cuántos intentos lleva
+  var maxIntentos = 10;
+  var listaIntentos;     // array con los números que ha ido introduciendo
+  var juegoTerminado;
+
+  // Inicializa (o reinicia) la partida
+  function reiniciarJuego() {
+    // Math.floor(Math.random() * 100) + 1 → número entre 1 y 100
+    numeroSecreto = Math.floor(Math.random() * 100) + 1;
+    intentosRealizados = 0;
+    listaIntentos = [];
+    juegoTerminado = false;
+
+    document.getElementById("inputNumero").value = "";
+    document.getElementById("msgFeedback").innerText = "";
+    document.getElementById("msgFeedback").className = "";
+    document.getElementById("labelIntentos").innerText = "INTENTOS REALIZADOS";
+
+    // Generar las 10 celdas vacías
+    var fila = document.getElementById("fila-numeros");
+    fila.innerHTML = "";
+    for (var i = 1; i <= maxIntentos; i++) {
+      var col = document.createElement("div");
+      col.style.cssText = "text-align:center;";
+      col.innerHTML = '<div style="background:#9b59b6;color:white;width:40px;height:30px;display:flex;align-items:center;justify-content:center;font-weight:bold">' + i + '</div>' +
+                      '<div class="celda-intento" id="celda' + i + '">X</div>';
+      fila.appendChild(col);
+    }
+  }
+
+  // Función principal de juego
+  function jugar() {
+    if (juegoTerminado) {
+      alert("La partida ha terminado. Pulsa 'Nueva partida' para jugar de nuevo.");
+      return;
+    }
+
+    var num = parseInt(document.getElementById("inputNumero").value);
+    var feedback = document.getElementById("msgFeedback");
+
+    // Validación
+    if (isNaN(num) || num < 1 || num > 100) {
+      alert("Introduce un número entre 1 y 100");
+      return;
+    }
+
+    intentosRealizados++;
+    listaIntentos.push(num);
+
+    // Actualizamos el texto de intentos realizados
+    document.getElementById("labelIntentos").innerText =
+      "INTENTOS REALIZADOS: " + listaIntentos.join(" ");
+
+    // Comparamos el número del usuario con el secreto
+    if (num === numeroSecreto) {
+      // ── GANADO ──
+      feedback.innerText = "HAS ACERTADO";
+      feedback.className = "msg-ganado";
+      juegoTerminado = true;
+
+    } else if (intentosRealizados >= maxIntentos) {
+      // ── PERDIDO (sin intentos) ──
+      feedback.innerText = "HAS PERDIDO";
+      feedback.className = "msg-perdido";
+      juegoTerminado = true;
+
+    } else if (num > numeroSecreto) {
+      // El número introducido es mayor → pista: el secreto es menor
+      feedback.innerText = num + " ES MAYOR";
+      feedback.className = "msg-mayor";
+
+    } else {
+      // El número introducido es menor → pista: el secreto es mayor
+      feedback.innerText = num + " ES MENOR";
+      feedback.className = "msg-menor";
+    }
+
+    // Actualizamos la celda del intento actual con el número introducido
+    var celda = document.getElementById("celda" + intentosRealizados);
+    if (celda) celda.innerText = num;
+  }
+
+  // Iniciar el juego al cargar la página
+  reiniciarJuego();
+</script>
+
+</body>
+</html>

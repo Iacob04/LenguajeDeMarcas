@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SmashZone — Tienda de Bádminton</title>
+
+  <!--
+    Bootstrap 5.0.2 CSS — archivo LOCAL (descargado del zip)
+    Ruta: bootstrap/css/bootstrap.min.css
+  -->
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
+
+  <!--
+    Bootstrap Icons — CDN (no es un framework CSS, solo iconos)
+    Si el profesor quiere iconos locales, se pueden descargar aparte.
+  -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+  />
+
+  <!-- CSS personalizado del proyecto (mínimo, solo marca) -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+
+<!-- ====================================================
+     1. NAVBAR
+     Fija arriba · logo izq · links centro · carrito dcha
+     Colapsa en hamburguesa en móvil (data-bs-toggle)
+     ==================================================== -->
+<nav class="navbar navbar-expand-lg navbar-sz fixed-top py-2">
+  <div class="container">
+
+    <!-- Logo (izquierda) -->
+    <a class="navbar-brand" href="#">🏸 SmashZone</a>
+
+    <!-- Botón hamburguesa — solo visible en móvil -->
+    <button
+      class="navbar-toggler border-secondary"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navMenu"
+      aria-controls="navMenu"
+      aria-expanded="false"
+      aria-label="Abrir menú"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Menú colapsable -->
+    <div class="collapse navbar-collapse" id="navMenu">
+
+      <!-- Links (centro) -->
+      <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" href="#inicio">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#catalogo">Catálogo</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Categorías
+          </a>
+          <ul class="dropdown-menu dropdown-menu-dark">
+            <li><a class="dropdown-item" href="#catalogo">🏸 Raquetas</a></li>
+            <li><a class="dropdown-item" href="#catalogo">🪶 Volantes</a></li>
+            <li><a class="dropdown-item" href="#catalogo">👟 Zapatillas</a></li>
+            <li><a class="dropdown-item" href="#catalogo">👕 Ropa</a></li>
+            <li><hr class="dropdown-divider" /></li>
+            <li><a class="dropdown-item" href="#catalogo">Ver todo</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#newsletter">Ofertas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#footer">Contacto</a>
+        </li>
+      </ul>
+
+      <!-- Icono carrito (derecha) -->
+      <a href="#" class="btn btn-outline-light position-relative">
+        <i class="bi bi-bag fs-5"></i>
+        <span
+          class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+          style="font-size: 0.65rem;"
+        >2</span>
+      </a>
+
+    </div>
+  </div>
+</nav>
+
+
+<!-- ====================================================
+     2. HERO — CAROUSEL
+     Componente Carousel de Bootstrap 5
+     ==================================================== -->
+<section id="inicio" style="padding-top: 58px;">
+  <div
+    id="carruselHero"
+    class="carousel slide"
+    data-bs-ride="carousel"
+    data-bs-interval="4500"
+  >
+
+    <!-- Indicadores de posición -->
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carruselHero"
+        data-bs-slide-to="0" class="active" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carruselHero"
+        data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carruselHero"
+        data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+
+    <div class="carousel-inner">
+
+      <!-- Slide 1 -->
+      <div class="carousel-item active">
+        <div class="slide-hero slide-1">
+          <div class="container text-center text-white py-5">
+            <p class="display-1 mb-2">🏸</p>
+            <h1 class="display-5 fw-bold">¡Raquetas en oferta!</h1>
+            <p class="lead mb-4">Hasta un 35 % de descuento en raquetas de grafito profesionales</p>
+            <a href="#catalogo" class="btn btn-sz btn-lg px-4">Ver Ofertas</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="carousel-item">
+        <div class="slide-hero slide-2">
+          <div class="container text-center text-white py-5">
+            <p class="display-1 mb-2">👟</p>
+            <h1 class="display-5 fw-bold">Nueva colección zapatillas</h1>
+            <p class="lead mb-4">Suela antideslizante y amortiguación dinámica para cada punto</p>
+            <a href="#catalogo" class="btn btn-sz btn-lg px-4">Ver Ofertas</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="carousel-item">
+        <div class="slide-hero slide-3">
+          <div class="container text-center text-white py-5">
+            <p class="display-1 mb-2">🪶</p>
+            <h1 class="display-5 fw-bold">Volantes de competición</h1>
+            <p class="lead mb-4">Pluma natural · vuelo estable · velocidad 77</p>
+            <a href="#catalogo" class="btn btn-sz btn-lg px-4">Ver Ofertas</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Flechas anterior / siguiente -->
+    <button class="carousel-control-prev" type="button"
+      data-bs-target="#carruselHero" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Anterior</span>
+    </button>
+    <button class="carousel-control-next" type="button"
+      data-bs-target="#carruselHero" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Siguiente</span>
+    </button>
+
+  </div>
+</section>
+
+
+<!-- ====================================================
+     3. CATÁLOGO DE PRODUCTOS
+     Grid: 1 col móvil / 2 col tablet / 3-4 col escritorio
+     Componente Cards de Bootstrap 5
+     ==================================================== -->
+<section id="catalogo" class="py-5">
+  <div class="container">
+
+    <div class="text-center mb-5">
+      <div class="linea-acento"></div>
+      <h2 class="fw-bold">Nuestros Productos</h2>
+      <p class="text-muted">Equipamiento para todos los niveles</p>
+    </div>
+
+    <div class="row g-4">
+
+      <!-- Producto 1 -->
+      <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+        <article class="card card-producto h-100">
+          <div class="zona-imagen">🏸</div>
+          <div class="card-body d-flex flex-column">
+            <span class="badge bg-danger mb-2" style="width:fit-content;">-35 %</span>
+            <h5 class="card-title">Raqueta GraphiteX Pro</h5>
+            <p class="card-text text-muted small">Grafito · 82 g · Nivel avanzado</p>
+            <div class="mt-auto">
+              <p class="mb-2">
+                <span class="precio-actual">89 €</span>
+                <span class="precio-antes ms-2">139 €</span>
+              </p>
+              <div class="d-flex gap-2">
+                <button
+                  class="btn btn-sz flex-grow-1"
+                  onclick="mostrarToast('Raqueta GraphiteX Pro')"
+                  data-bs-toggle="toast" data-bs-target="#miToast"
+                >
+                  <i class="bi bi-bag-plus me-1"></i> Añadir
+                </button>
+                <button
+                  class="btn btn-outline-secondary"
+                  data-bs-toggle="modal" data-bs-target="#modalProducto"
+                  onclick="abrirModal('Raqueta GraphiteX Pro','🏸','89 €','139 €',
+                    'Raqueta de competición con marco isométrico de grafito 100 %.',
+                    'Peso: 82 g · Tensión: 28–32 lbs · Empuñadura G5',
+                    'Funda de protección incluida')"
+                  aria-label="Ver detalle"
+                ><i class="bi bi-eye"></i></button>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- Producto 2 -->
+      <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+        <article class="card card-producto h-100">
+          <div class="zona-imagen">🪶</div>
+          <div class="card-body d-flex flex-column">
+            <span class="badge bg-success mb-2" style="width:fit-content;">Nuevo</span>
+            <h5 class="card-title">Volantes Pluma Natural x12</h5>
+            <p class="card-text text-muted small">Velocidad 77 · Competición</p>
+            <div class="mt-auto">
+              <p class="mb-2">
+                <span class="precio-actual">22 €</span>
+              </p>
+              <div class="d-flex gap-2">
+                <button
+                  class="btn btn-sz flex-grow-1"
+                  onclick="mostrarToast('Volantes Pluma Natural x12')"
+                  data-bs-toggle="toast" data-bs-target="#miToast"
+                >
+                  <i class="bi bi-bag-plus me-1"></i> Añadir
+                </button>
+                <button
+                  class="btn btn-outline-secondary"
+                  data-bs-toggle="modal" data-bs-target="#modalProducto"
+                  onclick="abrirModal('Volantes Pluma Natural x12','🪶','22 €','',
+                    '16 plumas de ganso natural. Vuelo estable y preciso.',
+                    'Velocidad 77 (media) · Caja de 12 unidades',
+                    'Apto para torneos y entrenamiento')"
+                  aria-label="Ver detalle"
+                ><i class="bi bi-eye"></i></button>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- Producto 3 -->
+      <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+        <article class="card card-producto h-100">
+          <div class="zona-imagen">👟</div>
+          <div class="card-body d-flex flex-column">
+            <span class="badge bg-warning text-dark mb-2" style="width:fit-content;">Top ventas</span>
+            <h5 class="card-title">Zapatillas CourtFly 3.0</h5>
+            <p class="card-text text-muted small">Antideslizante · Tallas 38–47</p>
+            <div class="mt-auto">
+              <p class="mb-2">
+                <span class="precio-actual">95 €</span>
+                <span class="precio-antes ms-2">120 €</span>
+              </p>
+              <div class="d-flex gap-2">
+                <button
+                  class="btn btn-sz flex-grow-1"
+                  onclick="mostrarToast('Zapatillas CourtFly 3.0')"
+                  data-bs-toggle="toast" data-bs-target="#miToast"
+                >
+                  <i class="bi bi-bag-plus me-1"></i> Añadir
+                </button>
+                <button
+                  class="btn btn-outline-secondary"
+                  data-bs-toggle="modal" data-bs-target="#modalProducto"
+                  onclick="abrirModal('Zapatillas CourtFly 3.0','👟','95 €','120 €',
+                    'Zapatilla indoor con suela goma no-mark y amortiguación EVA.',
+                    'Tallas 38 a 47 · Peso: 310 g (talla 42)',
+                    'Disponible en blanco y negro')"
+                  aria-label="Ver detalle"
+                ><i class="bi bi-eye"></i></button>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- Producto 4 -->
+      <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+        <article class="card card-producto h-100">
+          <div class="zona-imagen">🎒</div>
+          <div class="card-body d-flex flex-column">
+            <span class="badge bg-secondary mb-2" style="width:fit-content;">En stock</span>
+            <h5 class="card-title">Mochila ProBag 6R</h5>
+            <p class="card-text text-muted small">6 raquetas · Bolsillo térmico</p>
+            <div class="mt-auto">
+              <p class="mb-2">
+                <span class="precio-actual">55 €</span>
+              </p>
+              <div class="d-flex gap-2">
+                <button
+                  class="btn btn-sz flex-grow-1"
+                  onclick="mostrarToast('Mochila ProBag 6R')"
+                  data-bs-toggle="toast" data-bs-target="#miToast"
+                >
+                  <i class="bi bi-bag-plus me-1"></i> Añadir
+                </button>
+                <button
+                  class="btn btn-outline-secondary"
+                  data-bs-toggle="modal" data-bs-target="#modalProducto"
+                  onclick="abrirModal('Mochila ProBag 6R','🎒','55 €','',
+                    'Mochila con capacidad para 6 raquetas y compartimento para zapatos.',
+                    'Bolsillo térmico isotérmico · Correas ergonómicas',
+                    'Compartimento independiente para zapatillas')"
+                  aria-label="Ver detalle"
+                ><i class="bi bi-eye"></i></button>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- Producto 5 -->
+      <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+        <article class="card card-producto h-100">
+          <div class="zona-imagen">👕</div>
+          <div class="card-body d-flex flex-column">
+            <span class="badge bg-danger mb-2" style="width:fit-content;">-25 %</span>
+            <h5 class="card-title">Camiseta AirBreeze Pro</h5>
+            <p class="card-text text-muted small">Dry-Fit · UV50+ · XS–XXL</p>
+            <div class="mt-auto">
+              <p class="mb-2">
+                <span class="precio-actual">29 €</span>
+                <span class="precio-antes ms-2">39 €</span>
+              </p>
+              <div class="d-flex gap-2">
+                <button
+                  class="btn btn-sz flex-grow-1"
+                  onclick="mostrarToast('Camiseta AirBreeze Pro')"
+                  data-bs-toggle="toast" data-bs-target="#miToast"
+                >
+                  <i class="bi bi-bag-plus me-1"></i> Añadir
+                </button>
+                <button
+                  class="btn btn-outline-secondary"
+                  data-bs-toggle="modal" data-bs-target="#modalProducto"
+                  onclick="abrirModal('Camiseta AirBreeze Pro','👕','29 €','39 €',
+                    'Camiseta técnica de poliéster reciclado con tecnología Dry-Fit.',
+                    'Tallas XS a XXL · Hombre y Mujer',
+                    'Protección UV50+ · Varios colores')"
+                  aria-label="Ver detalle"
+                ><i class="bi bi-eye"></i></button>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- Producto 6 -->
+      <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+        <article class="card card-producto h-100">
+          <div class="zona-imagen">🔧</div>
+          <div class="card-body d-flex flex-column">
+            <span class="badge bg-success mb-2" style="width:fit-content;">Nuevo</span>
+            <h5 class="card-title">Kit Encordado Completo</h5>
+            <p class="card-text text-muted small">Cuerda BG65 + Grips + Overgrip</p>
+            <div class="mt-auto">
+              <p class="mb-2">
+                <span class="precio-actual">18 €</span>
+              </p>
+              <div class="d-flex gap-2">
+                <button
+                  class="btn btn-sz flex-grow-1"
+                  onclick="mostrarToast('Kit Encordado Completo')"
+                  data-bs-toggle="toast" data-bs-target="#miToast"
+                >
+                  <i class="bi bi-bag-plus me-1"></i> Añadir
+                </button>
+                <button
+                  class="btn btn-outline-secondary"
+                  data-bs-toggle="modal" data-bs-target="#modalProducto"
+                  onclick="abrirModal('Kit Encordado Completo','🔧','18 €','',
+                    'Kit completo para encordar y mantener tu raqueta a punto.',
+                    'Cuerda Yonex BG65 0.70 mm · 2× Grips de repuesto',
+                    '3× Overgrips absorbentes · Universal')"
+                  aria-label="Ver detalle"
+                ><i class="bi bi-eye"></i></button>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- Producto 7 -->
+      <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+        <article class="card card-producto h-100">
+          <div class="zona-imagen">🏸</div>
+          <div class="card-body d-flex flex-column">
+            <span class="badge bg-warning text-dark mb-2" style="width:fit-content;">Iniciación</span>
+            <h5 class="card-title">Set Familiar 4 Raquetas</h5>
+            <p class="card-text text-muted small">4 raquetas + 3 volantes + red</p>
+            <div class="mt-auto">
+              <p class="mb-2">
+                <span class="precio-actual">45 €</span>
+                <span class="precio-antes ms-2">60 €</span>
+              </p>
+              <div class="d-flex gap-2">
+                <button
+                  class="btn btn-sz flex-grow-1"
+                  onclick="mostrarToast('Set Familiar 4 Raquetas')"
+                  data-bs-toggle="toast" data-bs-target="#miToast"
+                >
+                  <i class="bi bi-bag-plus me-1"></i> Añadir
+                </button>
+                <button
+                  class="btn btn-outline-secondary"
+                  data-bs-toggle="modal" data-bs-target="#modalProducto"
+                  onclick="abrirModal('Set Familiar 4 Raquetas','🏸','45 €','60 €',
+                    'Pack completo ideal para jugar en familia en el jardín o la playa.',
+                    '4 raquetas aluminio · 3 volantes sintéticos',
+                    'Red portátil plegable incluida')"
+                  aria-label="Ver detalle"
+                ><i class="bi bi-eye"></i></button>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- Producto 8 -->
+      <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+        <article class="card card-producto h-100">
+          <div class="zona-imagen">🩳</div>
+          <div class="card-body d-flex flex-column">
+            <span class="badge bg-danger mb-2" style="width:fit-content;">-20 %</span>
+            <h5 class="card-title">Short TacticalMove</h5>
+            <p class="card-text text-muted small">Elástico 4D · XS–XXL</p>
+            <div class="mt-auto">
+              <p class="mb-2">
+                <span class="precio-actual">32 €</span>
+                <span class="precio-antes ms-2">40 €</span>
+              </p>
+              <div class="d-flex gap-2">
+                <button
+                  class="btn btn-sz flex-grow-1"
+                  onclick="mostrarToast('Short TacticalMove')"
+                  data-bs-toggle="toast" data-bs-target="#miToast"
+                >
+                  <i class="bi bi-bag-plus me-1"></i> Añadir
+                </button>
+                <button
+                  class="btn btn-outline-secondary"
+                  data-bs-toggle="modal" data-bs-target="#modalProducto"
+                  onclick="abrirModal('Short TacticalMove','🩳','32 €','40 €',
+                    'Short deportivo con tejido elástico en 4 direcciones y secado rápido.',
+                    'Tallas XS a XXL · Solo Hombre',
+                    '2 bolsillos laterales con cremallera')"
+                  aria-label="Ver detalle"
+                ><i class="bi bi-eye"></i></button>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+
+    </div><!-- /row productos -->
+  </div>
+</section>
+
+
+<!-- ====================================================
+     4. NEWSLETTER
+     Formulario con validación visual de Bootstrap 5
+     ==================================================== -->
+<section id="newsletter" class="seccion-newsletter py-5">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-7">
+
+        <div class="text-center mb-4">
+          <div class="linea-acento"></div>
+          <h2 class="fw-bold">Suscríbete y ahorra</h2>
+          <p class="text-muted">
+            Recibe un <strong>10 % de descuento</strong> en tu primer pedido
+            y acceso a ofertas exclusivas cada semana.
+          </p>
+        </div>
+
+        <form id="formNewsletter" class="bg-white p-4 rounded-3 shadow-sm" novalidate>
+          <div class="row g-3">
+
+            <div class="col-sm-6">
+              <label for="fNombre" class="form-label">Nombre</label>
+              <input type="text" class="form-control" id="fNombre"
+                placeholder="Tu nombre" required minlength="2" />
+              <div class="valid-feedback">¡Correcto!</div>
+              <div class="invalid-feedback">Escribe tu nombre (mín. 2 letras).</div>
+            </div>
+
+            <div class="col-sm-6">
+              <label for="fApellidos" class="form-label">Apellidos</label>
+              <input type="text" class="form-control" id="fApellidos"
+                placeholder="Tus apellidos" required minlength="2" />
+              <div class="valid-feedback">¡Correcto!</div>
+              <div class="invalid-feedback">Escribe tus apellidos.</div>
+            </div>
+
+            <div class="col-12">
+              <label for="fEmail" class="form-label">Correo electrónico</label>
+              <input type="email" class="form-control" id="fEmail"
+                placeholder="ejemplo@correo.com" required />
+              <div class="valid-feedback">¡Email válido!</div>
+              <div class="invalid-feedback">Introduce un correo válido.</div>
+            </div>
+
+            <div class="col-12">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox"
+                  id="fPrivacidad" required />
+                <label class="form-check-label" for="fPrivacidad">
+                  Acepto la <a href="#">política de privacidad</a>
+                </label>
+                <div class="invalid-feedback">Debes aceptar la política de privacidad.</div>
+              </div>
+            </div>
+
+            <div class="col-12">
+              <button type="submit" class="btn btn-sz w-100 py-2">
+                <i class="bi bi-send me-2"></i>Suscribirme
+              </button>
+            </div>
+
+            <!-- Alert éxito -->
+            <div class="col-12" id="alertOk" style="display:none;">
+              <div class="alert alert-success mb-0">
+                <i class="bi bi-check-circle-fill me-2"></i>
+                <strong>¡Suscripción completada!</strong>
+                Revisa tu email para el cupón del 10 %.
+              </div>
+            </div>
+
+            <!-- Alert error -->
+            <div class="col-12" id="alertErr" style="display:none;">
+              <div class="alert alert-danger mb-0">
+                <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                Revisa los campos marcados en rojo.
+              </div>
+            </div>
+
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ====================================================
+     5. FOOTER
+     Varias columnas con Grid · redes sociales · copyright
+     ==================================================== -->
+<footer id="footer" class="pt-5 pb-3">
+  <div class="container">
+    <div class="row g-4 pb-4">
+
+      <!-- Col 1: Marca + descripción + redes -->
+      <div class="col-12 col-md-4">
+        <p class="fw-bold text-white fs-5 mb-2">🏸 SmashZone</p>
+        <p style="font-size:0.9rem;">
+          Tu tienda especializada en bádminton. Material para todos los niveles,
+          desde iniciación hasta competición.
+        </p>
+        <div class="d-flex gap-3 mt-3 fs-5">
+          <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+          <a href="#" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+          <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+          <a href="#" aria-label="TikTok"><i class="bi bi-tiktok"></i></a>
+        </div>
+      </div>
+
+      <!-- Col 2: Tienda -->
+      <div class="col-6 col-md-2">
+        <h6>Tienda</h6>
+        <a href="#">Raquetas</a>
+        <a href="#">Volantes</a>
+        <a href="#">Zapatillas</a>
+        <a href="#">Ropa</a>
+        <a href="#">Bolsas</a>
+      </div>
+
+      <!-- Col 3: Ayuda -->
+      <div class="col-6 col-md-2">
+        <h6>Ayuda</h6>
+        <a href="#">Mi pedido</a>
+        <a href="#">Devoluciones</a>
+        <a href="#">Garantía</a>
+        <a href="#">Contacto</a>
+      </div>
+
+      <!-- Col 4: Legal -->
+      <div class="col-6 col-md-2">
+        <h6>Legal</h6>
+        <a href="#">Aviso legal</a>
+        <a href="#">Privacidad</a>
+        <a href="#">Cookies</a>
+      </div>
+
+      <!-- Col 5: Envío -->
+      <div class="col-6 col-md-2">
+        <h6>Envío</h6>
+        <p style="font-size:0.9rem;">
+          <i class="bi bi-truck me-1"></i>24–48 h<br>
+          Gratis en pedidos +40 €
+        </p>
+        <p style="font-size:0.9rem;">
+          <i class="bi bi-credit-card me-1"></i>Visa · PayPal · Apple Pay
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Copyright -->
+    <div class="footer-bottom pt-3 text-center">
+      <small>&copy; 2025 SmashZone S.L. · Todos los derechos reservados ·
+      Desarrollado con Bootstrap 5.0.2</small>
+    </div>
+
+  </div>
+</footer>
+
+
+<!-- ====================================================
+     MODAL — Detalle del producto
+     Componente Modal de Bootstrap 5
+     ==================================================== -->
+<div class="modal fade" id="modalProducto" tabindex="-1"
+  aria-labelledby="modalTitulo" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalTitulo">Producto</h5>
+        <button type="button" class="btn-close"
+          data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+
+      <div class="modal-body">
+        <!-- Emoji grande -->
+        <p class="text-center mb-3" id="modalEmoji" style="font-size:5rem;"></p>
+        <!-- Precios -->
+        <div class="mb-3">
+          <span class="precio-actual fs-4" id="modalPrecio"></span>
+          <span class="precio-antes ms-2" id="modalPrecioAntes"></span>
+        </div>
+        <!-- Descripción -->
+        <p class="text-muted" id="modalDesc"></p>
+        <!-- Specs -->
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item d-flex justify-content-between">
+            <span class="text-muted">Características</span>
+            <span id="modalSpec1" class="text-end"></span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <span class="text-muted">Extra</span>
+            <span id="modalSpec2" class="text-end"></span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary"
+          data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-sz"
+          id="modalBtnAnadir" data-bs-dismiss="modal">
+          <i class="bi bi-bag-plus me-1"></i> Añadir al carrito
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- ====================================================
+     TOAST — "Producto añadido al carrito"
+     Componente Toast de Bootstrap 5
+     ==================================================== -->
+<div class="toast-wrap">
+  <div id="miToast"
+    class="toast align-items-center text-bg-success border-0"
+    role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="d-flex">
+      <div class="toast-body">
+        <i class="bi bi-check-circle-fill me-2"></i>
+        <strong id="toastNombre">Producto</strong> añadido al carrito.
+      </div>
+      <button type="button" class="btn-close btn-close-white me-2 m-auto"
+        data-bs-dismiss="toast" aria-label="Cerrar"></button>
+    </div>
+  </div>
+</div>
+
+
+<!--
+  Bootstrap 5.0.2 JS Bundle — archivo LOCAL (descargado del zip)
+  Ruta: bootstrap/js/bootstrap.bundle.min.js
+  (incluye Popper.js, necesario para dropdown, tooltip, etc.)
+-->
+<script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Nuestro JS personalizado -->
+<script src="script.js"></script>
+
+</body>
+</html>

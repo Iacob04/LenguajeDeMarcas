@@ -1,0 +1,8 @@
+#tabla{
+    border: 2px black solid;
+    width: auto;
+    height: auto;
+}
+.celda{
+    border: 2px black solid;
+}

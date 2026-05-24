@@ -1,0 +1,1292 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechGear | Tu Tienda de Gadgets Tecnológicos</title>
+
+    <!-- Bootstrap 5.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+          crossorigin="anonymous">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Estilos personalizados (mínimos) -->
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+
+    <!-- ============================================================
+         TOAST: notificación "Producto añadido al carrito"
+         ============================================================ -->
+    <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 1200">
+        <div id="cartToast"
+             class="toast align-items-center text-bg-success border-0"
+             role="alert"
+             aria-live="assertive"
+             aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body">
+                    <i class="bi bi-cart-check-fill me-2"></i>
+                    ¡Producto añadido al carrito con éxito!
+                </div>
+                <button type="button"
+                        class="btn-close btn-close-white me-2 m-auto"
+                        data-bs-dismiss="toast"
+                        aria-label="Cerrar">
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ============================================================
+         NAVBAR: fija, responsiva, colapsa en móviles
+         ============================================================ -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top" id="mainNavbar">
+        <div class="container">
+
+            <!-- Logo / Marca -->
+            <a class="navbar-brand fw-bold fs-4" href="#">
+                <i class="bi bi-cpu-fill me-2 text-info"></i>Tech<span class="text-info">Gear</span>
+            </a>
+
+            <!-- Botón hamburguesa (móviles) -->
+            <button class="navbar-toggler border-0"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarMain"
+                    aria-controls="navbarMain"
+                    aria-expanded="false"
+                    aria-label="Abrir menú">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Menú colapsable -->
+            <div class="collapse navbar-collapse" id="navbarMain">
+
+                <!-- Enlances centrados -->
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+                    </li>
+
+                    <!-- Dropdown: Productos -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle"
+                           href="#"
+                           role="button"
+                           data-bs-toggle="dropdown"
+                           aria-expanded="false">
+                            Productos
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li><a class="dropdown-item" href="#productos">
+                                <i class="bi bi-grid me-2"></i>Todos los productos
+                            </a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#productos">
+                                <i class="bi bi-headphones me-2"></i>Audio
+                            </a></li>
+                            <li><a class="dropdown-item" href="#productos">
+                                <i class="bi bi-keyboard me-2"></i>Teclados
+                            </a></li>
+                            <li><a class="dropdown-item" href="#productos">
+                                <i class="bi bi-usb-symbol me-2"></i>Conectividad
+                            </a></li>
+                            <li><a class="dropdown-item" href="#productos">
+                                <i class="bi bi-smartwatch me-2"></i>Wearables
+                            </a></li>
+                            <li><a class="dropdown-item" href="#productos">
+                                <i class="bi bi-camera-video me-2"></i>Cámaras
+                            </a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#ofertas">Ofertas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#newsletter">Contacto</a>
+                    </li>
+                </ul>
+
+                <!-- Iconos de la derecha -->
+                <div class="d-flex align-items-center gap-3">
+                    <a href="#" class="nav-link text-white" aria-label="Buscar">
+                        <i class="bi bi-search fs-5"></i>
+                    </a>
+                    <a href="#" class="nav-link text-white position-relative" aria-label="Carrito">
+                        <i class="bi bi-cart3 fs-5"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            3<span class="visually-hidden">productos en el carrito</span>
+                        </span>
+                    </a>
+                    <a href="#" class="nav-link text-white" aria-label="Mi cuenta">
+                        <i class="bi bi-person-circle fs-5"></i>
+                    </a>
+                </div>
+
+            </div><!-- /collapse -->
+        </div><!-- /container -->
+    </nav>
+
+
+    <!-- ============================================================
+         HERO: Carousel con 3 slides de ofertas
+         ============================================================ -->
+    <section id="ofertas">
+        <div id="heroCarousel"
+             class="carousel slide carousel-fade"
+             data-bs-ride="carousel"
+             data-bs-interval="5000">
+
+            <!-- Indicadores -->
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0"
+                        class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"
+                        aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2"
+                        aria-label="Slide 3"></button>
+            </div>
+
+            <div class="carousel-inner">
+
+                <!-- Slide 1: Auriculares -->
+                <div class="carousel-item active hero-slide hero-slide-1">
+                    <div class="container h-100">
+                        <div class="row h-100 align-items-center py-5">
+                            <div class="col-lg-7 text-white">
+                                <span class="badge bg-danger fs-6 mb-3">
+                                    <i class="bi bi-fire me-1"></i> OFERTA ESPECIAL
+                                </span>
+                                <h1 class="display-3 fw-bold lh-1 mb-3">
+                                    Auriculares Pro X<br>
+                                    <span class="text-info">−40% de descuento</span>
+                                </h1>
+                                <p class="lead mb-4 opacity-75">
+                                    Sonido inmersivo con cancelación activa de ruido.<br>Hasta 30h de batería. Bluetooth 5.3.
+                                </p>
+                                <a href="#productos" class="btn btn-info btn-lg text-dark fw-bold me-2 px-4">
+                                    <i class="bi bi-lightning-fill me-1"></i>Ver Oferta
+                                </a>
+                                <a href="#productos" class="btn btn-outline-light btn-lg px-4">
+                                    Ver Catálogo
+                                </a>
+                            </div>
+                            <div class="col-lg-5 d-none d-lg-flex justify-content-center align-items-center">
+                                <i class="bi bi-headphones" style="font-size:14rem;color:rgba(255,255,255,.12);"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 2: Smartwatch -->
+                <div class="carousel-item hero-slide hero-slide-2">
+                    <div class="container h-100">
+                        <div class="row h-100 align-items-center py-5">
+                            <div class="col-lg-7 text-white">
+                                <span class="badge bg-warning text-dark fs-6 mb-3">
+                                    <i class="bi bi-stars me-1"></i> NUEVO LANZAMIENTO
+                                </span>
+                                <h1 class="display-3 fw-bold lh-1 mb-3">
+                                    Smartwatch<br>
+                                    <span class="text-warning">Series 5 Ultra</span>
+                                </h1>
+                                <p class="lead mb-4 opacity-75">
+                                    GPS integrado · Monitor SpO₂ · Resistente 50m.<br>7 días de batería con pantalla AMOLED.
+                                </p>
+                                <a href="#productos" class="btn btn-warning btn-lg text-dark fw-bold me-2 px-4">
+                                    <i class="bi bi-bag-fill me-1"></i>Comprar Ahora
+                                </a>
+                                <a href="#productos" class="btn btn-outline-light btn-lg px-4">Ver Más</a>
+                            </div>
+                            <div class="col-lg-5 d-none d-lg-flex justify-content-center align-items-center">
+                                <i class="bi bi-smartwatch" style="font-size:14rem;color:rgba(255,255,255,.12);"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 3: Hub USB-C -->
+                <div class="carousel-item hero-slide hero-slide-3">
+                    <div class="container h-100">
+                        <div class="row h-100 align-items-center py-5">
+                            <div class="col-lg-7 text-white">
+                                <span class="badge bg-success fs-6 mb-3">
+                                    <i class="bi bi-trophy me-1"></i> MÁS VENDIDO
+                                </span>
+                                <h1 class="display-3 fw-bold lh-1 mb-3">
+                                    Hub USB-C<br>
+                                    <span class="text-success">7 en 1 — desde 49,99 €</span>
+                                </h1>
+                                <p class="lead mb-4 opacity-75">
+                                    HDMI 4K · 3× USB-A · SD/MicroSD · USB-C PD 100W.<br>Compatible con MacBook, iPad Pro y cualquier portátil.
+                                </p>
+                                <a href="#productos" class="btn btn-success btn-lg fw-bold me-2 px-4">
+                                    <i class="bi bi-cart-plus-fill me-1"></i>Ver Ofertas
+                                </a>
+                                <a href="#productos" class="btn btn-outline-light btn-lg px-4">Explorar</a>
+                            </div>
+                            <div class="col-lg-5 d-none d-lg-flex justify-content-center align-items-center">
+                                <i class="bi bi-usb-symbol" style="font-size:14rem;color:rgba(255,255,255,.12);"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div><!-- /carousel-inner -->
+
+            <!-- Controles anterior / siguiente -->
+            <button class="carousel-control-prev" type="button"
+                    data-bs-target="#heroCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Anterior</span>
+            </button>
+            <button class="carousel-control-next" type="button"
+                    data-bs-target="#heroCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Siguiente</span>
+            </button>
+
+        </div><!-- /carousel -->
+    </section>
+
+
+    <!-- ============================================================
+         BARRA DE CARACTERÍSTICAS
+         ============================================================ -->
+    <section class="py-4 border-bottom bg-white">
+        <div class="container">
+            <div class="row g-3 text-center">
+                <div class="col-6 col-md-3">
+                    <div class="d-flex flex-column flex-sm-row align-items-center justify-content-center gap-2">
+                        <i class="bi bi-truck fs-2 text-primary"></i>
+                        <div class="text-start">
+                            <div class="fw-bold small">Envío Gratis</div>
+                            <div class="text-muted" style="font-size:.75rem">En pedidos +50 €</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="d-flex flex-column flex-sm-row align-items-center justify-content-center gap-2">
+                        <i class="bi bi-shield-check fs-2 text-success"></i>
+                        <div class="text-start">
+                            <div class="fw-bold small">Garantía 2 Años</div>
+                            <div class="text-muted" style="font-size:.75rem">En todos los productos</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="d-flex flex-column flex-sm-row align-items-center justify-content-center gap-2">
+                        <i class="bi bi-headset fs-2 text-warning"></i>
+                        <div class="text-start">
+                            <div class="fw-bold small">Soporte 24/7</div>
+                            <div class="text-muted" style="font-size:.75rem">Siempre disponibles</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="d-flex flex-column flex-sm-row align-items-center justify-content-center gap-2">
+                        <i class="bi bi-arrow-repeat fs-2 text-danger"></i>
+                        <div class="text-start">
+                            <div class="fw-bold small">Devolución Fácil</div>
+                            <div class="text-muted" style="font-size:.75rem">30 días sin preguntas</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================================
+         CATÁLOGO DE PRODUCTOS
+         Grid: 1 col móvil · 2 tablet · 3 escritorio · 4 XL
+         ============================================================ -->
+    <section id="productos" class="py-5 bg-light">
+        <div class="container">
+
+            <!-- Cabecera de sección -->
+            <div class="text-center mb-5">
+                <h2 class="display-5 fw-bold">
+                    Nuestros <span class="text-primary">Productos</span>
+                </h2>
+                <p class="lead text-muted">Los mejores gadgets tecnológicos al mejor precio</p>
+            </div>
+
+            <!-- Filtros por categoría -->
+            <div class="d-flex flex-wrap justify-content-center gap-2 mb-5">
+                <button class="btn btn-primary btn-sm px-4">Todos</button>
+                <button class="btn btn-outline-secondary btn-sm px-4">
+                    <i class="bi bi-headphones me-1"></i>Audio
+                </button>
+                <button class="btn btn-outline-secondary btn-sm px-4">
+                    <i class="bi bi-keyboard me-1"></i>Teclados
+                </button>
+                <button class="btn btn-outline-secondary btn-sm px-4">
+                    <i class="bi bi-usb-symbol me-1"></i>Conectividad
+                </button>
+                <button class="btn btn-outline-secondary btn-sm px-4">
+                    <i class="bi bi-smartwatch me-1"></i>Wearables
+                </button>
+                <button class="btn btn-outline-secondary btn-sm px-4">
+                    <i class="bi bi-camera-video me-1"></i>Cámaras
+                </button>
+            </div>
+
+            <!-- Grid de productos -->
+            <div class="row g-4 row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4">
+
+                <!-- ── Producto 1: Auriculares Pro X ── -->
+                <div class="col">
+                    <div class="card h-100 product-card border-0 shadow-sm">
+                        <div class="position-relative">
+                            <img src="https://placehold.co/400x260/1e3a5f/00d4ff?text=Auriculares+Pro+X"
+                                 class="card-img-top" alt="Auriculares Inalámbricos Pro X">
+                            <span class="position-absolute top-0 start-0 badge bg-danger m-2">−40%</span>
+                            <span class="position-absolute top-0 end-0 badge bg-dark m-2">Audio</span>
+                        </div>
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title fw-bold">Auriculares Pro X</h5>
+                            <p class="card-text text-muted small flex-grow-1">
+                                Cancelación activa de ruido, 30 h de batería, Bluetooth 5.3.
+                            </p>
+                            <div class="mb-2">
+                                <span class="text-warning">
+                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-half"></i>
+                                </span>
+                                <small class="text-muted ms-1">(128)</small>
+                            </div>
+                            <div class="mb-3">
+                                <span class="fs-5 fw-bold text-primary">79,99 €</span>
+                                <span class="text-muted text-decoration-line-through ms-2 small">133,99 €</span>
+                            </div>
+                            <div class="d-grid gap-2">
+                                <button type="button" class="btn btn-primary btn-add-cart">
+                                    <i class="bi bi-cart-plus me-1"></i>Añadir al carrito
+                                </button>
+                                <button type="button" class="btn btn-outline-secondary btn-sm"
+                                        data-bs-toggle="modal" data-bs-target="#modal-auriculares">
+                                    <i class="bi bi-eye me-1"></i>Ver detalles
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ── Producto 2: Teclado Mecánico ── -->
+                <div class="col">
+                    <div class="card h-100 product-card border-0 shadow-sm">
+                        <div class="position-relative">
+                            <img src="https://placehold.co/400x260/1a1a2e/7c4dff?text=Teclado+RGB+K500"
+                                 class="card-img-top" alt="Teclado Mecánico RGB K500">
+                            <span class="position-absolute top-0 end-0 badge bg-dark m-2">Teclados</span>
+                        </div>
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title fw-bold">Teclado Mecánico RGB K500</h5>
+                            <p class="card-text text-muted small flex-grow-1">
+                                Switches Cherry MX Red, iluminación RGB por tecla, formato TKL compacto.
+                            </p>
+                            <div class="mb-2">
+                                <span class="text-warning">
+                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                </span>
+                                <small class="text-muted ms-1">(245)</small>
+                            </div>
+                            <div class="mb-3">
+                                <span class="fs-5 fw-bold text-primary">149,99 €</span>
+                            </div>
+                            <div class="d-grid gap-2">
+                                <button type="button" class="btn btn-primary btn-add-cart">
+                                    <i class="bi bi-cart-plus me-1"></i>Añadir al carrito
+                                </button>
+                                <button type="button" class="btn btn-outline-secondary btn-sm"
+                                        data-bs-toggle="modal" data-bs-target="#modal-teclado">
+                                    <i class="bi bi-eye me-1"></i>Ver detalles
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ── Producto 3: Hub USB-C ── -->
+                <div class="col">
+                    <div class="card h-100 product-card border-0 shadow-sm">
+                        <div class="position-relative">
+                            <img src="https://placehold.co/400x260/00695c/80cbc4?text=Hub+USB-C+7en1"
+                                 class="card-img-top" alt="Hub USB-C 7 en 1">
+                            <span class="position-absolute top-0 start-0 badge bg-success m-2">Más vendido</span>
+                            <span class="position-absolute top-0 end-0 badge bg-dark m-2">Conectividad</span>
+                        </div>
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title fw-bold">Hub USB-C 7 en 1</h5>
+                            <p class="card-text text-muted small flex-grow-1">
+                                HDMI 4K, 3× USB-A, SD/MicroSD, USB-C PD 100W. Compatible MacBook/iPad.
+                            </p>
+                            <div class="mb-2">
+                                <span class="text-warning">
+                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star"></i>
+                                </span>
+                                <small class="text-muted ms-1">(89)</small>
+                            </div>
+                            <div class="mb-3">
+                                <span class="fs-5 fw-bold text-primary">49,99 €</span>
+                            </div>
+                            <div class="d-grid gap-2">
+                                <button type="button" class="btn btn-primary btn-add-cart">
+                                    <i class="bi bi-cart-plus me-1"></i>Añadir al carrito
+                                </button>
+                                <button type="button" class="btn btn-outline-secondary btn-sm"
+                                        data-bs-toggle="modal" data-bs-target="#modal-hub">
+                                    <i class="bi bi-eye me-1"></i>Ver detalles
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ── Producto 4: Smartwatch ── -->
+                <div class="col">
+                    <div class="card h-100 product-card border-0 shadow-sm">
+                        <div class="position-relative">
+                            <img src="https://placehold.co/400x260/4a148c/e040fb?text=Smartwatch+Series+5"
+                                 class="card-img-top" alt="Smartwatch Series 5 Ultra">
+                            <span class="position-absolute top-0 start-0 badge bg-warning text-dark m-2">Nuevo</span>
+                            <span class="position-absolute top-0 end-0 badge bg-dark m-2">Wearables</span>
+                        </div>
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title fw-bold">Smartwatch Series 5 Ultra</h5>
+                            <p class="card-text text-muted small flex-grow-1">
+                                Pantalla AMOLED 1,9", GPS, SpO₂, frecuencia cardíaca, 7 días de batería.
+                            </p>
+                            <div class="mb-2">
+                                <span class="text-warning">
+                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-half"></i>
+                                </span>
+                                <small class="text-muted ms-1">(67)</small>
+                            </div>
+                            <div class="mb-3">
+                                <span class="fs-5 fw-bold text-primary">199,99 €</span>
+                            </div>
+                            <div class="d-grid gap-2">
+                                <button type="button" class="btn btn-primary btn-add-cart">
+                                    <i class="bi bi-cart-plus me-1"></i>Añadir al carrito
+                                </button>
+                                <button type="button" class="btn btn-outline-secondary btn-sm"
+                                        data-bs-toggle="modal" data-bs-target="#modal-smartwatch">
+                                    <i class="bi bi-eye me-1"></i>Ver detalles
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ── Producto 5: SSD Portátil ── -->
+                <div class="col">
+                    <div class="card h-100 product-card border-0 shadow-sm">
+                        <div class="position-relative">
+                            <img src="https://placehold.co/400x260/b71c1c/ef9a9a?text=SSD+Portatil+1TB"
+                                 class="card-img-top" alt="SSD Portátil 1TB">
+                            <span class="position-absolute top-0 end-0 badge bg-dark m-2">Almacenamiento</span>
+                        </div>
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title fw-bold">SSD Portátil 1 TB</h5>
+                            <p class="card-text text-muted small flex-grow-1">
+                                Lectura 1050 MB/s, resistente a golpes y agua (IP55), USB 3.2 Gen 2.
+                            </p>
+                            <div class="mb-2">
+                                <span class="text-warning">
+                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                </span>
+                                <small class="text-muted ms-1">(312)</small>
+                            </div>
+                            <div class="mb-3">
+                                <span class="fs-5 fw-bold text-primary">89,99 €</span>
+                            </div>
+                            <div class="d-grid gap-2">
+                                <button type="button" class="btn btn-primary btn-add-cart">
+                                    <i class="bi bi-cart-plus me-1"></i>Añadir al carrito
+                                </button>
+                                <button type="button" class="btn btn-outline-secondary btn-sm"
+                                        data-bs-toggle="modal" data-bs-target="#modal-ssd">
+                                    <i class="bi bi-eye me-1"></i>Ver detalles
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ── Producto 6: Webcam 4K ── -->
+                <div class="col">
+                    <div class="card h-100 product-card border-0 shadow-sm">
+                        <div class="position-relative">
+                            <img src="https://placehold.co/400x260/1b5e20/a5d6a7?text=Webcam+4K+Pro"
+                                 class="card-img-top" alt="Webcam 4K Ultra HD">
+                            <span class="position-absolute top-0 end-0 badge bg-dark m-2">Cámaras</span>
+                        </div>
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title fw-bold">Webcam 4K Ultra HD</h5>
+                            <p class="card-text text-muted small flex-grow-1">
+                                Resolución 4K/30fps, autoenfoque IA, micrófono estéreo con reducción de ruido.
+                            </p>
+                            <div class="mb-2">
+                                <span class="text-warning">
+                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star"></i>
+                                </span>
+                                <small class="text-muted ms-1">(54)</small>
+                            </div>
+                            <div class="mb-3">
+                                <span class="fs-5 fw-bold text-primary">119,99 €</span>
+                            </div>
+                            <div class="d-grid gap-2">
+                                <button type="button" class="btn btn-primary btn-add-cart">
+                                    <i class="bi bi-cart-plus me-1"></i>Añadir al carrito
+                                </button>
+                                <button type="button" class="btn btn-outline-secondary btn-sm"
+                                        data-bs-toggle="modal" data-bs-target="#modal-webcam">
+                                    <i class="bi bi-eye me-1"></i>Ver detalles
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ── Producto 7: Mouse Ergonómico ── -->
+                <div class="col">
+                    <div class="card h-100 product-card border-0 shadow-sm">
+                        <div class="position-relative">
+                            <img src="https://placehold.co/400x260/37474f/90a4ae?text=Mouse+Ergonomico"
+                                 class="card-img-top" alt="Mouse Ergonómico Pro">
+                            <span class="position-absolute top-0 end-0 badge bg-dark m-2">Periféricos</span>
+                        </div>
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title fw-bold">Mouse Ergonómico Pro</h5>
+                            <p class="card-text text-muted small flex-grow-1">
+                                Diseño vertical, sensor óptico 4000 DPI, 6 botones programables, inalámbrico.
+                            </p>
+                            <div class="mb-2">
+                                <span class="text-warning">
+                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-half"></i>
+                                </span>
+                                <small class="text-muted ms-1">(198)</small>
+                            </div>
+                            <div class="mb-3">
+                                <span class="fs-5 fw-bold text-primary">59,99 €</span>
+                                <span class="text-muted text-decoration-line-through ms-2 small">74,99 €</span>
+                            </div>
+                            <div class="d-grid gap-2">
+                                <button type="button" class="btn btn-primary btn-add-cart">
+                                    <i class="bi bi-cart-plus me-1"></i>Añadir al carrito
+                                </button>
+                                <button type="button" class="btn btn-outline-secondary btn-sm"
+                                        data-bs-toggle="modal" data-bs-target="#modal-mouse">
+                                    <i class="bi bi-eye me-1"></i>Ver detalles
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ── Producto 8: Monitor IPS 27" ── -->
+                <div class="col">
+                    <div class="card h-100 product-card border-0 shadow-sm">
+                        <div class="position-relative">
+                            <img src="https://placehold.co/400x260/0d47a1/82b1ff?text=Monitor+27+4K"
+                                 class="card-img-top" alt="Monitor IPS 27 pulgadas 4K">
+                            <span class="position-absolute top-0 start-0 badge bg-danger m-2">−15%</span>
+                            <span class="position-absolute top-0 end-0 badge bg-dark m-2">Monitores</span>
+                        </div>
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title fw-bold">Monitor IPS 27" 4K</h5>
+                            <p class="card-text text-muted small flex-grow-1">
+                                Panel IPS 4K UHD, 144 Hz, 1 ms, HDR400. 2× HDMI + DisplayPort, compatible VESA.
+                            </p>
+                            <div class="mb-2">
+                                <span class="text-warning">
+                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star"></i>
+                                </span>
+                                <small class="text-muted ms-1">(76)</small>
+                            </div>
+                            <div class="mb-3">
+                                <span class="fs-5 fw-bold text-primary">349,99 €</span>
+                                <span class="text-muted text-decoration-line-through ms-2 small">411,99 €</span>
+                            </div>
+                            <div class="d-grid gap-2">
+                                <button type="button" class="btn btn-primary btn-add-cart">
+                                    <i class="bi bi-cart-plus me-1"></i>Añadir al carrito
+                                </button>
+                                <button type="button" class="btn btn-outline-secondary btn-sm"
+                                        data-bs-toggle="modal" data-bs-target="#modal-monitor">
+                                    <i class="bi bi-eye me-1"></i>Ver detalles
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div><!-- /row productos -->
+
+            <!-- Botón "Ver todos" -->
+            <div class="text-center mt-5">
+                <button class="btn btn-outline-primary btn-lg px-5">
+                    <i class="bi bi-grid me-2"></i>Ver todos los productos
+                </button>
+            </div>
+
+        </div><!-- /container -->
+    </section>
+
+
+    <!-- ============================================================
+         NEWSLETTER: formulario con validación de Bootstrap
+         ============================================================ -->
+    <section id="newsletter" class="newsletter-section py-5 text-white">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <h2 class="fw-bold mb-2">
+                        <i class="bi bi-envelope-heart me-2"></i>¡Suscríbete a TechGear!
+                    </h2>
+                    <p class="lead mb-4 opacity-75">
+                        Recibe las mejores ofertas, novedades y descuentos exclusivos directamente en tu bandeja de entrada.
+                    </p>
+
+                    <!-- Alerta de éxito (oculta hasta envío correcto) -->
+                    <div id="newsletterSuccess" class="alert alert-success d-none" role="alert">
+                        <i class="bi bi-check-circle-fill me-2"></i>
+                        <strong>¡Suscripción completada!</strong> Pronto recibirás nuestras mejores ofertas.
+                    </div>
+
+                    <form id="newsletterForm" class="needs-validation" novalidate>
+                        <div class="row g-3 justify-content-center">
+                            <div class="col-sm-5">
+                                <input type="text"
+                                       class="form-control form-control-lg"
+                                       id="nombreInput"
+                                       placeholder="Tu nombre"
+                                       required
+                                       minlength="2">
+                                <div class="invalid-feedback text-start">
+                                    Por favor introduce tu nombre (mín. 2 caracteres).
+                                </div>
+                                <div class="valid-feedback text-start">¡Perfecto!</div>
+                            </div>
+                            <div class="col-sm-5">
+                                <input type="email"
+                                       class="form-control form-control-lg"
+                                       id="emailInput"
+                                       placeholder="tu@email.com"
+                                       required>
+                                <div class="invalid-feedback text-start">
+                                    Por favor introduce un email válido.
+                                </div>
+                                <div class="valid-feedback text-start">¡Email correcto!</div>
+                            </div>
+                            <div class="col-sm-2">
+                                <button type="submit" class="btn btn-dark btn-lg w-100 fw-bold">
+                                    <i class="bi bi-send-fill"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-center gap-2 mt-3">
+                            <input class="form-check-input mt-0 flex-shrink-0"
+                                   type="checkbox"
+                                   id="privacyCheck"
+                                   required>
+                            <label class="form-check-label small" for="privacyCheck">
+                                Acepto la
+                                <a href="#" class="text-white fw-bold">Política de Privacidad</a>
+                                y el envío de comunicaciones comerciales.
+                            </label>
+                        </div>
+                        <div id="privacyError" class="text-warning small mt-1 d-none">
+                            Debes aceptar los términos para continuar.
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================================
+         FOOTER: 4 columnas con Grid de Bootstrap
+         ============================================================ -->
+    <footer class="footer-bg text-white pt-5 pb-3">
+        <div class="container">
+            <div class="row g-4">
+
+                <!-- Columna 1: Marca -->
+                <div class="col-12 col-md-6 col-lg-3">
+                    <h5 class="fw-bold mb-3">
+                        <i class="bi bi-cpu-fill me-2 text-info"></i>Tech<span class="text-info">Gear</span>
+                    </h5>
+                    <p class="text-white-50 small">
+                        Tu tienda de gadgets tecnológicos de confianza. Calidad, precio y servicio en un solo lugar desde 2020.
+                    </p>
+                    <div class="d-flex gap-3 mt-3">
+                        <a href="#" class="text-white-50 fs-5 social-link" aria-label="Facebook">
+                            <i class="bi bi-facebook"></i>
+                        </a>
+                        <a href="#" class="text-white-50 fs-5 social-link" aria-label="Instagram">
+                            <i class="bi bi-instagram"></i>
+                        </a>
+                        <a href="#" class="text-white-50 fs-5 social-link" aria-label="Twitter/X">
+                            <i class="bi bi-twitter-x"></i>
+                        </a>
+                        <a href="#" class="text-white-50 fs-5 social-link" aria-label="YouTube">
+                            <i class="bi bi-youtube"></i>
+                        </a>
+                        <a href="#" class="text-white-50 fs-5 social-link" aria-label="TikTok">
+                            <i class="bi bi-tiktok"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Columna 2: Tienda -->
+                <div class="col-6 col-lg-2 offset-lg-1">
+                    <h6 class="text-uppercase fw-bold mb-3 text-info">Tienda</h6>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#productos" class="text-white-50 text-decoration-none footer-link small">Todos los productos</a></li>
+                        <li class="mb-2"><a href="#ofertas"   class="text-white-50 text-decoration-none footer-link small">Ofertas y descuentos</a></li>
+                        <li class="mb-2"><a href="#"          class="text-white-50 text-decoration-none footer-link small">Novedades</a></li>
+                        <li class="mb-2"><a href="#"          class="text-white-50 text-decoration-none footer-link small">Más vendidos</a></li>
+                        <li class="mb-2"><a href="#"          class="text-white-50 text-decoration-none footer-link small">Marcas</a></li>
+                    </ul>
+                </div>
+
+                <!-- Columna 3: Soporte -->
+                <div class="col-6 col-lg-2">
+                    <h6 class="text-uppercase fw-bold mb-3 text-info">Soporte</h6>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none footer-link small">Centro de ayuda</a></li>
+                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none footer-link small">Seguimiento de pedido</a></li>
+                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none footer-link small">Devoluciones</a></li>
+                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none footer-link small">Garantía</a></li>
+                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none footer-link small">Contacto</a></li>
+                    </ul>
+                </div>
+
+                <!-- Columna 4: Contacto -->
+                <div class="col-12 col-lg-3">
+                    <h6 class="text-uppercase fw-bold mb-3 text-info">Contacto</h6>
+                    <ul class="list-unstyled">
+                        <li class="mb-2 text-white-50 small">
+                            <i class="bi bi-geo-alt me-2 text-info"></i>Calle Mayor 123, Madrid, España
+                        </li>
+                        <li class="mb-2 text-white-50 small">
+                            <i class="bi bi-telephone me-2 text-info"></i>+34 900 123 456
+                        </li>
+                        <li class="mb-2 text-white-50 small">
+                            <i class="bi bi-envelope me-2 text-info"></i>soporte@techgear.es
+                        </li>
+                        <li class="mb-2 text-white-50 small">
+                            <i class="bi bi-clock me-2 text-info"></i>Lun–Vie: 9:00 – 20:00
+                        </li>
+                    </ul>
+                </div>
+
+            </div><!-- /row footer -->
+
+            <hr class="border-secondary mt-4">
+
+            <!-- Copyright -->
+            <div class="row align-items-center py-2">
+                <div class="col-md-6 text-center text-md-start">
+                    <small class="text-white-50">© 2025 TechGear. Todos los derechos reservados.</small>
+                </div>
+                <div class="col-md-6 text-center text-md-end mt-2 mt-md-0">
+                    <a href="#" class="text-white-50 text-decoration-none footer-link small me-3">Aviso Legal</a>
+                    <a href="#" class="text-white-50 text-decoration-none footer-link small me-3">Privacidad</a>
+                    <a href="#" class="text-white-50 text-decoration-none footer-link small">Cookies</a>
+                </div>
+            </div>
+
+        </div><!-- /container -->
+    </footer>
+
+
+    <!-- ============================================================
+         MODALES DE PRODUCTO (uno por producto)
+         ============================================================ -->
+
+    <!-- Modal: Auriculares Pro X -->
+    <div class="modal fade" id="modal-auriculares" tabindex="-1"
+         aria-labelledby="label-auriculares" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title fw-bold" id="label-auriculares">Auriculares Pro X</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body pt-0">
+                    <div class="row g-4">
+                        <div class="col-md-5">
+                            <img src="https://placehold.co/400x320/1e3a5f/00d4ff?text=Auriculares+Pro+X"
+                                 class="img-fluid rounded" alt="Auriculares Pro X">
+                        </div>
+                        <div class="col-md-7">
+                            <div class="d-flex flex-wrap gap-2 mb-3">
+                                <span class="badge bg-danger">−40%</span>
+                                <span class="badge bg-secondary">Audio</span>
+                                <span class="text-warning small">
+                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-half"></i>
+                                </span>
+                                <small class="text-muted">4,5/5 · 128 opiniones</small>
+                            </div>
+                            <p class="text-muted small">
+                                Experimenta el sonido como nunca antes. Los Auriculares Pro X combinan tecnología ANC de última generación con un sonido Hi-Fi excepcional en un diseño ultraligero.
+                            </p>
+                            <ul class="list-unstyled small">
+                                <li class="mb-1"><i class="bi bi-check-circle-fill text-success me-2"></i>Cancelación activa de ruido (ANC)</li>
+                                <li class="mb-1"><i class="bi bi-check-circle-fill text-success me-2"></i>30 h de batería (ANC off: 40 h)</li>
+                                <li class="mb-1"><i class="bi bi-check-circle-fill text-success me-2"></i>Bluetooth 5.3 — multiconexión 2 dispositivos</li>
+                                <li class="mb-1"><i class="bi bi-check-circle-fill text-success me-2"></i>Drivers de 40 mm con bajos profundos</li>
+                                <li class="mb-1"><i class="bi bi-check-circle-fill text-success me-2"></i>Micrófono con reducción de ruido para llamadas</li>
+                                <li class="mb-1"><i class="bi bi-check-circle-fill text-success me-2"></i>Carga rápida: 10 min → 3 h de uso</li>
+                            </ul>
+                            <div class="mt-3">
+                                <span class="text-muted text-decoration-line-through small">133,99 €</span>
+                                <span class="fs-3 fw-bold text-primary ms-2">79,99 €</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer border-0 pt-0">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary btn-add-cart" data-bs-dismiss="modal">
+                        <i class="bi bi-cart-plus me-1"></i>Añadir al carrito
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Teclado Mecánico RGB K500 -->
+    <div class="modal fade" id="modal-teclado" tabindex="-1"
+         aria-labelledby="label-teclado" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title fw-bold" id="label-teclado">Teclado Mecánico RGB K500</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body pt-0">
+                    <div class="row g-4">
+                        <div class="col-md-5">
+                            <img src="https://placehold.co/400x320/1a1a2e/7c4dff?text=Teclado+RGB+K500"
+                                 class="img-fluid rounded" alt="Teclado K500">
+                        </div>
+                        <div class="col-md-7">
+                            <div class="d-flex flex-wrap gap-2 mb-3">
+                                <span class="badge bg-secondary">Teclados</span>
+                                <span class="text-warning small">
+                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                </span>
+                                <small class="text-muted">5/5 · 245 opiniones</small>
+                            </div>
+                            <p class="text-muted small">
+                                El teclado mecánico definitivo para gamers y profesionales. Formato TKL sin teclado numérico para mayor espacio en el escritorio.
+                            </p>
+                            <ul class="list-unstyled small">
+                                <li class="mb-1"><i class="bi bi-check-circle-fill text-success me-2"></i>Switches Cherry MX Red (lineales, silenciosos)</li>
+                                <li class="mb-1"><i class="bi bi-check-circle-fill text-success me-2"></i>Iluminación RGB por tecla, 16 M de colores</li>
+                                <li class="mb-1"><i class="bi bi-check-circle-fill text-success me-2"></i>Cuerpo en aluminio anodizado</li>
+                                <li class="mb-1"><i class="bi bi-check-circle-fill text-success me-2"></i>N-Key Rollover — anti-ghosting completo</li>
+                                <li class="mb-1"><i class="bi bi-check-circle-fill text-success me-2"></i>Cable USB-C desmontable y trenzado</li>
+                                <li class="mb-1"><i class="bi bi-check-circle-fill text-success me-2"></i>Reposamuñecas magnético incluido</li>
+                            </ul>
+                            <div class="mt-3">
+                                <span class="fs-3 fw-bold text-primary">149,99 €</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer border-0 pt-0">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary btn-add-cart" data-bs-dismiss="modal">
+                        <i class="bi bi-cart-plus me-1"></i>Añadir al carrito
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Hub USB-C 7 en 1 -->
+    <div class="modal fade" id="modal-hub" tabindex="-1"
+         aria-labelledby="label-hub" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title fw-bold" id="label-hub">Hub USB-C 7 en 1</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body pt-0">
+                    <div class="row g-4">
+                        <div class="col-md-5">
+                            <img src="https://placehold.co/400x320/00695c/80cbc4?text=Hub+USB-C+7en1"
+                                 class="img-fluid rounded" alt="Hub USB-C 7 en 1">
+                        </div>
+                        <div class="col-md-7">
+                            <div class="d-flex flex-wrap gap-2 mb-3">
+                                <span class="badge bg-success">Más vendido</span>
+                                <span class="badge bg-secondary">Conectividad</span>
+                                <span class="text-warning small">
+                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star"></i>
+                                </span>
+                                <small class="text-muted">4/5 · 89 opiniones</small>
+                            </div>
+                            <p class="text-muted small">
+                                Expande la conectividad de cualquier portátil USB-C con 7 puertos en un dispositivo compacto y plug-and-play. Sin drivers, sin configuración.
+                            </p>
+                            <ul class="list-unstyled small">
+                                <li class="mb-1"><i class="bi bi-check-circle-fill text-success me-2"></i>Salida HDMI 4K @ 30 Hz</li>
+                                <li class="mb-1"><i class="bi bi-check-circle-fill text-success me-2"></i>3× USB-A 3.0 (5 Gbps)</li>
+                                <li class="mb-1"><i class="bi bi-check-circle-fill text-success me-2"></i>Lector SD + MicroSD simultáneo</li>
+                                <li class="mb-1"><i class="bi bi-check-circle-fill text-success me-2"></i>USB-C PD 100W (pass-through)</li>
+                                <li class="mb-1"><i class="bi bi-check-circle-fill text-success me-2"></i>Cuerpo en aluminio con disipación de calor</li>
+                                <li class="mb-1"><i class="bi bi-check-circle-fill text-success me-2"></i>Compatible MacBook, iPad Pro, Windows, ChromeOS</li>
+                            </ul>
+                            <div class="mt-3">
+                                <span class="fs-3 fw-bold text-primary">49,99 €</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer border-0 pt-0">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary btn-add-cart" data-bs-dismiss="modal">
+                        <i class="bi bi-cart-plus me-1"></i>Añadir al carrito
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Smartwatch Series 5 Ultra -->
+    <div class="modal fade" id="modal-smartwatch" tabindex="-1"
+         aria-labelledby="label-smartwatch" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title fw-bold" id="label-smartwatch">Smartwatch Series 5 Ultra</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body pt-0">
+                    <div class="row g-4">
+                        <div class="col-md-5">
+                            <img src="https://placehold.co/400x320/4a148c/e040fb?text=Smartwatch+Series+5"
+                                 class="img-fluid rounded" alt="Smartwatch Series 5 Ultra">
+                        </div>
+                        <div class="col-md-7">
+                            <div class="d-flex flex-wrap gap-2 mb-3">
+                                <span class="badge bg-warning text-dark">Nuevo</span>
+                                <span class="badge bg-secondary">Wearables</span>
+                                <span class="text-warning small">
+                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-half"></i>
+                                </span>
+                                <small class="text-muted">4,5/5 · 67 opiniones</small>
+                            </div>
+                            <p class="text-muted small">
+                                Monitoreo de salud avanzado en tu muñeca. Diseñado para atletas y profesionales que exigen precisión y durabilidad.
+                            </p>
+                            <ul class="list-unstyled small">
+                                <li class="mb-1"><i class="bi bi-check-circle-fill text-success me-2"></i>Pantalla AMOLED 1,9" Always-On</li>
+                                <li class="mb-1"><i class="bi bi-check-circle-fill text-success me-2"></i>GPS + GLONASS integrado</li>
+                                <li class="mb-1"><i class="bi bi-check-circle-fill text-success me-2"></i>Sensor SpO₂ y frecuencia cardíaca 24/7</li>
+                                <li class="mb-1"><i class="bi bi-check-circle-fill text-success me-2"></i>7 días de batería (modo normal)</li>
+                                <li class="mb-1"><i class="bi bi-check-circle-fill text-success me-2"></i>Resistente al agua: 5 ATM (50 m)</li>
+                                <li class="mb-1"><i class="bi bi-check-circle-fill text-success me-2"></i>+100 modos deportivos</li>
+                            </ul>
+                            <div class="mt-3">
+                                <span class="fs-3 fw-bold text-primary">199,99 €</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer border-0 pt-0">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary btn-add-cart" data-bs-dismiss="modal">
+                        <i class="bi bi-cart-plus me-1"></i>Añadir al carrito
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: SSD Portátil 1TB -->
+    <div class="modal fade" id="modal-ssd" tabindex="-1"
+         aria-labelledby="label-ssd" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title fw-bold" id="label-ssd">SSD Portátil 1 TB</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body pt-0">
+                    <div class="row g-4">
+                        <div class="col-md-5">
+                            <img src="https://placehold.co/400x320/b71c1c/ef9a9a?text=SSD+Portatil+1TB"
+                                 class="img-fluid rounded" alt="SSD Portátil 1TB">
+                        </div>
+                        <div class="col-md-7">
+                            <div class="d-flex flex-wrap gap-2 mb-3">
+                                <span class="badge bg-secondary">Almacenamiento</span>
+                                <span class="text-warning small">
+                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                </span>
+                                <small class="text-muted">5/5 · 312 opiniones</small>
+                            </div>
+                            <p class="text-muted small">
+                                Almacena y transfiere grandes archivos a velocidades de vértigo. Diseño ultracompacto con protección máxima para llevarlo a cualquier lugar.
+                            </p>
+                            <ul class="list-unstyled small">
+                                <li class="mb-1"><i class="bi bi-check-circle-fill text-success me-2"></i>Lectura secuencial: 1050 MB/s</li>
+                                <li class="mb-1"><i class="bi bi-check-circle-fill text-success me-2"></i>Escritura secuencial: 1000 MB/s</li>
+                                <li class="mb-1"><i class="bi bi-check-circle-fill text-success me-2"></i>Interfaz USB 3.2 Gen 2 (USB-C)</li>
+                                <li class="mb-1"><i class="bi bi-check-circle-fill text-success me-2"></i>Resistente al agua IP55 y a golpes (1,8 m)</li>
+                                <li class="mb-1"><i class="bi bi-check-circle-fill text-success me-2"></i>Compatible Win, Mac, Android, iPad Pro</li>
+                                <li class="mb-1"><i class="bi bi-check-circle-fill text-success me-2"></i>Cable USB-C y adaptador USB-A incluidos</li>
+                            </ul>
+                            <div class="mt-3">
+                                <span class="fs-3 fw-bold text-primary">89,99 €</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer border-0 pt-0">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary btn-add-cart" data-bs-dismiss="modal">
+                        <i class="bi bi-cart-plus me-1"></i>Añadir al carrito
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Webcam 4K Ultra HD -->
+    <div class="modal fade" id="modal-webcam" tabindex="-1"
+         aria-labelledby="label-webcam" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title fw-bold" id="label-webcam">Webcam 4K Ultra HD</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body pt-0">
+                    <div class="row g-4">
+                        <div class="col-md-5">
+                            <img src="https://placehold.co/400x320/1b5e20/a5d6a7?text=Webcam+4K+Pro"
+                                 class="img-fluid rounded" alt="Webcam 4K Ultra HD">
+                        </div>
+                        <div class="col-md-7">
+                            <div class="d-flex flex-wrap gap-2 mb-3">
+                                <span class="badge bg-secondary">Cámaras</span>
+                                <span class="text-warning small">
+                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star"></i>
+                                </span>
+                                <small class="text-muted">4/5 · 54 opiniones</small>
+                            </div>
+                            <p class="text-muted small">
+                                Eleva la calidad de tus videollamadas y streamings con imagen 4K nítida y sonido cristalino. Perfecta para teletrabajo, creadores de contenido y gaming.
+                            </p>
+                            <ul class="list-unstyled small">
+                                <li class="mb-1"><i class="bi bi-check-circle-fill text-success me-2"></i>Resolución 4K UHD @ 30 fps / 1080p @ 60 fps</li>
+                                <li class="mb-1"><i class="bi bi-check-circle-fill text-success me-2"></i>Autoenfoque con IA (HDR automático)</li>
+                                <li class="mb-1"><i class="bi bi-check-circle-fill text-success me-2"></i>Micrófono estéreo con reducción de ruido</li>
+                                <li class="mb-1"><i class="bi bi-check-circle-fill text-success me-2"></i>Ángulo de visión 90° ajustable</li>
+                                <li class="mb-1"><i class="bi bi-check-circle-fill text-success me-2"></i>Clip universal + trípode incluido</li>
+                                <li class="mb-1"><i class="bi bi-check-circle-fill text-success me-2"></i>Compatible Zoom, Teams, OBS, Twitch</li>
+                            </ul>
+                            <div class="mt-3">
+                                <span class="fs-3 fw-bold text-primary">119,99 €</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer border-0 pt-0">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary btn-add-cart" data-bs-dismiss="modal">
+                        <i class="bi bi-cart-plus me-1"></i>Añadir al carrito
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Mouse Ergonómico Pro -->
+    <div class="modal fade" id="modal-mouse" tabindex="-1"
+         aria-labelledby="label-mouse" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title fw-bold" id="label-mouse">Mouse Ergonómico Pro</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body pt-0">
+                    <div class="row g-4">
+                        <div class="col-md-5">
+                            <img src="https://placehold.co/400x320/37474f/90a4ae?text=Mouse+Ergonomico"
+                                 class="img-fluid rounded" alt="Mouse Ergonómico Pro">
+                        </div>
+                        <div class="col-md-7">
+                            <div class="d-flex flex-wrap gap-2 mb-3">
+                                <span class="badge bg-secondary">Periféricos</span>
+                                <span class="text-warning small">
+                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-half"></i>
+                                </span>
+                                <small class="text-muted">4,5/5 · 198 opiniones</small>
+                            </div>
+                            <p class="text-muted small">
+                                Diseño vertical que reduce la tensión en la muñeca hasta un 57%. Ideal para jornadas largas de trabajo o gaming. Conexión 2.4 GHz sin lag perceptible.
+                            </p>
+                            <ul class="list-unstyled small">
+                                <li class="mb-1"><i class="bi bi-check-circle-fill text-success me-2"></i>Diseño vertical ergonómico (mano derecha)</li>
+                                <li class="mb-1"><i class="bi bi-check-circle-fill text-success me-2"></i>Sensor óptico 4000 DPI ajustable</li>
+                                <li class="mb-1"><i class="bi bi-check-circle-fill text-success me-2"></i>6 botones programables</li>
+                                <li class="mb-1"><i class="bi bi-check-circle-fill text-success me-2"></i>Receptor nano USB 2.4 GHz</li>
+                                <li class="mb-1"><i class="bi bi-check-circle-fill text-success me-2"></i>Batería recargable: 90 días autonomía</li>
+                                <li class="mb-1"><i class="bi bi-check-circle-fill text-success me-2"></i>Compatible Win, Mac, Linux</li>
+                            </ul>
+                            <div class="mt-3">
+                                <span class="text-muted text-decoration-line-through small">74,99 €</span>
+                                <span class="fs-3 fw-bold text-primary ms-2">59,99 €</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer border-0 pt-0">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary btn-add-cart" data-bs-dismiss="modal">
+                        <i class="bi bi-cart-plus me-1"></i>Añadir al carrito
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Monitor IPS 27" 4K -->
+    <div class="modal fade" id="modal-monitor" tabindex="-1"
+         aria-labelledby="label-monitor" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title fw-bold" id="label-monitor">Monitor IPS 27" 4K</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body pt-0">
+                    <div class="row g-4">
+                        <div class="col-md-5">
+                            <img src="https://placehold.co/400x320/0d47a1/82b1ff?text=Monitor+27+4K"
+                                 class="img-fluid rounded" alt="Monitor IPS 27 4K">
+                        </div>
+                        <div class="col-md-7">
+                            <div class="d-flex flex-wrap gap-2 mb-3">
+                                <span class="badge bg-danger">−15%</span>
+                                <span class="badge bg-secondary">Monitores</span>
+                                <span class="text-warning small">
+                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star"></i>
+                                </span>
+                                <small class="text-muted">4/5 · 76 opiniones</small>
+                            </div>
+                            <p class="text-muted small">
+                                Productividad y entretenimiento en su máxima expresión. Panel IPS de 27" con resolución 4K, alta tasa de refresco y colores precisos para diseño y gaming.
+                            </p>
+                            <ul class="list-unstyled small">
+                                <li class="mb-1"><i class="bi bi-check-circle-fill text-success me-2"></i>Panel IPS 4K UHD (3840×2160)</li>
+                                <li class="mb-1"><i class="bi bi-check-circle-fill text-success me-2"></i>144 Hz, 1 ms (MPRT), FreeSync Premium</li>
+                                <li class="mb-1"><i class="bi bi-check-circle-fill text-success me-2"></i>HDR400, cobertura sRGB 99%</li>
+                                <li class="mb-1"><i class="bi bi-check-circle-fill text-success me-2"></i>2× HDMI 2.1 + 1× DisplayPort 1.4</li>
+                                <li class="mb-1"><i class="bi bi-check-circle-fill text-success me-2"></i>Hub USB × 4 integrado</li>
+                                <li class="mb-1"><i class="bi bi-check-circle-fill text-success me-2"></i>Soporte VESA 100×100 incluido</li>
+                            </ul>
+                            <div class="mt-3">
+                                <span class="text-muted text-decoration-line-through small">411,99 €</span>
+                                <span class="fs-3 fw-bold text-primary ms-2">349,99 €</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer border-0 pt-0">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary btn-add-cart" data-bs-dismiss="modal">
+                        <i class="bi bi-cart-plus me-1"></i>Añadir al carrito
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ============================================================
+         Bootstrap 5 JS Bundle (Popper incluido)
+         ============================================================ -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc4s9bIOgUxi8T/jzmFSZzA/CEy7BYX8m7IW7fJcYFq"
+            crossorigin="anonymous"></script>
+
+    <script>
+        // ── Toast: mostrar al hacer clic en cualquier "Añadir al carrito" ──
+        const cartToast = new bootstrap.Toast(document.getElementById('cartToast'));
+        document.querySelectorAll('.btn-add-cart').forEach(function(btn) {
+            btn.addEventListener('click', function() { cartToast.show(); });
+        });
+
+        // ── Newsletter: validación nativa de Bootstrap ──
+        (function() {
+            'use strict';
+            const form = document.getElementById('newsletterForm');
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                if (!form.checkValidity()) {
+                    form.classList.add('was-validated');
+                    return;
+                }
+                form.classList.add('was-validated');
+                form.classList.add('d-none');
+                document.getElementById('newsletterSuccess').classList.remove('d-none');
+            });
+        })();
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 3 - Valor en Controles</title>
+    <link rel="stylesheet" href="ejercicio3.css">
+</head>
+<body>
+
+    <div class="contenedor">
+        <table class="tabla-principal">
+            <thead>
+                <tr>
+                    <th colspan="2" class="cabecera">VALOR EN CONTROLES</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="etiqueta"><strong>Caja texto:</strong></td>
+                    <td><input type="text" id="cajaTexto" class="input-naranja"></td>
+                </tr>
+                <tr>
+                    <td class="etiqueta"><strong>Caja número:</strong></td>
+                    <td><input type="number" id="cajaNumero" class="input-naranja"></td>
+                </tr>
+                <tr>
+                    <td class="etiqueta"><strong>Caja password:</strong></td>
+                    <td><input type="password" id="cajaPassword" class="input-naranja"></td>
+                </tr>
+                <tr>
+                    <td class="etiqueta"><strong>Caja fecha:</strong></td>
+                    <td><input type="date" id="cajaFecha" class="input-naranja"></td>
+                </tr>
+                <tr>
+                    <td class="etiqueta"><strong>Caja hora:</strong></td>
+                    <td><input type="time" id="cajaHora" class="input-naranja"></td>
+                </tr>
+                <tr>
+                    <td class="etiqueta"><strong>Caja radio:</strong></td>
+                    <td><input type="radio" id="cajaRadio" name="radio"></td>
+                </tr>
+                <tr>
+                    <td class="etiqueta"><strong>Caja check:</strong></td>
+                    <td><input type="checkbox" id="cajaCheck"></td>
+                </tr>
+                <tr>
+                    <td class="etiqueta"><strong>Caja select:</strong></td>
+                    <td>
+                        <select id="cajaSelect" class="input-naranja">
+                            <option value="Opción 1">Opción 1</option>
+                            <option value="Opción 2">Opción 2</option>
+                            <option value="Opción 3">Opción 3</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="fila-boton">
+                        <button id="btnCapturar" onclick="capturarValores()">Capturar valores</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="ejercicio3.js"></script>
+</body>
+</html>

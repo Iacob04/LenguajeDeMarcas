@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de tareas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 480px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        h1 { font-size: 22px; margin-bottom: 20px; }
+        input[type="text"] {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+            width: 240px;
+            margin-right: 6px;
+        }
+        button {
+            padding: 8px 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 13px;
+            background: white;
+            margin-right: 4px;
+        }
+        button:hover { background: #f0f0f0; }
+        button.activo { background: #1a6e2e; color: white; border-color: #1a6e2e; }
+        #error-msg { color: red; font-size: 13px; min-height: 18px; margin: 6px 0; }
+        #filtros { margin: 12px 0 8px; }
+        #pending-line { font-size: 13px; color: #555; margin-bottom: 8px; }
+        ul { list-style: none; padding: 0; margin: 0; }
+        li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 9px 10px;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+        li.completada {
+            text-decoration: line-through;
+            color: #999;
+            background: #f9f9f9;
+        }
+        li .tarea-texto { flex: 1; }
+        li button {
+            font-size: 12px;
+            padding: 4px 8px;
+            color: #c00;
+            border-color: #c00;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Lista de tareas</h1>
+
+<div>
+    <input type="text" id="task-input" placeholder="Nueva tarea...">
+    <button id="add-btn">Añadir</button>
+</div>
+
+<p id="error-msg"></p>
+
+<div id="filtros">
+    <button id="filter-all" class="activo">Todas</button>
+    <button id="filter-pending">Pendientes</button>
+    <button id="filter-done">Completadas</button>
+</div>
+
+<p id="pending-line">Pendientes: <span id="pending-count">0</span></p>
+
+<ul id="task-list"></ul>
+
+<script src="app.js"></script>
+</body>
+</html>

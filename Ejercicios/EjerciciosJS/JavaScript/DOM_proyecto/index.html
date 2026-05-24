@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="javaScripts.js"></script>
+</head>
+
+<body>
+    <div class="divPrincipal">
+        <div class="divTitulo">ADIVINA EL NUMERO</div>
+    <table border="1">
+        <tr>
+            <td>Numero
+                <input type="number" id="numeroUsuario" min="1" max="100">
+            </td>
+            <td>
+                <input type="button" value="Jugar" onclick="jugar()">
+            </td>
+            <td id="resultado"></td>
+        </tr>
+        <tr>
+            <td id="intentosTexto" colspan="3">Intentos realizados:</td>
+        </tr>
+    </table>
+    <br>
+    <table  class="tablas" border="1">
+        <tr >
+            <td class="tdNumero">1</td>
+            <td class="tdNumero">2</td>
+            <td class="tdNumero">3</td>
+            <td class="tdNumero">4</td>
+            <td class="tdNumero">5</td>
+            <td class="tdNumero">6</td>
+            <td class="tdNumero">7</td>
+            <td class="tdNumero">8</td>
+            <td class="tdNumero">9</td>
+            <td class="tdNumero">10</td>
+        </tr>
+        <tr>
+            <td class="tdX">x</td>
+            <td class="tdX">x</td>
+            <td class="tdX">x</td>
+            <td class="tdX">x</td>
+            <td class="tdX">x</td>
+            <td class="tdX">x</td>
+            <td class="tdX">x</td>
+            <td class="tdX">x</td>
+            <td class="tdX">x</td>
+            <td class="tdX">x</td>
+        </tr>
+    </table>
+</div>
+</body>
+
+</html>

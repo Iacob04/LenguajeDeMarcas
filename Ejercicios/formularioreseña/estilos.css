@@ -1,0 +1,104 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #A9B6C2;
+  margin: 0;
+  padding: 0;
+}
+
+#formularioCompleto {
+  background-color: white;
+  border-radius: 15px;
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 30px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+#titulo {
+  background-color: #1F2D3D;
+  border-radius: 15px 15px 0 0;
+  padding: 15px;
+  margin: -30px;
+  text-align: center;
+  color: white;
+}
+
+#txtform {
+  text-align: center;
+  margin-top: 55px;
+}
+
+#descripcion {
+  text-align: center;
+  font-style: italic;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+input, select, textarea {
+  font-size: 16px;
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: #1F2D3D;
+  background-color: #eef3f8;
+  outline: none;
+}
+
+input:required:invalid {
+  border-color: red;
+}
+
+input:required:valid {
+  border-color: green;
+}
+
+.radio-group {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.botones {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+button {
+  font-size: 16px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.enviar {
+  background-color: #007BFF;
+  color: white;
+}
+
+.enviar:hover {
+  background-color: #0056b3;
+}
+
+.cancelar {
+  background-color: #ccc;
+  color: black;
+}
+
+.cancelar:hover {
+  background-color: #999;
+}

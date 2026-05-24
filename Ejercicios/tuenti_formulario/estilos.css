@@ -1,0 +1,86 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #0376d4;
+}
+
+.formulario {
+    width: 421px;
+    margin: 40px auto;
+    background-color: white;
+    padding: 80px;
+    border-radius: 6px;
+}
+
+.logo {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.logo img {
+    max-width: 300px;
+}
+
+.idioma {
+    width: 150px;
+    text-align: right;
+    margin-bottom: 10px;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+input, select {
+    width: 100%;
+    padding: 6px;
+    margin-top: 4px;
+}
+
+.fila {
+    display: flex;
+    gap: 10px;
+}
+
+.sexo-linea {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.sexo-titulo {
+    font-weight: bold;
+    min-width: 60px; /* alinea con otros labels */
+}
+
+.sexo-linea label {
+    font-weight: normal;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+
+
+.condiciones {
+    font-size: 13px;
+    margin-top: 10px;
+}
+
+.condiciones a {
+    color: #1c88c9;
+    text-decoration: none;
+}
+
+button {
+    width: 100%;
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #0382d1;
+    color: white;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+}

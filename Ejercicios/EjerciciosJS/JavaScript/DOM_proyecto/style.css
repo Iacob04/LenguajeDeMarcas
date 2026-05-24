@@ -1,0 +1,37 @@
+td{
+    padding: 9px;
+    text-align: center;
+    border: 2px solid black;
+}
+.tdNumero{
+    background-color: rgb(179, 179, 179);
+}
+
+table{
+    border: 2px solid;
+    border-color: black ;
+}
+
+.divTitulo{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    background-color: blueviolet;
+    margin: 4%;
+}
+.divPrincipal{
+    align-items: center;       
+    height: 50%;
+    width: 50%;
+    margin: 10%; 
+    border: 1px solid;
+    padding: 2%;
+}
+#resultado{
+    width:  200px;
+}
+table{
+    margin: 0 auto; /*PARA CENTRAR*/
+    border-collapse: collapse;
+
+}

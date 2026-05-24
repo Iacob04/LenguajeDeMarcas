@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Ejercicio 1</title>
+<style>
+* {
+font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+form {
+width: 450px;
+border: 1px solid;
+border-radius: 5px;
+border-color: #0c8f1b;
+border-width: 5px;
+
+}
+div {
+padding: 5px;
+margin: 10px;
+}
+label {
+display: block;
+}
+input, select {
+height: 25px;
+border-radius: 5px;
+}
+button {
+color: white;
+border-color: #0c8f1b;
+border-radius: 5px;
+background-color: #0c8f1b;
+padding: 5px;
+margin: 10px;
+}
+#error{
+display: none;
+color: rgb(237, 68, 68);
+}
+#errorP{
+display: none;
+color: rgb(237, 68, 68);
+}
+</style>
+</head>
+<body>
+
+<form name="form1" onsubmit='return validar();'>
+<h1>Solicitud de informacion</h1>
+    <div>
+<!--onsubmit='return validar();' significa:
+
+onsubmit → cuando el usuario pulsa el botón de enviar
+return validar() → ejecuta la función y usa lo que devuelve
+
+Si devuelve false → el formulario no se envía
+Si devuelve true → el formulario sí se envía
+
+Sin el return delante no funcionaría — el formulario se enviaría siempre aunque validar() devuelva false.-->
+<label for='nombre'>Nombre *</label>
+<input style="width: 100%;" type='text' name='nombre' id='nombre' />
+</div>
+
+
+<div>
+<label for='Email'>Email <span style="color: red;">*</span></label>
+<input style="width: 100%;" type='text' name='email' id='email' />
+</div>
+
+<div>
+<label for='estudios'>Asunto *</label>
+<select style="width: 100%;" onchange="mostrarSolicitud()" id='asunto' name='estudios' />
+<option value=''>Selecciona</option>
+<option value="info">Pedir informacion</option>
+<option value="estado">Estado de una Solicitud</option>
+<option value="otras">OTRAS</option>
+</select>
+</div>
+<div id="bloqueSolicitud" style="display:none;">
+    <label>Nº Solicitud *</label>
+    <input type="text" id="numSolicitud" 
+    placeholder="Escribe el nº de solicitud" 
+    style="border: 2px solid red; width:100%;">
+</div>
+<div>
+<label for='TextoArea'>Escribe tu mensaje <span style="color: red;">*</span></label>
+<textarea style="width: 100%;height: 100px;" placeholder="Escribe tu mensaje" id="areaText"></TEXTarea>
+</div>
+<div>
+<span id="error">Algunos campos no son correctos, revísalos</span>
+</div>
+<div>
+<span id="errorP" style="display:none">Las contraseñas no coinciden</span> <!-- Esto hace que oculte la informacion y demas 
+
+display: none oculta completamente el elemento, como si no existiera en la página. No ocupa espacio ni se ve.
+Lo contrario es display: block, que lo hace visible y ocupa su espacio normal
+
+-->
+</div>
+<button style="width: 100%;">enviar</button>
+</form>
+<script src="FormularioEj2.js"></script>
+</body>
+</html>

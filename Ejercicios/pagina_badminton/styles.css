@@ -1,0 +1,445 @@
+/* ============================================================
+   SmashZone – styles.css
+   CSS personalizado (solo lo que Bootstrap no cubre)
+   ============================================================ */
+
+/* ── Variables de marca ── */
+:root {
+  --color-fondo:     #0d1b0f;
+  --color-acento:    #7cfc00;
+  --color-acento2:   #f5a623;
+  --color-surface:   #132315;
+  --color-card:      #182b1a;
+  --color-texto:     #eaf4eb;
+  --color-muted:     #7a9b7d;
+}
+
+/* ── Tipografía base ── */
+body {
+  font-family: 'Nunito', sans-serif;
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+}
+
+h1, h2, h3, h4, h5, .navbar-brand {
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 0.04em;
+}
+
+/* ── Navbar ── */
+.navbar-smash {
+  background-color: rgba(13, 27, 15, 0.96);
+  backdrop-filter: blur(14px);
+  border-bottom: 2px solid rgba(124, 252, 0, 0.15);
+}
+
+.navbar-smash .navbar-brand span {
+  color: var(--color-acento);
+}
+
+.navbar-smash .nav-link {
+  color: var(--color-muted) !important;
+  font-weight: 700;
+  transition: color 0.2s;
+}
+
+.navbar-smash .nav-link:hover,
+.navbar-smash .nav-link.active {
+  color: var(--color-acento) !important;
+}
+
+/* Dropdown personalizado */
+.dropdown-smash {
+  background-color: var(--color-card) !important;
+  border: 1px solid rgba(124, 252, 0, 0.15) !important;
+  border-radius: 12px !important;
+}
+
+/* Botón del carrito */
+.btn-carrito {
+  color: var(--color-acento);
+  border: 2px solid var(--color-acento);
+  border-radius: 8px;
+  padding: 6px 16px;
+  font-weight: 700;
+  background: transparent;
+  transition: background 0.2s, color 0.2s;
+}
+
+.btn-carrito:hover {
+  background: var(--color-acento);
+  color: var(--color-fondo);
+}
+
+/* Icono hamburguesa verde */
+.navbar-toggler {
+  border-color: var(--color-acento);
+}
+
+.navbar-toggler-icon {
+  filter: invert(1) sepia(1) saturate(6) hue-rotate(60deg);
+}
+
+/* ── Hero / Carousel ── */
+.slide-hero {
+  min-height: 540px;
+  display: flex;
+  align-items: center;
+}
+
+.slide-verde  { background: linear-gradient(135deg, #0d1b0f, #0f2d12, #1a4d1d); }
+.slide-naranja { background: linear-gradient(135deg, #0d1b0f, #2a1f00, #4d3800); }
+.slide-azul   { background: linear-gradient(135deg, #0d1b0f, #001a2a, #003d5c); }
+
+.hero-badge {
+  display: inline-block;
+  background: rgba(124, 252, 0, 0.12);
+  border: 1px solid var(--color-acento);
+  color: var(--color-acento);
+  border-radius: 50px;
+  padding: 4px 18px;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 800;
+}
+
+.hero-titulo {
+  font-size: clamp(2.8rem, 6vw, 5rem);
+  line-height: 1;
+}
+
+.hero-titulo .txt-acento  { color: var(--color-acento); }
+.hero-titulo .txt-acento2 { color: var(--color-acento2); }
+.hero-titulo .txt-azul    { color: #38bdf8; }
+
+.hero-imagen {
+  width: 100%;
+  max-width: 380px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: rgba(124, 252, 0, 0.06);
+  border: 2px solid rgba(124, 252, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9rem;
+}
+
+/* Flechas del carrusel en verde */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  filter: invert(1) sepia(1) saturate(6) hue-rotate(60deg);
+}
+
+.carousel-indicators [data-bs-target] {
+  background-color: var(--color-acento);
+}
+
+/* ── Botones hero ── */
+.btn-principal {
+  background: var(--color-acento);
+  color: var(--color-fondo);
+  font-weight: 800;
+  padding: 12px 34px;
+  border-radius: 8px;
+  border: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-principal:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 28px rgba(124, 252, 0, 0.3);
+  color: var(--color-fondo);
+}
+
+.btn-contorno {
+  background: transparent;
+  color: var(--color-texto);
+  border: 2px solid rgba(255, 255, 255, 0.22);
+  font-weight: 700;
+  padding: 12px 28px;
+  border-radius: 8px;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.btn-contorno:hover {
+  border-color: var(--color-texto);
+  color: var(--color-texto);
+}
+
+/* ── Títulos de sección ── */
+.titulo-seccion {
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+.titulo-seccion .txt-acento { color: var(--color-acento); }
+
+.separador {
+  width: 52px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-acento), var(--color-acento2));
+  border-radius: 4px;
+  margin: 0 auto 1rem;
+}
+
+/* ── Pills de categorías ── */
+.pill-cat {
+  background: rgba(124, 252, 0, 0.05);
+  border: 1px solid rgba(124, 252, 0, 0.15);
+  color: var(--color-muted);
+  border-radius: 50px;
+  padding: 6px 20px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.2s;
+}
+
+.pill-cat:hover,
+.pill-cat.activa {
+  background: rgba(124, 252, 0, 0.14);
+  border-color: var(--color-acento);
+  color: var(--color-acento);
+}
+
+/* ── Cards de producto ── */
+.card-producto {
+  background: var(--color-card);
+  border: 1px solid rgba(124, 252, 0, 0.08);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+}
+
+.card-producto:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.5);
+  border-color: rgba(124, 252, 0, 0.35);
+}
+
+.producto-emoji {
+  background: var(--color-surface);
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 5rem;
+  min-height: 175px;
+}
+
+.producto-precio {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--color-acento);
+}
+
+.producto-precio-tachado {
+  font-size: 0.85rem;
+  color: var(--color-muted);
+  text-decoration: line-through;
+}
+
+.estrellas { color: #f5a623; font-size: 0.85rem; }
+
+/* Botón añadir al carrito */
+.btn-anadir {
+  background: linear-gradient(90deg, #4a9900, var(--color-acento));
+  color: var(--color-fondo);
+  border: none;
+  border-radius: 8px;
+  font-weight: 800;
+  width: 100%;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.btn-anadir:hover {
+  opacity: 0.88;
+  transform: scale(1.02);
+  color: var(--color-fondo);
+}
+
+/* Botón ver detalle (ojo) */
+.btn-ojo {
+  background: transparent;
+  color: var(--color-muted);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  font-size: 0.85rem;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.btn-ojo:hover {
+  color: var(--color-texto);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* ── Sección Newsletter ── */
+.seccion-newsletter {
+  background: var(--color-surface);
+  border-top: 1px solid rgba(124, 252, 0, 0.08);
+  border-bottom: 1px solid rgba(124, 252, 0, 0.08);
+}
+
+.tarjeta-newsletter {
+  background: linear-gradient(135deg, #182b1a, #0d1b0f);
+  border: 1px solid rgba(124, 252, 0, 0.18);
+  border-radius: 24px;
+  padding: 3rem 2rem;
+}
+
+/* Campos del formulario en oscuro */
+.input-oscuro {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--color-texto);
+  border-radius: 8px;
+}
+
+.input-oscuro::placeholder { color: var(--color-muted); }
+
+.input-oscuro:focus {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: var(--color-acento);
+  color: var(--color-texto);
+  box-shadow: 0 0 0 3px rgba(124, 252, 0, 0.15);
+}
+
+.input-oscuro.is-valid {
+  border-color: #22c55e;
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.15);
+}
+
+.input-oscuro.is-invalid {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15);
+}
+
+/* Botón suscribirse */
+.btn-suscribir {
+  background: var(--color-acento);
+  color: var(--color-fondo);
+  border: none;
+  border-radius: 8px;
+  font-weight: 800;
+  padding: 12px 32px;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.btn-suscribir:hover {
+  opacity: 0.85;
+  transform: translateY(-1px);
+  color: var(--color-fondo);
+}
+
+/* ── Modal ── */
+.modal-smash .modal-content {
+  background: var(--color-card);
+  border: 1px solid rgba(124, 252, 0, 0.2);
+  border-radius: 20px;
+  color: var(--color-texto);
+}
+
+.modal-smash .modal-header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.modal-smash .modal-footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.modal-emoji-wrap {
+  background: var(--color-surface);
+  border-radius: 16px;
+  padding: 2rem;
+  font-size: 7rem;
+  text-align: center;
+}
+
+/* Fila de especificaciones */
+.spec-fila {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  font-size: 0.9rem;
+}
+
+.spec-etiqueta { color: var(--color-muted); }
+
+/* ── Toast ── */
+.contenedor-toast {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 1100;
+}
+
+.toast-smash {
+  background: var(--color-card);
+  border: 1px solid rgba(124, 252, 0, 0.28);
+  color: var(--color-texto);
+  border-radius: 12px;
+}
+
+.toast-smash .toast-header {
+  background: rgba(124, 252, 0, 0.08);
+  color: var(--color-texto);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px 12px 0 0;
+}
+
+/* ── Footer ── */
+footer {
+  background: var(--color-surface);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.footer-titulo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1rem;
+  letter-spacing: 0.1em;
+  color: var(--color-muted);
+  margin-bottom: 1rem;
+}
+
+.footer-link {
+  color: var(--color-muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 0.5rem;
+  transition: color 0.2s;
+}
+
+.footer-link:hover { color: var(--color-acento); }
+
+.footer-separador { border-top: 1px solid rgba(255, 255, 255, 0.06); }
+
+/* Iconos de redes sociales */
+.btn-social {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--color-muted);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: background 0.2s, color 0.2s;
+}
+
+.btn-social:hover {
+  background: rgba(124, 252, 0, 0.14);
+  color: var(--color-acento);
+}
+
+/* ── Scroll suave ── */
+html { scroll-behavior: smooth; }

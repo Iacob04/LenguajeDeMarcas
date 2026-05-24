@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Buscador de lista</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 500px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        h1 { font-size: 22px; margin-bottom: 20px; }
+        input {
+            padding: 8px;
+            margin-right: 6px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+            width: 220px;
+        }
+        button {
+            padding: 8px 14px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            background: white;
+        }
+        button:hover { background: #f0f0f0; }
+        #count-line { font-size: 13px; color: #555; margin: 10px 0 4px; }
+        #no-results { color: gray; font-size: 13px; margin: 6px 0; }
+        ul { list-style: none; padding: 0; margin: 6px 0; }
+        li {
+            padding: 8px 10px;
+            border-bottom: 1px solid #eee;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Buscador de lista</h1>
+
+<div>
+    <input type="text" id="search-input" placeholder="Buscar...">
+    <button id="clear-btn">Limpiar</button>
+</div>
+
+<p id="count-line">Mostrando: <span id="count">0</span> elementos</p>
+<p id="no-results" style="display:none">Sin resultados</p>
+
+<ul id="item-list"></ul>
+
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Boletín 2 – Arrays (SOLUCIONES)</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #1e1e2e; color: #cdd6f4; padding: 20px; }
+    h1   { color: #cba6f7; border-bottom: 2px solid #cba6f7; }
+    h2   { color: #89b4fa; margin-top: 40px; border-left: 4px solid #89b4fa; padding-left: 8px; }
+    .ejercicio { background: #313244; border-radius: 8px; padding: 20px; margin: 20px 0; }
+    button { background: #89b4fa; color: #1e1e2e; border: none; padding: 8px 16px;
+             border-radius: 5px; cursor: pointer; margin: 4px; font-weight: bold; }
+    button:hover { background: #cba6f7; }
+    input { padding: 6px; border-radius: 4px; border: 1px solid #89b4fa;
+            background: #45475a; color: #cdd6f4; margin: 4px; width: 300px; }
+    .output { background: #181825; padding: 12px; border-radius: 6px; margin-top: 10px;
+              min-height: 30px; white-space: pre-wrap; font-family: monospace; color: #a6e3a1; }
+    .error { color: #f38ba8; }
+    ul { background: #181825; padding: 12px 30px; border-radius: 6px; color: #a6e3a1; }
+    li { padding: 2px 0; }
+  </style>
+</head>
+<body>
+
+<h1>📗 Boletín 2 – Arrays — SOLUCIONES COMENTADAS</h1>
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     EJERCICIO 1
+     Array de 10 múltiplos de 5 aleatorios (0-100)
+     · primer elemento >= 50
+     · último elemento  <= 50
+     ══════════════════════════════════════════════════════════════ -->
+<div class="ejercicio">
+  <h2>Ejercicio 1 – Array con condiciones en primer y último elemento</h2>
+  <button onclick="ejercicio1()">Generar array</button>
+  <div id="ej1" class="output"></div>
+</div>
+
+<script>
+  // ── Ejercicio 1 ──────────────────────────────────────────────────────────
+
+  // Función auxiliar: devuelve un múltiplo de 5 aleatorio entre 0 y 100
+  // Múltiplos de 5 entre 0-100: 0, 5, 10, 15 … 100 → 21 valores (índice 0-20)
+  function multiploRandom5() {
+    // Math.floor(Math.random() * 21) → 0 a 20
+    return Math.floor(Math.random() * 21) * 5;
+  }
+
+  function ejercicio1() {
+    // Paso 1: crear array de 10 múltiplos de 5 aleatorios
+    var array = [];
+    for (var i = 0; i < 10; i++) {
+      array.push(multiploRandom5()); // push() añade al final
+    }
+
+    // Paso 2: si el PRIMER elemento es < 50, lo eliminamos y ponemos otro
+    // unshift() inserta al inicio; shift() elimina el primero
+    while (array[0] < 50) {
+      array.shift();                   // elimina el primero
+      array.unshift(multiploRandom5()); // inserta uno nuevo al inicio
+    }
+
+    // Paso 3: si el ÚLTIMO elemento es > 50, lo eliminamos y ponemos otro
+    // pop() elimina el último; push() añade al final
+    while (array[array.length - 1] > 50) {
+      array.pop();                   // elimina el último
+      array.push(multiploRandom5()); // inserta uno nuevo al final
+    }
+
+    // Paso 4: mostrar en pantalla
+    document.getElementById("ej1").innerText =
+      "Array: [" + array.join(", ") + "]\n" +
+      "Primer elemento (>= 50): " + array[0] + "\n" +
+      "Último  elemento (<= 50): " + array[array.length - 1];
+  }
+</script>
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     EJERCICIO 2 – Comparar dos arrays
+     ══════════════════════════════════════════════════════════════ -->
+<div class="ejercicio">
+  <h2>Ejercicio 2 – Comparar si dos arrays tienen los mismos elementos</h2>
+  <p>Introduce los elementos separados por comas (ejemplo: <code>1,2,3</code>)</p>
+  <input type="text" id="arr2a" placeholder="Array 1 (ej: 1,2,3)">
+  <input type="text" id="arr2b" placeholder="Array 2 (ej: 3,1,2)">
+  <button onclick="ejercicio2()">Comparar</button>
+  <div id="ej2" class="output"></div>
+</div>
+
+<script>
+  // ── Ejercicio 2 ──────────────────────────────────────────────────────────
+
+  // Función que comprueba si dos arrays tienen los MISMOS elementos
+  // (independientemente del orden)
+  function mismosElementos(a, b) {
+    // Si no tienen la misma longitud → distintos
+    if (a.length !== b.length) return false;
+
+    // Ordenamos copias de ambos arrays para comparar elemento a elemento
+    // slice() hace una copia para no modificar los originales
+    var copiaA = a.slice().sort();
+    var copiaB = b.slice().sort();
+
+    for (var i = 0; i < copiaA.length; i++) {
+      if (copiaA[i] !== copiaB[i]) return false; // si alguno difiere → false
+    }
+    return true; // si llegamos aquí → son iguales
+  }
+
+  function ejercicio2() {
+    // split(",") divide la cadena por comas y devuelve un array de strings
+    // map(s => s.trim()) elimina espacios extra en cada elemento
+    var arr1 = document.getElementById("arr2a").value.split(",").map(function(s){ return s.trim(); });
+    var arr2 = document.getElementById("arr2b").value.split(",").map(function(s){ return s.trim(); });
+
+    var igual = mismosElementos(arr1, arr2);
+    document.getElementById("ej2").innerText =
+      "Array 1: [" + arr1 + "]\n" +
+      "Array 2: [" + arr2 + "]\n" +
+      (igual ? "✔ Los arrays contienen los MISMOS elementos"
+             : "✘ Los arrays son DISTINTOS");
+  }
+</script>
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     EJERCICIO 3 – Elementos repetidos y sus posiciones
+     ══════════════════════════════════════════════════════════════ -->
+<div class="ejercicio">
+  <h2>Ejercicio 3 – Detectar elementos repetidos y sus posiciones</h2>
+  <input type="text" id="arr3" placeholder="Array (ej: 1,2,3,2,4,1,5)">
+  <button onclick="ejercicio3()">Detectar repetidos</button>
+  <div id="ej3" class="output"></div>
+</div>
+
+<script>
+  // ── Ejercicio 3 ──────────────────────────────────────────────────────────
+
+  function detectarRepetidos(arr) {
+    var vistos = {};    // objeto para contar apariciones por valor
+    var posiciones = {}; // objeto para guardar posiciones de cada valor
+
+    for (var i = 0; i < arr.length; i++) {
+      var elem = arr[i];
+      if (vistos[elem] === undefined) {
+        vistos[elem] = 0;
+        posiciones[elem] = [];
+      }
+      vistos[elem]++;          // incrementamos el contador
+      posiciones[elem].push(i); // guardamos la posición
+    }
+
+    // Filtramos solo los que aparecen más de una vez
+    var repetidos = [];
+    for (var clave in vistos) {
+      if (vistos[clave] > 1) {
+        repetidos.push({
+          valor: clave,
+          veces: vistos[clave],
+          indices: posiciones[clave]
+        });
+      }
+    }
+    return repetidos;
+  }
+
+  function ejercicio3() {
+    var arr = document.getElementById("arr3").value.split(",").map(function(s){ return s.trim(); });
+    var repetidos = detectarRepetidos(arr);
+
+    if (repetidos.length === 0) {
+      document.getElementById("ej3").innerText = "No hay elementos repetidos.";
+      return;
+    }
+
+    var salida = "Elementos repetidos:\n";
+    for (var i = 0; i < repetidos.length; i++) {
+      salida += "  Valor '" + repetidos[i].valor + "': aparece " +
+                repetidos[i].veces + " veces → posiciones [" +
+                repetidos[i].indices.join(", ") + "]\n";
+    }
+    document.getElementById("ej3").innerText = salida;
+  }
+</script>
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     EJERCICIO 4 – Array aleatorio, ordenar y mostrar en lista <ul>
+     ══════════════════════════════════════════════════════════════ -->
+<div class="ejercicio">
+  <h2>Ejercicio 4 – Array aleatorio ordenado en lista &lt;ul&gt;</h2>
+  <button onclick="ejercicio4()">Generar y ordenar</button>
+  <div id="ej4" class="output"></div>
+</div>
+
+<script>
+  // ── Ejercicio 4 ──────────────────────────────────────────────────────────
+  function ejercicio4() {
+    var arr = [];
+
+    // Generamos 10 números aleatorios entre 1 y 100
+    for (var i = 0; i < 10; i++) {
+      arr.push(Math.floor(Math.random() * 100) + 1);
+    }
+
+    // sort() por defecto ordena como strings → comparamos como números
+    // La función de comparación: si a - b > 0 → b va antes (orden ascendente)
+    arr.sort(function(a, b) { return a - b; });
+
+    // Construimos lista HTML <ul>
+    var html = "Array original (ordenado): [" + arr.join(", ") + "]<br><ul>";
+    for (var i = 0; i < arr.length; i++) {
+      html += "<li>" + arr[i] + "</li>";
+    }
+    html += "</ul>";
+
+    document.getElementById("ej4").innerHTML = html;
+  }
+</script>
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     EJERCICIO 5 – Función que devuelve el último elemento
+     ══════════════════════════════════════════════════════════════ -->
+<div class="ejercicio">
+  <h2>Ejercicio 5 – Último elemento de un array</h2>
+  <input type="text" id="arr5" placeholder="Array (ej: 10,20,30,40)">
+  <button onclick="ejercicio5()">Obtener último</button>
+  <div id="ej5" class="output"></div>
+</div>
+
+<script>
+  // ── Ejercicio 5 ──────────────────────────────────────────────────────────
+
+  // Función que devuelve el último elemento de un array
+  function ultimoElemento(arr) {
+    if (arr.length === 0) return undefined; // array vacío → no hay elemento
+    return arr[arr.length - 1]; // el índice del último es length - 1
+  }
+
+  function ejercicio5() {
+    var arr = document.getElementById("arr5").value.split(",").map(function(s){ return s.trim(); });
+
+    if (arr.length === 0 || arr[0] === "") {
+      document.getElementById("ej5").innerText = "Introduce al menos un elemento.";
+      return;
+    }
+
+    var ultimo = ultimoElemento(arr);
+    document.getElementById("ej5").innerText =
+      "Array: [" + arr.join(", ") + "]\n" +
+      "Último elemento: " + ultimo;
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Boletín 1 – Javascript I (SOLUCIONES)</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #1e1e2e; color: #cdd6f4; padding: 20px; }
+    h1   { color: #cba6f7; border-bottom: 2px solid #cba6f7; }
+    h2   { color: #89b4fa; margin-top: 40px; border-left: 4px solid #89b4fa; padding-left: 8px; }
+    .ejercicio { background: #313244; border-radius: 8px; padding: 20px; margin: 20px 0; }
+    button { background: #89b4fa; color: #1e1e2e; border: none; padding: 8px 16px;
+             border-radius: 5px; cursor: pointer; margin: 4px; font-weight: bold; }
+    button:hover { background: #cba6f7; }
+    input, select { padding: 6px; border-radius: 4px; border: 1px solid #89b4fa;
+                    background: #45475a; color: #cdd6f4; margin: 4px; }
+    #output { background: #181825; padding: 12px; border-radius: 6px; margin-top: 10px;
+              min-height: 30px; white-space: pre-wrap; font-family: monospace; color: #a6e3a1; }
+    .resultado { color: #a6e3a1; font-weight: bold; }
+    .error { color: #f38ba8; font-weight: bold; }
+    ul, ol { background: #181825; padding: 12px 30px; border-radius: 6px; }
+    li { padding: 2px 0; }
+  </style>
+</head>
+<body>
+
+<h1>📘 Boletín 1 – Javascript I — SOLUCIONES COMENTADAS</h1>
+<p>Abre este archivo en el navegador para ver todos los ejercicios en funcionamiento.</p>
+
+<!-- ══════════════════════════════════════════════════════════════
+     EJERCICIO 1
+     Todo el código JS debe estar en archivo externo codigo.js
+     AQUÍ lo incluimos inline con <script> para no necesitar servidor
+     ══════════════════════════════════════════════════════════════ -->
+<div class="ejercicio">
+  <h2>Ejercicio 1 – Script externo + document.write</h2>
+  <p><strong>Nota:</strong> En un proyecto real esto iría en <code>codigo.js</code> referenciado con
+     <code>&lt;script src="codigo.js"&gt;&lt;/script&gt;</code></p>
+  <div id="ej1-output"></div>
+</div>
+
+<script>
+  // ── Ejercicio 1 ──────────────────────────────────────────────────────────
+  // document.write escribe directamente en el HTML durante la carga.
+  // Lo redirigimos a un div para no romper la página.
+  document.getElementById("ej1-output").innerHTML =
+    "Hola, ¿qué tal?" +
+    "<br>Soy Alexandru y este es mi primer script";
+</script>
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     EJERCICIO 2 – Variable saludo + alert
+     ══════════════════════════════════════════════════════════════ -->
+<div class="ejercicio">
+  <h2>Ejercicio 2 – Variable saludo y alert</h2>
+  <button onclick="mostrarSaludo()">Mostrar saludo con alert</button>
+</div>
+
+<script>
+  // ── Ejercicio 2 ──────────────────────────────────────────────────────────
+  // Guardamos el mensaje en una variable y lo mostramos con alert()
+  function mostrarSaludo() {
+    var saludo = "Hola, ¿qué tal? Soy Alexandru y este es mi primer script";
+    alert(saludo); // alert() abre una ventana emergente con el texto
+  }
+</script>
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     EJERCICIO 3 – Completar condiciones de if
+     ══════════════════════════════════════════════════════════════ -->
+<div class="ejercicio">
+  <h2>Ejercicio 3 – Condiciones if</h2>
+  <button onclick="ejercicio3()">Ejecutar</button>
+  <div id="ej3-output" class="resultado"></div>
+</div>
+
+<script>
+  // ── Ejercicio 3 ──────────────────────────────────────────────────────────
+  function ejercicio3() {
+    var numero1 = 7;
+    var numero2 = 9;
+    var resultado = "";
+
+    // Condición 1: numero1 NO es mayor que numero2 → numero1 <= numero2
+    if (numero1 <= numero2) {
+      resultado += "✔ numero1 no es mayor que numero2<br>";
+    }
+
+    // Condición 2: numero2 es positivo → numero2 > 0
+    if (numero2 > 0) {
+      resultado += "✔ numero2 es positivo<br>";
+    }
+
+    // Condición 3: numero1 es negativo O distinto de cero → numero1 < 0 || numero1 != 0
+    if (numero1 < 0 || numero1 != 0) {
+      resultado += "✔ numero1 es negativo o distinto de cero<br>";
+    }
+
+    // Condición 4: incrementar numero1 en 1 NO lo hace >= numero2
+    // → (numero1 + 1) < numero2
+    if ((numero1 + 1) < numero2) {
+      resultado += "✔ Incrementar numero1 en 1 NO lo hace mayor o igual que numero2<br>";
+    }
+
+    document.getElementById("ej3-output").innerHTML = resultado;
+  }
+</script>
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     EJERCICIO 4 – Array días de la semana
+     ══════════════════════════════════════════════════════════════ -->
+<div class="ejercicio">
+  <h2>Ejercicio 4 – Array de días de la semana</h2>
+  <button onclick="diasLineas()">Mostrar en líneas</button>
+  <button onclick="diasLista()">Mostrar como lista numerada</button>
+  <div id="ej4-output"></div>
+</div>
+
+<script>
+  // ── Ejercicio 4 ──────────────────────────────────────────────────────────
+  // Creamos el array con los 7 días. Índice 0 = Lunes.
+  var dias = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"];
+
+  // 4.1 – Escribir en líneas separadas con <br>
+  function diasLineas() {
+    var html = "";
+    for (var i = 0; i < dias.length; i++) {
+      html += dias[i] + "<br>"; // días.length devuelve 7
+    }
+    document.getElementById("ej4-output").innerHTML = html;
+  }
+
+  // 4.2 – Mostrar como lista numerada <ol>
+  function diasLista() {
+    var html = "<ol>";
+    for (var i = 0; i < dias.length; i++) {
+      html += "<li>" + dias[i] + "</li>";
+    }
+    html += "</ol>";
+    document.getElementById("ej4-output").innerHTML = html;
+  }
+</script>
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     EJERCICIO 5 – Bucles: primeros 10 números, 20 pares, múltiplos de 7
+     ══════════════════════════════════════════════════════════════ -->
+<div class="ejercicio">
+  <h2>Ejercicio 5 – Bucles</h2>
+  <button onclick="primeros10()">Primeros 10 números</button>
+  <button onclick="primeros20Pares()">20 primeros pares</button>
+  <button onclick="multiplosDe7()">Múltiplos de 7 &lt; 500</button>
+  <div id="ej5-output" class="resultado"></div>
+</div>
+
+<script>
+  // ── Ejercicio 5 ──────────────────────────────────────────────────────────
+
+  // 5.1 – Primeros 10 números (del 1 al 10)
+  function primeros10() {
+    var salida = "";
+    for (var i = 1; i <= 10; i++) {
+      salida += i + " "; // separados por espacio
+    }
+    document.getElementById("ej5-output").innerText = salida;
+  }
+
+  // 5.2 – Primeros 20 números PARES
+  function primeros20Pares() {
+    var salida = "";
+    var contador = 0; // contamos cuántos pares hemos generado
+    var num = 2;      // empezamos en el primer par
+    while (contador < 20) {
+      salida += num + " ";
+      num += 2;   // sumamos 2 para ir al siguiente par
+      contador++;
+    }
+    document.getElementById("ej5-output").innerText = salida;
+  }
+
+  // 5.3 – Múltiplos de 7 menores de 500
+  function multiplosDe7() {
+    var salida = "";
+    // Alternativa: for (var i = 7; i < 500; i += 7)
+    for (var i = 1; i < 500; i++) {
+      if (i % 7 === 0) {  // % es el operador módulo (resto de la división)
+        salida += i + " ";
+      }
+    }
+    document.getElementById("ej5-output").innerText = salida;
+  }
+</script>
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     EJERCICIO 6 – Par o impar con validación
+     ══════════════════════════════════════════════════════════════ -->
+<div class="ejercicio">
+  <h2>Ejercicio 6 – ¿Par o Impar?</h2>
+  <input type="text" id="numParImpar" placeholder="Introduce un número">
+  <button onclick="parImpar()">Comprobar</button>
+  <span id="ej6-output" class="resultado"></span>
+</div>
+
+<script>
+  // ── Ejercicio 6 ──────────────────────────────────────────────────────────
+  function parImpar() {
+    var valor = document.getElementById("numParImpar").value;
+
+    // Validación 1: el campo no puede estar vacío
+    if (valor === "") {
+      document.getElementById("ej6-output").innerHTML = '<span class="error">⚠ Debes introducir un número</span>';
+      return; // salimos de la función
+    }
+
+    // Validación 2: comprobar que es un número con isNaN()
+    // isNaN() devuelve true si NO es un número
+    if (isNaN(valor)) {
+      document.getElementById("ej6-output").innerHTML = '<span class="error">⚠ El valor introducido no es un número</span>';
+      return;
+    }
+
+    // Convertimos a número entero con parseInt()
+    var num = parseInt(valor);
+
+    // num % 2 es el resto de dividir entre 2. Si es 0 → par
+    if (num % 2 === 0) {
+      document.getElementById("ej6-output").innerHTML = '<span class="resultado">✔ ' + num + ' es PAR</span>';
+    } else {
+      document.getElementById("ej6-output").innerHTML = '<span class="resultado">✔ ' + num + ' es IMPAR</span>';
+    }
+  }
+</script>
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     EJERCICIO 7 – Lanzar dos dados
+     ══════════════════════════════════════════════════════════════ -->
+<div class="ejercicio">
+  <h2>Ejercicio 7 – Tirar dos dados</h2>
+  <button onclick="tirarDados()">🎲 Tirar dados</button>
+  <div id="ej7-output" class="resultado"></div>
+</div>
+
+<script>
+  // ── Ejercicio 7 ──────────────────────────────────────────────────────────
+  function tirarDados() {
+    // Math.random() → número entre 0 (incluido) y 1 (excluido)
+    // Math.floor()  → parte entera (redondear hacia abajo)
+    // Fórmula dado (1-6): Math.floor(Math.random() * 6) + 1
+    var dado1 = Math.floor(Math.random() * 6) + 1;
+    var dado2 = Math.floor(Math.random() * 6) + 1;
+    var total = dado1 + dado2;
+
+    document.getElementById("ej7-output").innerText =
+      "Dado 1: " + dado1 + "  |  Dado 2: " + dado2 + "  |  Total: " + total;
+  }
+</script>
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     EJERCICIO 8 – Primitiva: 6 números del 1 al 49
+     ══════════════════════════════════════════════════════════════ -->
+<div class="ejercicio">
+  <h2>Ejercicio 8 – Primitiva</h2>
+  <button onclick="primitiva()">🎰 Generar primitiva</button>
+  <div id="ej8-output" class="resultado"></div>
+</div>
+
+<script>
+  // ── Ejercicio 8 ──────────────────────────────────────────────────────────
+  function primitiva() {
+    var numeros = "";
+    for (var i = 0; i < 6; i++) {
+      // Número aleatorio entre 1 y 49
+      var num = Math.floor(Math.random() * 49) + 1;
+      numeros += num + "  ";
+    }
+    // Nota: el enunciado dice que no hay que controlar repetidos
+    document.getElementById("ej8-output").innerText = "Tu combinación: " + numeros;
+  }
+</script>
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     EJERCICIO 9 – Quiniela
+     ══════════════════════════════════════════════════════════════ -->
+<div class="ejercicio">
+  <h2>Ejercicio 9 – Quiniela</h2>
+  <button onclick="quiniela()">🏆 Generar quiniela</button>
+  <div id="ej9-output" class="resultado"></div>
+</div>
+
+<script>
+  // ── Ejercicio 9 ──────────────────────────════════════════════════════────
+  function quiniela() {
+    var resultado = "QUINIELA:\n";
+
+    // 14 partidos: valores posibles 1, X, 2
+    // Generamos un número entre 1 y 3. Si sale 3 → mostramos "X"
+    for (var i = 1; i <= 14; i++) {
+      var num = Math.floor(Math.random() * 3) + 1; // 1, 2 o 3
+      var marcador;
+      if (num === 3) {
+        marcador = "X"; // el 3 se transforma en X
+      } else {
+        marcador = num; // 1 o 2 se muestran tal cual
+      }
+      resultado += "Partido " + i + ": " + marcador + "\n";
+    }
+
+    // Partido 15 especial: dos columnas con valores 0, 1, 2, M
+    // Generamos dos números entre 0 y 3. Si sale 3 → mostramos "M"
+    var col1 = Math.floor(Math.random() * 4); // 0, 1, 2 o 3
+    var col2 = Math.floor(Math.random() * 4);
+    var p15a = (col1 === 3) ? "M" : col1;
+    var p15b = (col2 === 3) ? "M" : col2;
+    resultado += "Partido 15: " + p15a + " / " + p15b;
+
+    document.getElementById("ej9-output").innerText = resultado;
+  }
+</script>
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     EJERCICIO 10 – Números aleatorios hasta el 666
+     ══════════════════════════════════════════════════════════════ -->
+<div class="ejercicio">
+  <h2>Ejercicio 10 – Generar hasta el 666</h2>
+  <button onclick="hasta666()">😈 Generar hasta el 666</button>
+  <div id="ej10-output" class="resultado"></div>
+</div>
+
+<script>
+  // ── Ejercicio 10 ──────────────────────────────────────────────────────────
+  function hasta666() {
+    var intentos = 0;
+    var num;
+    var lista = "";
+
+    // do...while: se ejecuta AL MENOS UNA VEZ y sigue hasta que salga el 666
+    do {
+      num = Math.floor(Math.random() * 1000) + 1; // número entre 1 y 1000
+      intentos++;
+      lista += num + " ";
+
+      // Limitamos a 50000 iteraciones para no bloquear el navegador
+      if (intentos > 50000) break;
+    } while (num !== 666);
+
+    document.getElementById("ej10-output").innerText =
+      "Números generados: " + lista + "\nIntentos hasta el 666: " + intentos;
+  }
+</script>
+
+</body>
+</html>

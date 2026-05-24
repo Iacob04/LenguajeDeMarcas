@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Boletín 3 – DOM</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    h2 { margin-top: 30px; }
+    hr { margin: 20px 0; }
+    input, button, select { margin: 4px; padding: 5px; }
+    /* Ej1 */
+    #divEj1 { border: 3px solid black; padding: 15px; text-align: center;
+              font-style: italic; font-weight: bold; min-height: 40px; margin: 10px 0; }
+    /* Ej2 */
+    .caja-naranja { background: orange; width: 200px; }
+    /* Ej5 */
+    .opcion { padding: 8px; text-align: center; font-weight: bold; cursor: pointer; border: 1px solid #ccc; margin: 2px 0; }
+    .seleccionado { background: red; color: white; }
+    /* Ej6 */
+    #cabecera-ej6 { background: #9b59b6; color: white; text-align: center; padding: 8px; font-weight: bold; }
+    #celdasIntentos { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
+    .celda { width: 36px; height: 36px; background: #9b59b6; color: white;
+             display: flex; align-items: center; justify-content: center; font-weight: bold; }
+  </style>
+  <script src="boletin3.js"></script>
+</head>
+<body>
+
+  <h1>Boletín 3 – DOM</h1>
+
+  <!-- EJERCICIO 1 -->
+  <h2>Ejercicio 1 – Modificar un DIV</h2>
+  <div id="divEj1">TEXTO DEL DIV</div>
+  <label>Texto: <input type="text" id="txtEj1"></label><br>
+  <label>Color fondo: <input type="color" id="colFondo" value="#ffffff"></label>
+  <label>Color borde: <input type="color" id="colBorde" value="#000000"></label>
+  <label>Color texto: <input type="color" id="colTexto" value="#000000"></label><br>
+  <button onclick="cambiarTexto()">Cambiar Texto</button>
+  <button onclick="cambiarFondo()">Cambiar color fondo</button>
+  <button onclick="cambiarBorde()">Cambiar color borde</button>
+  <button onclick="cambiarColorTexto()">Cambiar color texto</button>
+  <hr>
+
+  <!-- EJERCICIO 2 -->
+  <h2>Ejercicio 2 – Ejercicio de Controles</h2>
+  <table border="1" cellpadding="6">
+    <tr><th colspan="3">EJERCICIO DE CONTROLES</th></tr>
+    <tr>
+      <td>Texto 1:</td>
+      <td><input type="text" id="texto1" class="caja-naranja"></td>
+      <td>
+        <button onclick="limpiar1()">Limpiar Texto 1</button>
+        <button onclick="copiar1a2()">Copiar a Texto 2</button>
+      </td>
+    </tr>
+    <tr>
+      <td>Texto 2:</td>
+      <td><input type="text" id="texto2" class="caja-naranja"></td>
+      <td>
+        <button onclick="limpiar2()">Limpiar Texto 2</button>
+        <button onclick="copiar2a1()">Copiar a Texto 1</button>
+      </td>
+    </tr>
+  </table>
+  <hr>
+
+  <!-- EJERCICIO 3 -->
+  <h2>Ejercicio 3 – Valor en Controles</h2>
+  <table border="1" cellpadding="6">
+    <tr><th colspan="2">VALOR EN CONTROLES</th></tr>
+    <tr><td>Caja texto:</td>    <td><input type="text"     id="c-texto"  value="Gerardo"></td></tr>
+    <tr><td>Caja número:</td>   <td><input type="number"   id="c-num"    value="45"></td></tr>
+    <tr><td>Caja password:</td> <td><input type="password" id="c-pass"   value="Contraseña"></td></tr>
+    <tr><td>Caja fecha:</td>    <td><input type="date"     id="c-fecha"  value="2023-01-31"></td></tr>
+    <tr><td>Caja hora:</td>     <td><input type="time"     id="c-hora"   value="19:58"></td></tr>
+    <tr><td>Caja radio:</td>    <td><input type="radio"    id="c-radio"  checked></td></tr>
+    <tr><td>Caja check:</td>    <td><input type="checkbox" id="c-check"></td></tr>
+    <tr><td>Caja select:</td>
+      <td>
+        <select id="c-select">
+          <option>Opción 1</option>
+          <option>Opción 2</option>
+          <option selected>Opción 3</option>
+        </select>
+      </td>
+    </tr>
+    <tr><td colspan="2"><button onclick="capturarValores()">Capturar valores</button></td></tr>
+  </table>
+  <hr>
+
+  <!-- EJERCICIO 4 -->
+  <h2>Ejercicio 4 – Operadores</h2>
+  <table border="1" cellpadding="6">
+    <tr><th colspan="9">OPERADORES</th></tr>
+    <tr>
+      <td>Número 1: <input type="number" id="n1" value="5" style="width:60px;background:lightgreen"></td>
+      <td>Número 2: <input type="number" id="n2" value="6" style="width:60px;background:lightgreen"></td>
+      <td><button onclick="operar('+')">Sumar</button></td>
+      <td><button onclick="operar('-')">Restar</button></td>
+      <td><button onclick="operar('*')">Producto</button></td>
+      <td><button onclick="operar('/')">División</button></td>
+      <td><button onclick="limpiarCalc()">Limpiar</button></td>
+    </tr>
+    <tr>
+      <td colspan="7">Resultado: <input type="text" id="resultado" readonly style="width:200px;background:lightgreen"></td>
+    </tr>
+  </table>
+  <hr>
+
+  <!-- EJERCICIO 5 -->
+  <h2>Ejercicio 5 – Menú Seleccionable</h2>
+  <div style="border:1px solid #ccc; padding:15px; max-width:380px">
+    <div style="text-align:center; font-weight:bold; border:1px solid #ccc; padding:6px; margin-bottom:8px">
+      MENU SELECCIONABLE
+    </div>
+    <div class="opcion seleccionado" id="op0">¿EL NÚMERO ES PAR?</div>
+    <div class="opcion" id="op1">¿EL NÚMERO ES IMPAR?</div>
+    <div class="opcion" id="op2">¿EL NÚMERO ES PRIMO?</div>
+    <div class="opcion" id="op3">OBTENER DIVISORES</div>
+    <hr>
+    <button onclick="subirMenu()">↑</button>
+    <button onclick="bajarMenu()">↓</button>
+    <input type="number" id="numMenu" placeholder="1-100" style="width:70px">
+    <button onclick="calcularMenu()">CALCULAR</button>
+    <hr>
+    <input type="text" id="resMenu" readonly style="width:100%;box-sizing:border-box">
+  </div>
+  <hr>
+
+  <!-- EJERCICIO 6 -->
+  <h2>Ejercicio 6 – Adivina el Número</h2>
+  <div style="border:1px solid #ccc; max-width:480px">
+    <div id="cabecera-ej6">ADIVINA EL NÚMERO</div>
+    <div style="padding:8px; display:flex; align-items:center; gap:8px; border-bottom:1px solid #ccc">
+      <label>Numero: <input type="number" id="inputNum" style="width:80px"></label>
+      <button onclick="jugar()">Jugar</button>
+      <span id="msgJuego" style="font-weight:bold"></span>
+    </div>
+    <div style="padding:8px; border-bottom:1px solid #ccc; font-weight:bold" id="labelIntentos">
+      INTENTOS REALIZADOS
+    </div>
+    <div style="padding:8px; display:flex; gap:6px; flex-wrap:wrap" id="celdasIntentos"></div>
+    <div style="padding:8px">
+      <button onclick="nuevaPartida()">Nueva partida</button>
+    </div>
+  </div>
+
+</body>
+</html>

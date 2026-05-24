@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario de contacto</title>
+    <style>
+        #numSolicitud {
+            border: 2px solid red;
+            display: none;
+        }
+    </style>
+    
+    <link rel="stylesheet" href="e2.css">
+</head>
+
+<body>
+    <div class="contenedor">
+        <h2>Solicitud de información</h2>
+        <form>
+            <label>Nombre:</label>
+            <br>
+            <input type="text" placeholder="Escribe tu nombre" required>
+            <br>
+            <label>Email:</label>
+            <br>
+            <input type="email" placeholder="Escribe tu email" required>
+            <br>
+            <label>Asunto:</label>
+            <br>
+            <select id="asunto" onchange="desplegableSolicitud(this.value)" required>
+                <option value="info">Pedir información</option>
+                <option value="estado">Estado de una solicitud</option>
+                <option value="otros">Otros</option>
+            </select>
+            <br>
+            <div id="solicitud" style="display: none;">
+                <label>Nº de solicitud:</label><br>
+                <input type="text"  id ="inputSoli" placeholder="Escribe el nº solicitud">
+            </div>
+            <br>
+            <label>Escribe un mensaje:</label>
+            <br>
+            <textarea required></textarea>
+            <br>
+            <button type="submit">Enviar</button>
+            <br>
+        </form>
+    </div>
+    <script src="e2.js"> </script>
+</body>
+</html>

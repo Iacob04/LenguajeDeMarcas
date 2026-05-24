@@ -1,0 +1,138 @@
+/* ================================================
+   SmashZone — styles.css
+   CSS personalizado MÍNIMO:
+   solo colores de marca y ajustes que Bootstrap
+   no puede hacer por sí solo.
+   ================================================ */
+
+/* --- Paleta de marca --- */
+:root {
+  --sz-verde:      #00c896;   /* color principal */
+  --sz-verde-dark: #009e78;   /* hover */
+  --sz-dark:       #0f172a;   /* navbar y footer */
+  --sz-gris:       #f8fafc;   /* fondo de cards */
+  --sz-muted:      #64748b;   /* texto secundario */
+}
+
+/* Scroll suave */
+html { scroll-behavior: smooth; }
+
+/* ── Navbar ── */
+.navbar-sz {
+  background-color: var(--sz-dark);
+}
+.navbar-sz .navbar-brand {
+  color: #fff !important;
+  font-weight: 700;
+  font-size: 1.35rem;
+}
+.navbar-sz .nav-link {
+  color: rgba(255,255,255,0.75) !important;
+  font-weight: 500;
+}
+.navbar-sz .nav-link:hover,
+.navbar-sz .nav-link.active {
+  color: var(--sz-verde) !important;
+}
+
+/* ── Slides del Carousel ── */
+.slide-hero {
+  min-height: 440px;
+  display: flex;
+  align-items: center;
+}
+.slide-1 { background: linear-gradient(135deg, #0f172a, #134e4a); }
+.slide-2 { background: linear-gradient(135deg, #1e1b4b, #4338ca); }
+.slide-3 { background: linear-gradient(135deg, #431407, #c2410c); }
+
+/* ── Botón de acento (color de marca) ── */
+.btn-sz {
+  background-color: var(--sz-verde);
+  color: #fff;
+  border: none;
+  font-weight: 600;
+}
+.btn-sz:hover {
+  background-color: var(--sz-verde-dark);
+  color: #fff;
+}
+
+/* ── Cards de producto ── */
+.card-producto {
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.card-producto:hover {
+  box-shadow: 0 6px 24px rgba(0,0,0,0.10);
+  transform: translateY(-4px);
+}
+.card-producto .zona-imagen {
+  background-color: var(--sz-gris);
+  font-size: 4.5rem;
+  text-align: center;
+  padding: 1.5rem 0;
+}
+
+/* ── Precios ── */
+.precio-actual {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--sz-verde-dark);
+}
+.precio-antes {
+  font-size: 0.88rem;
+  color: var(--sz-muted);
+  text-decoration: line-through;
+}
+
+/* ── Separador de sección ── */
+.linea-acento {
+  width: 48px;
+  height: 4px;
+  background-color: var(--sz-verde);
+  border-radius: 4px;
+  margin: 0 auto 1rem;
+}
+
+/* ── Newsletter ── */
+.seccion-newsletter {
+  background-color: var(--sz-gris);
+}
+
+/* ── Footer ── */
+footer {
+  background-color: var(--sz-dark);
+  color: rgba(255,255,255,0.75);
+}
+footer h6 {
+  color: #fff;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+}
+footer a {
+  color: rgba(255,255,255,0.65);
+  text-decoration: none;
+  font-size: 0.9rem;
+  display: block;
+  margin-bottom: 6px;
+  transition: color 0.2s;
+}
+footer a:hover {
+  color: var(--sz-verde);
+}
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+/* ── Toast: posición fija ── */
+.toast-wrap {
+  position: fixed;
+  bottom: 1.5rem;
+  right:  1.5rem;
+  z-index: 1100;
+}

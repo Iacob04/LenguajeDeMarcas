@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 4 - Operadores</title>
+    <link rel="stylesheet" href="ejercicio4.css">
+</head>
+<body>
+
+    <div class="contenedor">
+        <table class="tabla-principal">
+            <thead>
+                <tr>
+                    <th colspan="7" class="cabecera">OPERADORES</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="fila-operandos">
+                    <td class="etiqueta">Número 1:</td>
+                    <td><input type="number" id="numero1" class="input-verde"></td>
+                    <td class="etiqueta">Número 2:</td>
+                    <td><input type="number" id="numero2" class="input-verde"></td>
+                    <td><button onclick="calcular('+')">Sumar</button></td>
+                    <td><button onclick="calcular('-')">Restar</button></td>
+                    <td><button onclick="calcular('*')">Producto</button></td>
+                    <td><button onclick="calcular('/')">División</button></td>
+                    <td><button onclick="limpiar()">Limpiar</button></td>
+                </tr>
+                <tr class="fila-resultado">
+                    <td class="etiqueta" colspan="2"><strong>Resultado:</strong></td>
+                    <td colspan="7">
+                        <input type="text" id="resultado" class="input-verde resultado-ancho" readonly>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="ejercicio4.js"></script>
+</body>
+</html>

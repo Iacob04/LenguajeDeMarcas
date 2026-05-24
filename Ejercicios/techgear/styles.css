@@ -1,0 +1,44 @@
+/* =====================================================
+   TechGear — styles.css
+   CSS personalizado MÍNIMO: solo colores de marca y
+   ajustes que las clases de Bootstrap no cubren.
+   ===================================================== */
+
+/* Variables de marca */
+:root {
+  --tg-azul:       #0066ff;
+  --tg-azul-hover: #004ecc;
+  --tg-oscuro:     #0d1117;
+  --tg-gris:       #f4f6fb;
+}
+
+/* Scroll suave */
+html { scroll-behavior: smooth; }
+
+/* ── Slides del Carousel ──────────────────────────── */
+/* Bootstrap no cubre altura personalizada ni gradientes de marca */
+.tg-slide {
+  min-height: 480px;
+  display: flex;
+  align-items: center;
+}
+.slide-audio   { background: linear-gradient(135deg, #0d1117 0%, #003399 100%); }
+.slide-gaming  { background: linear-gradient(135deg, #0d1117 0%, #4d0099 100%); }
+.slide-wear    { background: linear-gradient(135deg, #0d1117 0%, #006633 100%); }
+
+/* ── Imagen de las cards ──────────────────────────── */
+/* Bootstrap no fuerza altura fija en card-img-top */
+.tg-img-producto {
+  height: 200px;
+  object-fit: cover;
+  background-color: var(--tg-gris);
+}
+
+/* ── Posición fija del Toast ──────────────────────── */
+/* Bootstrap no incluye posición fixed por defecto en Toast */
+.tg-contenedor-toast {
+  position: fixed;
+  bottom: 1.5rem;
+  right:  1.5rem;
+  z-index: 1100;
+}

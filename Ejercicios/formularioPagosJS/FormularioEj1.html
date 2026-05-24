@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Ejercicio 1</title>
+<style>
+* {
+font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+form {
+width: 450px;
+border: 1px solid;
+border-radius: 5px;
+}
+div {
+padding: 5px;
+margin: 10px;
+}
+label {
+display: block;
+}
+input, select {
+height: 25px;
+border-radius: 5px;
+}
+button {
+color: white;
+border-color: #0c8f1b;
+border-radius: 5px;
+background-color: #0c8f1b;
+padding: 5px;
+margin: 10px;
+}
+#error{
+display: none;
+color: rgb(237, 68, 68);
+}
+#errorP{
+display: none;
+color: rgb(237, 68, 68);
+}
+</style>
+</head>
+<body>
+<h1>Formulario de registro</h1>
+<form name="form1" onsubmit='return validar();'>
+<div>
+<!--onsubmit='return validar();' significa:
+
+onsubmit → cuando el usuario pulsa el botón de enviar
+return validar() → ejecuta la función y usa lo que devuelve
+
+Si devuelve false → el formulario no se envía
+Si devuelve true → el formulario sí se envía
+
+Sin el return delante no funcionaría — el formulario se enviaría siempre aunque validar() devuelva false.-->
+<label for='nombre'>Nombre *</label>
+<input type='text' name='nombre' id='nombre' />
+</div>
+<div>
+<label for='apellido'>Apellido *</label>
+<input type='text' name='apellido' id='apellido' />
+</div>
+<div>
+<label for='contraseña'>Contraseña *</label>
+<input type='password' name='contraseña' id='contraseña' />
+</div>
+<div>
+<label for='contraseña2'>Repetir Contraseña *</label>
+<input type='password' name='contraseña2' id='contraseña2' />
+</div>
+<div>
+<label for='direccion'>Direccion *</label>
+<input type='text' name='direccion' id='direccion' />
+</div>
+<div>
+<label for='edad'>Edad *</label>
+<input type='text' name='edad' id='edad' />
+</div>
+<div>
+<label for='estudios'>Nivel de Estudios *</label>
+<select id='estudios' name='estudios' />
+<option value=''>Selecciona</option>
+<option>Ninguno</option>
+<option>Primarios</option>
+<option>Bachiller</option>
+<option>Grado</option>
+<option>Master</option>
+</select>
+</div>
+<div>
+<label>
+<input type='checkbox' value='SI' id='acepto' />
+He leido y acepto las condiciones.
+</label>
+</div>
+<div>
+<span id="error">Algunos campos no son correctos, revísalos</span>
+</div>
+<div>
+<span id="errorP" style="display:none">Las contraseñas no coinciden</span> <!-- Esto hace que oculte la informacion y demas 
+
+display: none oculta completamente el elemento, como si no existiera en la página. No ocupa espacio ni se ve.
+Lo contrario es display: block, que lo hace visible y ocupa su espacio normal
+
+-->
+</div>
+<button>Registrarse</button>
+</form>
+<script src="FormularioEj1.js"></script>
+</body>
+</html>

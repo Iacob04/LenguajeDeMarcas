@@ -1,0 +1,90 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+
+body {
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    padding: 30px;
+}
+
+.contenedor {
+    display: inline-block;
+}
+
+.tabla-principal {
+    border-collapse: collapse;
+    border: 2px solid #000;
+    background-color: #fff;
+    min-width: 350px;
+}
+
+.cabecera {
+    background-color: #fff;
+    font-weight: bold;
+    font-size: 15px;
+    text-align: left;
+    padding: 8px 10px;
+    border-bottom: 2px solid #000;
+}
+
+tbody tr td {
+    padding: 5px 10px;
+    vertical-align: middle;
+}
+
+.etiqueta {
+    white-space: nowrap;
+    padding-right: 8px;
+}
+
+.input-naranja {
+    background-color: #f4a460;
+    border: 1px solid #999;
+    padding: 2px 4px;
+    color: #000;
+    width: 160px;
+}
+
+.input-naranja:focus {
+    outline: 2px solid #c07000;
+}
+
+select.input-naranja {
+    width: 166px;
+    cursor: pointer;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    accent-color: #c07000;
+}
+
+.fila-boton {
+    text-align: left;
+    padding: 8px 10px;
+}
+
+button {
+    padding: 4px 12px;
+    background-color: #e0e0e0;
+    border: 1px solid #999;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+button:hover {
+    background-color: #c8c8c8;
+}
+
+button:active {
+    background-color: #aaa;
+}

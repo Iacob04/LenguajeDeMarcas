@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Formulario de Reseña</title>
+  <link rel="stylesheet" href="estilos.css" />
+</head>
+<body>
+  <div id="formularioCompleto">
+    <div id="titulo">
+      <h1>¡Únete a nuestra comunidad!</h1>
+    </div>
+    <div id="formulario">
+      <h2 id="txtform">Formulario de Reseña de producto</h2>
+      <p id="descripcion">Eutod et autilitaco ex de comunida de pistro de lesidos.</p>
+
+      <form>
+        <label for="producto">Nombre del Producto</label>
+        <input type="text" id="producto" name="producto" placeholder="Nombre del Producto" required />
+
+        <label for="valoracion">Valoración</label>
+        <select id="valoracion" name="valoracion" required>
+          <option value="">Selecciona una opción</option>
+          <option value="1">⭐</option>
+          <option value="2">⭐⭐</option>
+          <option value="3">⭐⭐⭐</option>
+          <option value="4">⭐⭐⭐⭐</option>
+          <option value="5">⭐⭐⭐⭐⭐</option>
+        </select>
+
+        <label for="comentario">Comentario</label>
+        <textarea id="comentario" name="comentario" placeholder="Escribe tu opinión..." required></textarea>
+
+        <label>¿Lo recomendarías?</label>
+        <div class="radio-group">
+          <input type="radio" id="recomendarSi" name="recomendacion" value="sí" required />
+          <label for="recomendarSi">Sí</label>
+          <input type="radio" id="recomendarNo" name="recomendacion" value="no" />
+          <label for="recomendarNo">No</label>
+        </div>
+
+        <label for="correo">Correo Electrónico</label>
+        <input type="email" id="correo" name="correo" placeholder="nombre@email.com" required />
+
+        <div class="botones">
+          <button type="submit" class="enviar">Enviar Reseña</button>
+          <button type="reset" class="cancelar">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+</html>
+

@@ -1,0 +1,51 @@
+/* ===================================================
+   TechGear - Estilos personalizados (mínimos)
+   Bootstrap 5 cubre el 90% del diseño.
+   Solo ajustes de marca y efectos que Bootstrap
+   no proporciona de forma nativa.
+   =================================================== */
+
+:root {
+    --tg-dark:   #0a0f1e;
+    --tg-accent: #00d4ff;
+}
+
+/* ----- Navbar ----- */
+#mainNavbar {
+    background-color: var(--tg-dark) !important;
+    box-shadow: 0 2px 20px rgba(0, 212, 255, 0.08);
+}
+
+/* ----- Hero: fondos de cada slide ----- */
+.hero-slide {
+    min-height: 520px;
+}
+.hero-slide-1 { background: linear-gradient(135deg, #0a0f1e 0%, #1a237e 100%); }
+.hero-slide-2 { background: linear-gradient(135deg, #1a237e 0%, #283593 100%); }
+.hero-slide-3 { background: linear-gradient(135deg, #004d40 0%, #00695c 100%); }
+
+/* ----- Tarjetas de producto: efecto hover ----- */
+.product-card {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.product-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.14) !important;
+}
+
+/* ----- Sección Newsletter ----- */
+.newsletter-section {
+    background: linear-gradient(135deg, #0d6efd 0%, #0dcaf0 100%);
+}
+
+/* ----- Footer ----- */
+.footer-bg {
+    background-color: var(--tg-dark);
+}
+
+/* ----- Hover de enlaces en footer e iconos sociales ----- */
+.footer-link:hover,
+.social-link:hover {
+    color: var(--tg-accent) !important;
+    transition: color 0.2s ease;
+}

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Boletín 1 – Javascript I</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    h2 { margin-top: 30px; }
+    hr { margin: 20px 0; }
+    input, button { margin: 4px; padding: 5px; }
+    #ej6-out, #ej7-out, #ej8-out, #ej9-out, #ej10-out { margin-top: 8px; }
+  </style>
+  <script src="boletin1.js"></script>
+</head>
+<body>
+
+  <h1>Boletín 1 – Javascript I</h1>
+
+  <!-- EJERCICIO 1: el resultado de document.write lo mostramos en un div -->
+  <h2>Ejercicio 1 – Script externo</h2>
+  <div id="ej1"></div>
+  <hr>
+
+  <!-- EJERCICIO 2: variable saludo + alert -->
+  <h2>Ejercicio 2 – Saludo con alert</h2>
+  <button onclick="ej2()">Mostrar saludo</button>
+  <hr>
+
+  <!-- EJERCICIO 3: condiciones if -->
+  <h2>Ejercicio 3 – Condiciones if</h2>
+  <button onclick="ej3()">Ejecutar</button>
+  <div id="ej3-out"></div>
+  <hr>
+
+  <!-- EJERCICIO 4: array días semana -->
+  <h2>Ejercicio 4 – Días de la semana</h2>
+  <button onclick="diasLineas()">En líneas</button>
+  <button onclick="diasLista()">Lista numerada</button>
+  <div id="ej4-out"></div>
+  <hr>
+
+  <!-- EJERCICIO 5: bucles -->
+  <h2>Ejercicio 5 – Bucles</h2>
+  <button onclick="primeros10()">Primeros 10</button>
+  <button onclick="pares20()">20 pares</button>
+  <button onclick="multiplos7()">Múltiplos de 7 &lt;500</button>
+  <div id="ej5-out"></div>
+  <hr>
+
+  <!-- EJERCICIO 6: par o impar -->
+  <h2>Ejercicio 6 – Par o Impar</h2>
+  <input type="text" id="num-parImpar" placeholder="Introduce un número">
+  <button onclick="parImpar()">Comprobar</button>
+  <div id="ej6-out"></div>
+  <hr>
+
+  <!-- EJERCICIO 7: dos dados -->
+  <h2>Ejercicio 7 – Tirar dos dados</h2>
+  <button onclick="tirarDados()">Tirar</button>
+  <div id="ej7-out"></div>
+  <hr>
+
+  <!-- EJERCICIO 8: primitiva -->
+  <h2>Ejercicio 8 – Primitiva</h2>
+  <button onclick="primitiva()">Generar</button>
+  <div id="ej8-out"></div>
+  <hr>
+
+  <!-- EJERCICIO 9: quiniela -->
+  <h2>Ejercicio 9 – Quiniela</h2>
+  <button onclick="quiniela()">Generar quiniela</button>
+  <div id="ej9-out" style="white-space:pre"></div>
+  <hr>
+
+  <!-- EJERCICIO 10: hasta el 666 -->
+  <h2>Ejercicio 10 – Hasta el 666</h2>
+  <button onclick="hasta666()">Generar</button>
+  <div id="ej10-out" style="word-break:break-all"></div>
+
+</body>
+</html>

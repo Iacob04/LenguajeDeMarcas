@@ -1,0 +1,26 @@
+#menu{
+    border: 2px blue solid;
+    width: 100%;
+    height: 80px;
+}
+.menutipos{
+    text-align: center;
+}
+h1{
+    padding: 25px;
+    background-color: hotpink;
+    text-align: center;
+    color: blueviolet;
+    
+}
+#font{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#elemento2{
+    color: red;
+    font-size: larger;
+}
+img{
+    width: 30%;
+}
